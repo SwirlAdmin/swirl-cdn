@@ -1214,5 +1214,5 @@ function gumletVideoCount() {
 }
 
 function demo(){
-    
+    alert('asdsadasd');
 }
