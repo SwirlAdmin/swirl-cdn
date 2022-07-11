@@ -222,16 +222,16 @@ function SSVcopyLink(o) {
             t = !1;
         if (
             (((o = document.createElement("script")).rel = "text/javascript"),
-            (o.src = "https://goswirl.shop/swirl-embed/short-videos-carousel/v7/swiper-bundle.min.js"),
+            (o.src = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8.3/swiper-bundle.min.js"),
             (o.onload = function () {
                 e = !0;
             }),
             headTag.insertBefore(o, headTag.lastChild),
             ((o = document.createElement("link")).rel = "stylesheet"),
-            (o.href = "https://goswirl.shop/swirl-embed/short-videos-carousel/v7/short-videos.css"),
+            (o.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/v8.3/short-videos.min.css"),
             document.body.appendChild(o),
             ((o = document.createElement("link")).rel = "stylesheet"),
-            (o.href = "https://goswirl.shop/swirl-embed/short-videos-carousel/v7/swiper-bundle.min.css"),
+            (o.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/v8.3/swiper-bundle.min.css"),
             headTag.insertBefore(o, headTag.firstChild),
             "undefined" == typeof jQuery)
         )
@@ -584,16 +584,16 @@ function SSVcopyLink(o) {
         var o;
         if (
             (((o = document.createElement("script")).rel = "text/javascript"),
-            (o.src = "https://goswirl.shop/swirl-embed/short-videos-carousel/v7/swiper-bundle.min.js"),
+            (o.src = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8.3/swiper-bundle.min.js"),
             (o.onload = function () {
                 e = !0;
             }),
             headTag.insertBefore(o, headTag.lastChild),
             ((o = document.createElement("link")).rel = "stylesheet"),
-            (o.href = "https://goswirl.shop/swirl-embed/short-videos-carousel/v7/short-videos.css"),
+            (o.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/v8.3/short-videos.min.css"),
             document.body.appendChild(o),
             ((o = document.createElement("link")).rel = "stylesheet"),
-            (o.href = "https://goswirl.shop/swirl-embed/short-videos-carousel/v7/swiper-bundle.min.css"),
+            (o.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/v8.3/swiper-bundle.min.css"),
             headTag.insertBefore(o, headTag.firstChild),
             "undefined" == typeof jQuery)
         )
