@@ -222,16 +222,16 @@ function SSVcopyLink(e) {
             o = !1;
         if (
             (((e = document.createElement("script")).rel = "text/javascript"),
-            (e.src = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8/swiper-bundle.min.js"),
+            (e.src = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8.1/swiper-bundle.min.js"),
             (e.onload = function () {
                 t = !0;
             }),
             headTag.insertBefore(e, headTag.lastChild),
             ((e = document.createElement("link")).rel = "stylesheet"),
-            (e.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/short-videos.min.css"),
+            (e.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/v8.1/short-videos.min.css"),
             document.body.appendChild(e),
             ((e = document.createElement("link")).rel = "stylesheet"),
-            (e.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8/swiper-bundle.min.js"),
+            (e.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8.1/swiper-bundle.min.js"),
             headTag.insertBefore(e, headTag.firstChild),
             "undefined" == typeof jQuery)
         )
@@ -581,16 +581,16 @@ function SSVcopyLink(e) {
         var e;
         if (
             (((e = document.createElement("script")).rel = "text/javascript"),
-            (e.src = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8/swiper-bundle.min.js"),
+            (e.src = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8.1/swiper-bundle.min.js"),
             (e.onload = function () {
                 t = !0;
             }),
             headTag.insertBefore(e, headTag.lastChild),
             ((e = document.createElement("link")).rel = "stylesheet"),
-            (e.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/short-videos.min.css"),
+            (e.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/v8.1/short-videos.min.css"),
             document.body.appendChild(e),
             ((e = document.createElement("link")).rel = "stylesheet"),
-            (e.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8/swiper-bundle.min.js"),
+            (e.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8.1/swiper-bundle.min.js"),
             headTag.insertBefore(e, headTag.firstChild),
             "undefined" == typeof jQuery)
         )
