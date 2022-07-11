@@ -1212,3 +1212,7 @@ function gumletVideoCount() {
             jQuery.ajax({ type: "POST", dataType: "json", url: "https://api.goswirl.live/index.php/BrandController/getShortVideoAnalytics", data: "vid=" + encodeURIComponent(vid), success: function (o) {} });
     }
 }
+
+function demo(){
+    
+}
