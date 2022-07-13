@@ -1,0 +1,200 @@
+#swirl-live-streams {
+  display: block;
+}
+
+#swirl-live-streams .modal-title {
+  color: #323232 !important;
+  margin: 0 !important;
+}
+
+/* shopify wrapper */
+.wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.page-width {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 30px !important;
+}
+
+/* // ends  */
+
+.SL-active-stream-video-container {
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.SL-vdo-thmub {
+  width: 100% !important;
+  display: block;
+  /* height: 250px !important; */
+  /* object-fit: cover; */
+}
+
+.SL-play-btn {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  background: #00000060;
+  border-radius: 50%;
+  filter: invert(1);
+}
+
+.SL-share {
+  position: relative;
+}
+
+.SL-share img {
+  width: 70px;
+  margin-top: 20px !important;
+  margin-bottom: 25px !important;
+  cursor: pointer;
+}
+
+.SL-share span {
+  display: none;
+  margin-bottom: 10px;
+  position: absolute;
+  top: 8px;
+  width: 100%;
+  left: 0;
+}
+
+.main-page-title {
+  display: none;
+}
+
+.SL-stream-label {
+  background: #fff;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.4);
+}
+
+.SL-stream-label.LL {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.SL-stream-label.SL {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.SL-stream-title {
+  position: absolute;
+  color: #fff;
+  bottom: 0;
+  width: 100%;
+  margin: 0 !important;
+  height: 40px;
+  font-size: 16px;
+  line-height: 40px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0 12px;
+  background: #00000070;
+  text-align: center;
+}
+
+.SL-stream-title.ellipsis {
+  text-overflow: ellipsis;
+}
+
+.SL-share-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #00000040;
+  border-radius: 50%;
+  width: 30px;
+  cursor: pointer;
+}
+
+.SL-stream-info-container {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #714bd2;
+  width: 100%;
+  padding: 8px 12px;
+}
+
+.SL-stream-info {
+  width: calc(100% - 50px);
+}
+
+.SL-stream-info p {
+  margin: 0 !important;
+  color: #fff !important;
+  font-size: 15px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 23px;
+  line-height: 23px;
+  margin-bottom: 3px !important;
+}
+
+.SL-stream-info p.ellipsis {
+  text-overflow: ellipsis;
+}
+
+.SL-stream-info label {
+  display: block;
+  margin: 0 !important;
+  color: #fff !important;
+  font-size: 14px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 22px;
+  line-height: 22px;
+}
+
+.SL-stream-share {
+  width: 50px;
+}
+
+.SL-stream-share img {
+  float: right;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  margin-top: 10px;
+}
+
+.SL-active-stream-video-container:hover .SL-stream-info-container {
+  display: flex;
+}
+
+/* css code to hide the WhatsApp sharing link on the large screen */
+@media (min-width: 1000px) {
+  .SL-whatsapp {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .SL-active-stream-video-container {
+    margin-bottom: 15px;
+    float: none;
+  }
+
+  .SL-active-stream-video-content {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+}
