@@ -25,7 +25,7 @@ headTag.insertBefore(jqTag, headTag.lastChild);
 
 var jqTag = document.createElement('link');
 jqTag.rel = 'stylesheet';
-jqTag.href = 'https://goswirl.shop/swirl-embed/live-stream-page/v2/live-streams.css';
+jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/live_stream/v2/live-streams.min.css';
 // jqTag.href = 'live-streams.css';
 headTag.insertBefore(jqTag, headTag.lastChild);
 
