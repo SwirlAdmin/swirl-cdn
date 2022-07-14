@@ -228,7 +228,7 @@ function SSVcopyLink(o) {
             }),
             headTag.insertBefore(o, headTag.lastChild),
             ((o = document.createElement("link")).rel = "stylesheet"),
-            (o.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/v8.4/short-videos.min.css"),
+            (o.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/v8.5/short-videos.min.css"),
             document.body.appendChild(o),
             ((o = document.createElement("link")).rel = "stylesheet"),
             (o.href = "https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/v8.4/swiper-bundle.css"),
