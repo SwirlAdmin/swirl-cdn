@@ -281,7 +281,7 @@
 }
 
 .SSV-video-popup-title {
-  color: #fff;
+  color: #fff!important;
   position: absolute;
   top: 10px;
   left: 10px;
