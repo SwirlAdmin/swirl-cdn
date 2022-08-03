@@ -63,21 +63,21 @@ const params = Object.fromEntries(urlSearchParams.entries());
 
         var jqTag = document.createElement('script');
         jqTag.rel = 'text/javascript';
-        jqTag.src = 'https://goswirl.shop/swirl-embed/short-videos-carousel/v3/swiper-bundle.min.js';
+        jqTag.src = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8.4/swiper-bundle.min.js';
         // jqTag.onload = function () { executeNow1(); };
         jqTag.onload = function () { SET1 = true; };
         headTag.insertBefore(jqTag, headTag.lastChild);
 
         var jqTag = document.createElement('link');
         jqTag.rel = 'stylesheet';
-        jqTag.href = 'https://goswirl.shop/swirl-embed/short-videos-carousel/v3/short-videos.css';
+        jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/css/v10/short-videos.min.css';
         // jqTag.href = 'short-videos.css';
         // headTag.insertBefore(jqTag, headTag.firstChild);
         document.body.appendChild(jqTag);
 
         var jqTag = document.createElement('link');
         jqTag.rel = 'stylesheet';
-        jqTag.href = 'https://goswirl.shop/swirl-embed/short-videos-carousel/v3/swiper-bundle.min.css';
+        jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/v8.4/swiper-bundle.min.css';
         headTag.insertBefore(jqTag, headTag.firstChild);
 
         if (typeof jQuery == 'undefined') {
@@ -1222,21 +1222,21 @@ const params = Object.fromEntries(urlSearchParams.entries());
 
         var jqTag = document.createElement('script');
         jqTag.rel = 'text/javascript';
-        jqTag.src = 'https://goswirl.shop/swirl-embed/short-videos-carousel/v3/swiper-bundle.min.js';
+        jqTag.src = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8.4/swiper-bundle.min.js';
         // jqTag.onload = function () { executeNow(); };
         jqTag.onload = function () { SET1 = true; };
         headTag.insertBefore(jqTag, headTag.lastChild);
 
         var jqTag = document.createElement('link');
         jqTag.rel = 'stylesheet';
-        jqTag.href = 'https://goswirl.shop/swirl-embed/short-videos-carousel/v3/short-videos.css';
+        jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/css/v10/short-videos.min.css';
         // jqTag.href = 'short-videos.css';
         // headTag.insertBefore(jqTag, headTag.firstChild);
         document.body.appendChild(jqTag);
 
         var jqTag = document.createElement('link');
         jqTag.rel = 'stylesheet';
-        jqTag.href = 'https://goswirl.shop/swirl-embed/short-videos-carousel/v3/swiper-bundle.min.css';
+        jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/v8.4/swiper-bundle.min.css';
         headTag.insertBefore(jqTag, headTag.firstChild);
 
         if (typeof jQuery == 'undefined') {
