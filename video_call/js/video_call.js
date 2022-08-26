@@ -6,7 +6,7 @@ let brandCustonization = [];
 
     var jqTag = document.createElement('link');
     jqTag.rel = 'stylesheet';
-    jqTag.href = 'https://goswirl.shop/swirl-embed/video-call/v2/style.css';
+    jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/video_call/css/video_call.min.css';
     // jqTag.href = 'style.css';
     headTag.insertBefore(jqTag, headTag.firstChild);
 
