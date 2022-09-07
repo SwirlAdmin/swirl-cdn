@@ -105,7 +105,6 @@ var headTag = document.getElementsByTagName("head")[0];
         }, 1000);
 
         function executeNow1() {
-
             // Fetch all SWIRLS on page load
             jQuery(document).ready(function () {
                 jQuery('body').prepend(`
