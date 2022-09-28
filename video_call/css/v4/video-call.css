@@ -1,0 +1,445 @@
+.SVC-success-check-outer {
+    height: 50px;
+    display: inline-block;
+    width: 50px;
+    background: #78b13f;
+    border-radius: 50%;
+    padding: 10px 0;
+}
+
+.SVC-success-check {
+    display: inline-block;
+    transform: rotate(45deg);
+    height: 24px;
+    width: 12px;
+    border-bottom: 4px solid #fff;
+    border-right: 4px solid #fff;
+}
+
+*,
+input,
+:before,
+:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.swirl-video-call-floating {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    z-index: 1211;
+}
+
+/* .swirl-video-call-floating img {
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 1px 6px 0px rgb(0 0 0 / 40%);
+
+    background: #c7c7c7;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 0px 1px 6px 0px rgb(0 0 0 / 40%);
+    object-fit: contain;
+    padding: 10px;
+    border-radius: 50%;
+} */
+
+.SVC-float-icon {
+    background: #714bd2;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    box-shadow: 0px 1px 6px 0px rgb(0 0 0 / 40%);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.SVC-float-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.swirl-video-call-floating svg {
+    fill: none;
+    stroke: #8a3ab8;
+    stroke-width: 3px;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: loading 4500ms ease-in-out infinite alternate;
+    position: absolute;
+    left: -10px;
+    width: 70px;
+    bottom: -6px;
+    display: none;
+}
+
+@keyframes loading {
+    100% {
+        stroke: #cd476b;
+        stroke-dasharray: 10;
+        transform: rotate(200deg);
+    }
+}
+
+.swirl-video-call-popup {
+    position: absolute;
+    top: -12px;
+    background: #fff;
+    width: 300px;
+    right: 0;
+    /* min-height: 250px; */
+    border-radius: 12px;
+    box-shadow: 0px 1px 6px 0px rgb(0 0 0 / 20%);
+    overflow: hidden;
+    transform: translateY(-100%);
+    display: none;
+}
+
+.swirl-video-call-popup-container {
+    padding: 15px;
+    background: #f5f7f8;
+}
+
+.swirl-video-call-popup-head {
+    background: #714bd2;
+    padding: 12px 12px 10px;
+    color: #fff !important;
+    font-size: 16px;
+}
+
+.swirl-video-call-popup-head span {
+    font-family: arial;
+    font-size: 30px;
+    line-height: 10px;
+    float: right;
+    color: #fff !important;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.svc-action-btns {
+    background: #714bd2 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 8px 15px !important;
+    font-size: 15px !important;
+    display: block;
+    margin: 0 auto !important;
+    cursor: pointer !important;
+    /* width: 90px; */
+    width: 100% !important;
+    font-weight: normal !important;
+    text-transform: none !important;
+}
+
+.swirl-video-call-popup-input {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 6px 10px;
+    border: 1px solid #c7c7c7;
+    margin-bottom: 10px;
+    font-size: 15px;
+    outline: none;
+    border-radius: 4px !important;
+    height: 32px !important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.swirl-video-call-popup-select {
+    width: 100% !important;
+    display: block;
+    margin: 0;
+    padding: 5px 10px;
+    border: 1px solid #c7c7c7;
+    margin-bottom: 10px;
+    font-size: 15px !important;
+    outline: none;
+    border-radius: 4px !important;
+    height: 32px !important;
+}
+
+.SVC-phone-block {
+    display: block;
+}
+
+.SVC-phone-code {
+    display: inline-block;
+    width: 70px;
+    vertical-align: top;
+}
+
+.SVC-phone-number {
+    display: inline-block;
+    width: calc(100% - 75px);
+    vertical-align: top;
+    padding-left: 3px;
+    position: relative;
+}
+
+.SWIRL-VC-loader {
+    display: inline-block;
+    margin: 0;
+    border: 2px solid #f3f3f300;
+    border-top: 2px solid #f3f3f3;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 2s linear infinite;
+    float: right;
+    margin-top: 1px;
+    margin-left: 8px;
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.swirl-video-call-success {
+    margin: 15px 0;
+    text-align: center;
+    display: none;
+}
+
+.swirl-video-call-success p {
+    font-size: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.swirl-video-call-success a {
+    color: #2196f3;
+    font-size: 15px;
+}
+
+.swirl-video-call-success a:hover,
+.swirl-video-call-success a:focus,
+.swirl-video-call-success a:active {
+    color: #2196f3;
+}
+
+.swirl-video-call-schedule-success {
+    margin: 15px 0;
+    text-align: center;
+    display: none;
+}
+
+.swirl-video-call-schedule-success p {
+    font-size: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.swirl-video-call-options {
+    margin: 0;
+}
+
+.swirl-video-call-options p {
+    font-size: 14px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.swirl-video-call-options-btns {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    outline: none;
+    display: block;
+    width: 100%;
+    cursor: pointer !important;
+    font-size: 15px;
+    margin: 10px 0;
+}
+
+.svc-start-btn {
+    background: #714bd2;
+    color: #fff !important;
+}
+
+.svc-schedule-btn {
+    background: #ddd;
+}
+
+.swirl-video-call-instant {
+    display: block;
+}
+
+.swirl-video-call-schedule {
+    display: none;
+}
+
+.SVC-start-iif {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgb(0, 0, 0, 0.5);
+    height: 100vh;
+}
+
+.SVC-start-iif iframe {
+    border: none;
+    height: 100%;
+    width: 400px;
+    margin: 0 auto;
+    display: block;
+}
+
+.SVC-alert-message {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 8px 0;
+    text-align: center;
+    display: none;
+    color: #714bd2;
+}
+
+.svc-timeslot-selection {
+    margin: 0;
+}
+
+.svc-timeslot-selection p {
+    font-size: 15px;
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+.svc-timeslot-selection-tab-container {
+    display: flex;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #c7c7c7;
+    padding-bottom: 8px;
+}
+
+.svc-timeslot-selection-tabs {
+    width: 50%;
+    padding: 0 5px;
+}
+
+.svc-timeslot-selection-tabs:nth-child(1) {
+    padding-left: 0;
+}
+
+.svc-timeslot-selection-tabs:nth-last-child(2) {
+    padding-right: 0;
+}
+
+.svc-timeslot-selection-tabs p {
+    display: inline-block;
+    margin: 0;
+    border: 2px solid #c7c7c7;
+    border-radius: 5px;
+    padding: 6px 12px;
+    text-align: center;
+    font-size: 15px;
+    width: 100%;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.svc-timeslot-selection-tabs p.svc-d-selected {
+    border-color: #714bd2;
+    background: #714bd2;
+    color: #fff !important;
+}
+
+.svc-timeslot-selection-times {
+    margin: 0 -5px;
+    display: block;
+    margin-bottom: 6px;
+    margin-right: -15px;
+}
+
+.svc-timeslot-time-selection {
+    display: inline-block;
+    width: 33.333333%;
+    padding: 0 5px;
+    margin-bottom: 8px;
+    margin-right: -5px;
+}
+
+.svc-timeslot-time-selection p {
+    display: inline-block;
+    margin: 0;
+    border: 2px solid #c7c7c7;
+    border-radius: 5px;
+    padding: 4px 10px;
+    text-align: center;
+    font-size: 15px;
+    width: 100%;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.svc-timeslot-time-selection p.svc-t-selected {
+    border-color: #714bd2;
+    background: #714bd2;
+    color: #fff !important;
+}
+
+.svc-timeslot-time-selection p.svc-t-disabled {
+    background: #d4d4d4;
+    pointer-events: none;
+}
+
+.SVC-wa-note {
+    margin: 0;
+    font-size: 11px;
+    margin-bottom: 10px;
+    line-height: normal;
+    letter-spacing: normal;
+}
+
+.SVC-wa-note span {
+    color: #cd476b !important;
+    font-size: 18px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: top;
+    line-height: normal;
+}
+
+.default-indian {
+    display: inline-block;
+    margin: 0;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    font-size: 14px;
+    height: 32px;
+    line-height: 35px;
+}
+
+@media (max-width: 600px) {
+    .SVC-start-iif iframe {
+        width: 100%;
+        height: 100%;
+    }
+}
