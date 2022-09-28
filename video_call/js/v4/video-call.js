@@ -6,7 +6,7 @@ let brandCustonization = [];
 
     var jqTag = document.createElement('link');
     jqTag.rel = 'stylesheet';
-    jqTag.href = 'https://goswirl.shop/swirl-embed/video-call/v2/style.css';
+    jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/video_call/css/v4/video-call.min.css';
     // jqTag.href = 'style.css';
     headTag.insertBefore(jqTag, headTag.firstChild);
 
@@ -29,7 +29,6 @@ let brandCustonization = [];
       jQuery.ajax({
         type: "POST",
         dataType: "json",
-        // url: 'https://livevideoshopping.in/index.php/shopify/videocall_categories?user=' + did,
         url: 'https://api.goswirl.live/index.php/shopify/videocall_categories?user=' + did,
         success: function (data) {
           // console.log(data['customization']);
@@ -534,7 +533,6 @@ function SWIRLscheduleVC() {
   $.ajax({
     type: "POST",
     dataType: "json",
-    // url: "https://livevideoshopping.in/index.php/api/designer/CTOBotoaccesstoken",
     url: "https://api.goswirl.live/index.php/api/designer/CTOBotoaccesstoken",
     data: "ending_time=&starting_time=" + encodeURIComponent(datetime) + "&identity=" + encodeURIComponent(identity) + "&name=" + encodeURIComponent(SVCRName) + "&product_ids=&title=&designer_id=" + encodeURIComponent(did) + "&mobile=" + encodeURIComponent(SVCRPhone) + "&code=" + encodeURIComponent(SVCRCountryCode) + "&is_schedule=" + encodeURIComponent('1') + "&sDate=" + encodeURIComponent(SVCRDate) + "&sTime=" + encodeURIComponent(SVCRTime) + "&store_location=" + encodeURIComponent(SVCRStoreLocation) + "&superdid=" + encodeURIComponent(superdid) + "&email=" + encodeURIComponent(SVCREmail) + "&callReceiver=" + encodeURIComponent(callReceiver),
     beforeSend: function () {
