@@ -67,7 +67,7 @@ var headTag = document.getElementsByTagName("head")[0];
 
         var jqTag = document.createElement('link');
         jqTag.rel = 'stylesheet';
-        jqTag.href = 'https://goswirl.shop/swirl-embed/short-videos-carousel/fintoo/v7/short-videos.css';
+        jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/fintoo/short-videos.min.css';
         // jqTag.href = 'short-videos.css';
         // headTag.insertBefore(jqTag, headTag.firstChild);
         document.body.appendChild(jqTag);
@@ -1235,7 +1235,7 @@ var headTag = document.getElementsByTagName("head")[0];
 
         var jqTag = document.createElement('link');
         jqTag.rel = 'stylesheet';
-        jqTag.href = 'https://goswirl.shop/swirl-embed/short-videos-carousel/fintoo/v7/short-videos.css';
+        jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/fintoo/short-videos.min.css';
         // jqTag.href = 'short-videos.css';
         // headTag.insertBefore(jqTag, headTag.firstChild);
         document.body.appendChild(jqTag);
