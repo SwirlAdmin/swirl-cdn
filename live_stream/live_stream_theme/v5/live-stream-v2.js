@@ -5,6 +5,10 @@ $(document).ready(function () {
       $(".SLS-show-comments").click();
     }, 5000);
   }
+  else{
+    $(".SLS-show-comments").click();
+  }
+  
   SLSsetHeight();
 });
 
@@ -18,17 +22,9 @@ function SLSsetHeight() {
 }
 
 
-var player = videojs('livestreambro',{
-      plugins: {
-        mux: {
-          debug: true,
-          data: {
-            env_key: 'dkutjoqsh65gmpafd9ctsbkkl', // required
-            player_name: 'videojs', // ex: 'My Main Player'
-          }
-        }
-      });
+var player = videojs('livestreambro');
 var actionbar_size = 56;
+var showcase_bar = 110;
 var end_time = $('#end_time').val();
 if ((end_time != '0000-00-00 00:00:00')) {
   var recordingcontrol_size = 36;
@@ -276,7 +272,6 @@ $(".SLS-show-products").click(function () {
   if ($(".SLS-products-panel").is(":visible")) {
     $(".SLS-products-panel-close").click();
   } else {
-
     if ($(window).width() < 768) {
       let pinheight = $(".messages-pin-mobile").height() + actionbar_size + recordingcontrol_size;
       $('.SLS-products-panel').css('bottom', pinheight);
@@ -356,39 +351,26 @@ function showcase_products(e) {
   }
 };
 
-$(".last-comments").click(function () {
-  if ($(".SLS-comments-panel").is(":visible")) {
-    $(".SLS-comments-panel-close").click();
-  } else {
-    if ($(window).width() < 768) {
-      let pinheight = $(".messages-pin-mobile").height() + actionbar_size + recordingcontrol_size;
-      $('.SLS-comments-panel').css('bottom', pinheight);
-      $(".SLS-products-panel-close").click();
-      $(".SLS-share-panel-close").click();
-      $(".SLS-ask-panel-close").click();
-    }
-    $(".SLS-comments-panel").show();
-    setTimeout(() => {
-      let transformVal =
-        $(window).width() > 768 ? "translateX(0%)" : "translateY(0%)";
-      $(".SLS-comments-panel").css("transform", transformVal);
-    }, 10);
-    updateScrollbar();
-  }
-});
+
 
 $(".SLS-show-comments").click(function () {
   if ($(".SLS-comments-panel").is(":visible")) {
     $(".SLS-comments-panel-close").click();
   } else {
     if ($(window).width() < 768) {
-      let pinheight = $(".messages-pin-mobile").height() + actionbar_size + recordingcontrol_size;
+      let pinheight = $(".messages-pin-mobile").height() + actionbar_size + recordingcontrol_size + showcase_bar;
+     /*  alert($(".messages-pin-mobile").height());
+      console.log($(".messages-pin-mobile").height());
+      console.log(actionbar_size);
+      console.log(recordingcontrol_size);
+      console.log(showcase_bar); */
       $('.SLS-comments-panel').css('bottom', pinheight);
       $(".SLS-products-panel-close").click();
       $(".SLS-share-panel-close").click();
       $(".SLS-ask-panel-close").click();
     }
     $(".SLS-comments-panel").show();
+    
     setTimeout(() => {
       let transformVal =
         $(window).width() > 768 ? "translateX(0%)" : "translateY(0%)";
@@ -792,10 +774,13 @@ function sendMessage(e) {
   $('.collapsable').css('display', 'none');
   if ($(window).width() < 768) {
     $('.action-bar').css('display', 'table-cell');
+
+   // $(".SLS-show-comments").click();
   }
   
   $('.message-textbox-div').css('width', '50%');
   $('.message-textbox-div').css('padding-right', '0px');
+  
 }
 var $messages = $('.SLS-panel-scroll-mcustom');
 //get stream id
@@ -809,9 +794,6 @@ db.collection("messages").doc(streamId).collection("messages").orderBy("created_
         if (change.type === "removed") {
           $(".messages-pin").empty();
           $(".messages-pin-mobile").empty();
-          let pinheight = $(".messages-pin-mobile").height() + actionbar_size + recordingcontrol_size;
-          $('.last-comments').css('bottom', pinheight);
-          console.log('#message-' + change.doc.id);
           $('#message-' + change.doc.id).remove();
         }
         else {
@@ -846,13 +828,12 @@ db.collection("messages").doc(streamId).collection("messages").orderBy("created_
     updateScrollbar();
   });
 if ($(window).width() < 768) {
-  db.collection("messages").doc(streamId).collection("messages").orderBy("created_time", "desc").limit(1)
-    .onSnapshot((snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        $('.last-comments').empty();
-        $('<div id="message-' + change.doc.id + '"><p><span>' + change.doc.data().name + ' </span>: ' + change.doc.data().message + '</p></div>').appendTo($('.last-comments')).addClass('new');
-      })
-    });
+    let pinheight = $(".messages-pin-mobile").height() + actionbar_size + recordingcontrol_size + 5;
+    $('#bottom-showcase-products').css('bottom', pinheight);
+
+    let arrow = pinheight + 35;
+    $('.swiper-button-next').css('bottom', arrow);
+    $('.swiper-button-prev').css('bottom', arrow);
 }
 function updateScrollbar() {
   var $messages = $('.SLS-panel-scroll-mcustom');
@@ -925,6 +906,7 @@ db.collection("live_streams").doc(streamId).onSnapshot((doc) => {
   }
   else {
     if (end_time == '0000-00-00 00:00:00') {
+      $('.mySwiper').hide();
       $('#remote-media').hide();
       $('#black-screen').show();
       $('.product-img-list').hide();
@@ -952,10 +934,10 @@ db.collection("live_streams").doc(streamId).onSnapshot((doc) => {
   if (doc.exists) {
     // pin Comments
     var pin = doc.data().pin_comment_id;
-    /* console.log(pin); */
     if (pin != '' && pin != undefined) {
       var docRef = db.collection("messages").doc(streamId).collection("messages").doc(pin);
       docRef.get().then((doc) => {
+        console.log(doc.exists);
         if (doc.exists) {
           $(".messages-pin").empty();
           $(".messages-pin-mobile").empty();
@@ -973,12 +955,21 @@ db.collection("live_streams").doc(streamId).onSnapshot((doc) => {
           }
         }
         else{
+        
           $(".messages-pin").empty();
           $(".messages-pin-mobile").empty();
         }
+        
+        let pinheight = $(".messages-pin-mobile").height() + actionbar_size + recordingcontrol_size + 5;
+        $('#bottom-showcase-products').css('bottom', pinheight);
 
-        let pinheight = $(".messages-pin-mobile").height() + actionbar_size + recordingcontrol_size;
-        $('.last-comments').css('bottom', pinheight);
+        let arrow = pinheight + 35;
+        $('.swiper-button-next').css('bottom', arrow);
+        $('.swiper-button-prev').css('bottom', arrow);
+
+        let pinheight2 = $(".messages-pin-mobile").height() + actionbar_size + recordingcontrol_size + showcase_bar;
+        $('.SLS-comments-panel').css('bottom', pinheight2);
+
         if ($(window).width() > 768) {
           pinheightweb();
         }
@@ -987,10 +978,16 @@ db.collection("live_streams").doc(streamId).onSnapshot((doc) => {
     } else {
       $(".messages-pin").empty();
       $(".messages-pin-mobile").empty();
-      let pinheight = $(".messages-pin-mobile").height() + actionbar_size + recordingcontrol_size;
-      $('.last-comments').css('bottom', pinheight);
-      /*  pinheightweb = 'calc(100% - 80px)';
-       $('.SLS-panel-scroll-mcustom').css('height',pinheightweb); */
+
+      let pinheight = $(".messages-pin-mobile").height() + actionbar_size + recordingcontrol_size + 5;
+      $('#bottom-showcase-products').css('bottom', pinheight);
+
+      let arrow = pinheight + 35;
+      $('.swiper-button-next').css('bottom', arrow);
+      $('.swiper-button-prev').css('bottom', arrow);
+
+      let pinheight2 = $(".messages-pin-mobile").height() + actionbar_size + recordingcontrol_size + showcase_bar;
+      $('.SLS-comments-panel').css('bottom', pinheight2);
     }
     if ($(window).width() > 768) {
       pinheightweb();
@@ -1014,6 +1011,8 @@ db.collection("live_streams").doc(streamId).onSnapshot((doc) => {
             $("#product_count").text(json['data']['product_count']);
             $('.SLS-added-products-static').hide();
             $('.SLS-added-products-dynamic').empty();
+            $('#bottom-showcase-products').empty();
+          /*   alert('2'); */
             $('#static-img').hide();
             $('#dynamic-img').empty();
             for (var k = 0; k < json['data']['product'].length; k++) {
@@ -1021,9 +1020,13 @@ db.collection("live_streams").doc(streamId).onSnapshot((doc) => {
               if (json['data']['product_count'] != '0') {
                 $('#dynamic-img').append('<div class="product-img-div"><img src="' + json['data']['product'][k]['product_img_url'] + '" alt="..." class="img-fluid product-img showcase-products" data-proid="' + json['data']['product'][k]['product_id'] + '" onclick="showcase_products(this)"></div>');
 
-                $('.SLS-added-products-dynamic').append('<div class="d-flex align-items-start SLS-product-tile" id="pro-detail-pro-' + json['data']['product'][k]['product_id'] + '"><div class="SLS-product-image"><img src="' + json['data']['product'][k]['product_img_url'] + '" alt="Product Image" title="Product Image"></div><div class="SLS-product-content"><p class="m-0" title="' + json['data']['product'][k]['product_title'] + '">' + json['data']['product'][k]['product_title'] + '</p><label class="m-0 mb-2 d-block">' + json['data']['currencysymbols'] + ' ' + json['data']['product'][k]['product_sell_price'] + '<del class="d-none">₹000</del></label><button type="button" class="SLS-product-buynow-btn" onclick="buynow_firbase(this)" data-protitle="' + json['data']['product'][k]['product_title'] + '" data-proimg="' + json['data']['product'][k]['product_img_url'] + '" data-proid="' + json['data']['product'][k]['product_id'] + '" data-redirection="' + link + '" data-desid="' + brand_id + '">BUY NOW</button></div></div>');
+                $('.SLS-added-products-dynamic').append('<div class="d-flex align-items-start SLS-product-tile" id="pro-detail-pro-' + json['data']['product'][k]['product_id'] + '"><div class="SLS-product-image"><img src="' + json['data']['product'][k]['product_img_url'] + '" alt="Product Image" title="Product Image"></div><div class="SLS-product-content"><p class="m-0" title="' + json['data']['product'][k]['product_title'] + '">' + json['data']['product'][k]['product_title'] + '</p><label class="m-0 mb-2 d-block">' + json['data']['currencysymbols'] + ' ' + json['data']['product'][k]['product_sell_price'] + '<del class="d-none">â‚¹000</del></label><button type="button" class="SLS-product-buynow-btn" onclick="buynow_firbase(this)" data-protitle="' + json['data']['product'][k]['product_title'] + '" data-proimg="' + json['data']['product'][k]['product_img_url'] + '" data-proid="' + json['data']['product'][k]['product_id'] + '" data-redirection="' + link + '" data-desid="' + brand_id + '">BUY NOW</button></div></div>');
+
+                $('#bottom-showcase-products').append('<div class="swiper-slide"><a href="' + link + '" class="text-decoration-none"><div class="rounded"><img class="rounded mb-2" src="' + json['data']['product'][k]['product_img_url'] + '"> <p class="mb-0 text-dark text-decoration-none">' + json['data']['currencysymbols'] + ' ' + json['data']['product'][k]['product_sell_price'] + '</p></div></a></div>');
+
               }
             }
+            autoswiper();
             productsid = json['data']['product_ids'];
           }
         }
@@ -1033,7 +1036,16 @@ db.collection("live_streams").doc(streamId).onSnapshot((doc) => {
   }
 });
 
-
+function autoswiper(){
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 4,
+    spaceBetween: 3,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+}
 function pinheightweb() {
   var pinheightweb = $(".messages-pin").height();
   pinheightweb = pinheightweb + 80;
@@ -1090,7 +1102,7 @@ function urlify(text) {
     if (!pattern.test(url)) {
       url = "https://" + url;
     }
-    return '<a href="' + url + '" target="_blank">' + url + '</a>';
+    return '<a style="word-break:break-all" href="' + url + '" target="_blank">' + url + '</a>';
   })
 
 }
@@ -1103,6 +1115,7 @@ db.collection("live_streams").doc(streamId).onSnapshot((doc) => {
       includeMetadataChanges: true
     }, (doc) => {
     var comments_status = doc.data().comments_status; 
+    
     if(comments_status == true)
     {
       $('.SLS-comment-form').show();
@@ -1111,11 +1124,19 @@ db.collection("live_streams").doc(streamId).onSnapshot((doc) => {
       $('.SLS-comment-form').hide();
       $('.message-textbox-div').css('display','none !important');
     }
+    var fire_status = doc.data().fire_status; 
+    if(fire_status == true)
+    {
+      $('#gif').show();
+    } else {
+      $('#gif').hide();
+    }
     });
   }
   else{
     $('.SLS-comment-form').hide();
     $('.message-textbox-div').css('display','none !important');
+    $('#gif').hide();
   }
 });
 
