@@ -71,7 +71,7 @@ const params = Object.fromEntries(urlSearchParams.entries());
 
         var jqTag = document.createElement('link');
         jqTag.rel = 'stylesheet';
-        jqTag.href = 'https://goswirl.shop/swirl-embed/short-videos-carousel/v3.2/short-videos.css';
+        jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/multiple-playlist/v3/short-videos.min.css';
         // jqTag.href = 'short-videos.css';
         // headTag.insertBefore(jqTag, headTag.firstChild);
         document.body.appendChild(jqTag);
@@ -1252,7 +1252,7 @@ const params = Object.fromEntries(urlSearchParams.entries());
 
         var jqTag = document.createElement('link');
         jqTag.rel = 'stylesheet';
-        jqTag.href = 'https://goswirl.shop/swirl-embed/short-videos-carousel/v3.2/short-videos.css';
+        jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/multiple-playlist/v3/short-videos.min.css';
         // jqTag.href = 'short-videos.css';
         // headTag.insertBefore(jqTag, headTag.firstChild);
         document.body.appendChild(jqTag);
