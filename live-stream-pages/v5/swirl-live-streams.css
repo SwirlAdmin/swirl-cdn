@@ -1,0 +1,294 @@
+#swirl-live-streams {
+  display: block;
+}
+
+#swirl-live-streams .modal-title {
+  color: #323232 !important;
+  margin: 0 !important;
+}
+
+/* shopify wrapper */
+.wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.page-width {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 30px !important;
+}
+
+/* // ends  */
+
+.swiper-SL {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
+}
+
+.swiper-SL {
+  width: 100%;
+  /* height: 100%; */
+  padding: 10px 0px;
+  margin-bottom: 30px;
+}
+
+.swiper-slide {
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+  /* background: #fff; */
+  /* padding: 10px; */
+  border-radius: 10px !important;
+  overflow: hidden;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+
+  -webkit-box-shadow: rgb(35 35 35 / 30%) 1px 1px 5px 1px;
+  -moz-box-shadow: rgb(35 35 35 / 30%) 1px 1px 5px 1px;
+  box-shadow: rgb(35 35 35 / 30%) 1px 1px 5px 1px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  background: transparent;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  color: transparent;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  content: '';
+  font-family: '';
+}
+
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.swiper-button-disabled {
+  display: none;
+}
+
+.SL-active-stream-video-container {
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #000000;
+  width: 100%;
+}
+
+.SL-vdo-thmub {
+  width: 100% !important;
+  display: block;
+  opacity: .8;
+  /* height: 250px !important; */
+  /* object-fit: cover; */
+  margin: 0 !important;
+}
+
+.SL-play-btn {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  background: #00000060;
+  border-radius: 50%;
+  filter: invert(1);
+  margin: 0 !important;
+}
+
+.SL-share {
+  position: relative;
+  text-align: left;
+}
+
+.SL-share img {
+  width: 30px;
+  margin: 0 !important;
+  margin-top: 8px !important;
+  margin-bottom: 0px !important;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.main-page-title {
+  display: none;
+}
+
+.SL-stream-title {
+  position: absolute;
+  color: #fff;
+  bottom: 0;
+  width: 100%;
+  margin: 0 !important;
+  height: 40px;
+  font-size: 16px;
+  line-height: 40px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0 12px;
+  background: #00000070;
+  text-align: left;
+}
+
+.SL-stream-title.ellipsis {
+  text-overflow: ellipsis;
+}
+
+.SL-share-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #00000040;
+  border-radius: 50%;
+  width: 30px;
+  cursor: pointer;
+}
+
+.SL-stream-info-container {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #714bd2;
+  width: 100%;
+  padding: 8px 12px;
+  transform: translateY(101%);
+  transition: transform .5s;
+}
+
+.SL-stream-info {
+  width: 100%;
+}
+
+.SL-stream-info p {
+  margin: 0 !important;
+  color: #fff !important;
+  font-size: 15px;
+  text-align: left;
+  margin-bottom: 3px !important;
+}
+
+.SL-stream-info label {
+  display: block;
+  margin: 0 !important;
+  color: #fff !important;
+  font-size: 14px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 22px;
+  line-height: 22px;
+  display: none !important;
+}
+
+.SL-date-top {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #00000070;
+  color: #fff;
+  margin: 0;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 3px 8px 2px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+}
+
+.SL-views-top {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #00000070;
+  color: #fff;
+  margin: 0;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 3px 8px 2px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  vertical-align: middle;
+}
+
+.SL-views-top img {
+  display: inline-block;
+  height: 18px;
+  margin: 0 !important;
+  margin-right: 3px !important;
+  vertical-align: top;
+}
+
+.SL-share p {
+  display: none;
+  margin-top: 5px !important;
+  width: 100%;
+  font-size: 14px;
+  text-align: left;
+}
+
+.SL-active-stream-video-container:hover .SL-stream-info-container {
+  transform: translateY(0);
+}
+
+.SL-active-stream-video-container:hover .SL-vdo-thmub {
+  opacity: 1;
+}
+
+.SL-title-border {
+  border-radius: 3px;
+  width: 100px;
+  margin: 0 0 20px 0px;
+  height: 3px !important;
+  background: #714bd2;
+  opacity: 1 !important;
+}
+
+/* css code to hide the WhatsApp sharing link on the large screen */
+@media (min-width: 1000px) {
+  .SL-whatsapp {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .SL-active-stream-video-container {
+    float: none;
+  }
+
+  .SL-active-stream-video-content {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .SL-break-title {
+    text-align: center !important;
+  }
+
+  .SL-title-border {
+    margin: 0 auto 20px !important;
+  }
+}
