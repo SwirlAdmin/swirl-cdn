@@ -1,0 +1,441 @@
+/* Star reaings */
+.bh-stars {
+    display: inline-block;
+    justify-content: center;
+    margin: 0 3px 0px 3px;
+    vertical-align: bottom;
+}
+
+.bh-stars .bh-star {
+    width: 18px;
+    height: 18px;
+}
+
+.bh-stars .bh-star .outline {
+    fill: gold;
+}
+
+.bh-stars .bh-star .full,
+.bh-stars .bh-star .left-half {
+    fill: transparent;
+}
+
+.bh-stars[data-bh-rating^="1"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="2"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="3"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="4"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="5"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="2"] .bh-star--2 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="3"] .bh-star--2 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="4"] .bh-star--2 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="5"] .bh-star--2 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="3"] .bh-star--3 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="4"] .bh-star--3 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="5"] .bh-star--3 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="4"] .bh-star--4 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="5"] .bh-star--4 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="5"] .bh-star--5 .full {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="0.5"] .bh-star--1 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="1.5"] .bh-star--2 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="2.5"] .bh-star--3 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="3.5"] .bh-star--4 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="4.5"] .bh-star--5 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="0.6"] .bh-star--1 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="1.6"] .bh-star--2 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="2.6"] .bh-star--3 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="3.6"] .bh-star--4 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="4.6"] .bh-star--5 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="0.7"] .bh-star--1 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="1.7"] .bh-star--2 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="2.7"] .bh-star--3 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="3.7"] .bh-star--4 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="4.7"] .bh-star--5 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="0.8"] .bh-star--1 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="1.8"] .bh-star--2 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="2.8"] .bh-star--3 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="3.8"] .bh-star--4 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="4.8"] .bh-star--5 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="0.9"] .bh-star--1 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="1.9"] .bh-star--2 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="2.9"] .bh-star--3 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="3.9"] .bh-star--4 .left-half {
+    fill: gold;
+}
+
+.bh-stars[data-bh-rating^="4.9"] .bh-star--5 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="1"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="2"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="5"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="2"] .bh-star--2 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3"] .bh-star--2 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4"] .bh-star--2 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="5"] .bh-star--2 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3"] .bh-star--3 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4"] .bh-star--3 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="5"] .bh-star--3 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4"] .bh-star--4 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="5"] .bh-star--4 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="5"] .bh-star--5 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="0.6"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="1.6"] .bh-star--2 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="2.6"] .bh-star--3 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3.6"] .bh-star--4 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4.6"] .bh-star--5 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="0.7"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="1.7"] .bh-star--2 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="2.7"] .bh-star--3 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3.7"] .bh-star--4 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4.7"] .bh-star--5 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="0.8"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="1.8"] .bh-star--2 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="2.8"] .bh-star--3 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3.8"] .bh-star--4 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4.8"] .bh-star--5 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="0.9"] .bh-star--1 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="1.9"] .bh-star--2 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="2.9"] .bh-star--3 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3.9"] .bh-star--4 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4.9"] .bh-star--5 .full {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="0.0"] .bh-star--1 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="1.0"] .bh-star--2 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="2.0"] .bh-star--3 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3.0"] .bh-star--4 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4.0"] .bh-star--5 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="0.1"] .bh-star--1 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="1.1"] .bh-star--2 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="2.1"] .bh-star--3 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3.1"] .bh-star--4 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4.1"] .bh-star--5 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="0.2"] .bh-star--1 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="1.2"] .bh-star--2 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="2.2"] .bh-star--3 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3.2"] .bh-star--4 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4.2"] .bh-star--5 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="0.3"] .bh-star--1 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="1.3"] .bh-star--2 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="2.3"] .bh-star--3 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3.3"] .bh-star--4 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4.3"] .bh-star--5 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="0.4"] .bh-star--1 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="1.4"] .bh-star--2 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="2.4"] .bh-star--3 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3.4"] .bh-star--4 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4.4"] .bh-star--5 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="0.5"] .bh-star--1 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="1.5"] .bh-star--2 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="2.5"] .bh-star--3 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="3.5"] .bh-star--4 .left-half {
+    fill: gold;
+}
+
+.bh-stars.rounding-up[data-bh-rating^="4.5"] .bh-star--5 .left-half {
+    fill: gold;
+}
