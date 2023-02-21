@@ -35,69 +35,25 @@ const params = Object.fromEntries(urlSearchParams.entries());
         // console.log('SSVPIP');
 
         SSVvideosAll = JSON.parse(localStorage.getItem('SSVallURL'));
-
-        // // Global declarations
-        // let productsAll = [];
-        // let addedtoCart = [];
-        // let globalMute = true;
-
-        // let SSVallURL = [];
-
-        // let SSVCurrentURL = '';
-
-        // let isVerified = false;
-        // let SWIRLuser = null;
-        // if (localStorage.getItem('SWIRLVerifiedUser')) {
-        //     isVerified = true;
-        //     SWIRLuser = JSON.parse(localStorage.getItem('SWIRLVerifiedUser'));
-        // }
-
-        // let live_stream_phone = '0';
-        // let live_stream_phone_otp = '0';
-
-        // let store = 'satyamgandhidev.com';
-
-        // var headTag = document.getElementsByTagName("head")[0];
+ 
 
         let SET1, SET2 = false;
-
-        // var jqTag = document.createElement('script');
-        // jqTag.rel = 'text/javascript';
-        // jqTag.src = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/js/v8.4/swiper-bundle.min.js';
-        // // jqTag.onload = function () { executeNow1(); };
-        // jqTag.onload = function () { SET1 = true; };
-        // headTag.insertBefore(jqTag, headTag.lastChild);
+ 
         SET1 = true;
 
         var jqTag = document.createElement('link');
         jqTag.rel = 'stylesheet';
-        jqTag.href = 'https://goswirl.shop/swirl-embed/short-videos-carousel/v3/short-videos.css';
-        // jqTag.href = 'short-videos.css';
-        // headTag.insertBefore(jqTag, headTag.firstChild);
+        jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/short_video/v3/swirl-short-videos-v5.min.css';
+       
         document.body.appendChild(jqTag);
-
-        // var jqTag = document.createElement('link');
-        // jqTag.rel = 'stylesheet';
-        // jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/css/v8.4/swiper-bundle.min.css';
-        // headTag.insertBefore(jqTag, headTag.firstChild);
 
         if (typeof jQuery == 'undefined') {
             var jqTag = document.createElement('script');
             jqTag.rel = 'text/javascript';
             jqTag.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js';
             headTag.insertBefore(jqTag, headTag.lastChild);
-            // jqTag.onload = function () {
-            //     if (typeof Swiper != 'undefined') {
-            //         executeNow1();
-            //     }
-            // }
             jqTag.onload = function () { SET2 = true; };
         } else {
-            // jQuery(document).ready(function () {
-            //     if (typeof Swiper != 'undefined') {
-            //         executeNow1();
-            //     }
-            // });
             SET2 = true;
         }
 
@@ -1144,20 +1100,6 @@ const params = Object.fromEntries(urlSearchParams.entries());
                         }, 1000);
                     }
 
-                    // PIP continue
-                    // window.addEventListener('beforeunload', function (event) {
-                    //     if (jQuery('.SSV-play-modal').is(":visible")) {
-                    //         // localStorage.setItem('SSVlastPlayed', jQuery('.SSV-play-modal').find('video').children('source').attr('src'));
-                    //         localStorage.setItem('SSVlastPlayed', SSVCurrentURL);
-                    //         localStorage.setItem('SSVlastPlayedTime', jQuery('.SSV-play-modal').find('video').get(0).currentTime);
-                    //     }
-                    //     if (jQuery('.SSV-PIP').is(":visible")) {
-                    //         // localStorage.setItem('SSVlastPlayed', jQuery('.SSV-PIP').find('video').children('source').attr('src'));
-                    //         localStorage.setItem('SSVlastPlayed', SSVCurrentURL);
-                    //         localStorage.setItem('SSVlastPlayedTime', jQuery('.SSV-PIP').find('video').get(0).currentTime);
-                    //     }
-                    // });
-
                     jQuery(document).on('click', '.SSV-P-see-more', function () {
                         jQuery(this).parent().next().show();
                         jQuery(this).parent().hide();
@@ -1215,31 +1157,6 @@ const params = Object.fromEntries(urlSearchParams.entries());
         }
 
     } else if (document.querySelector('#swirl-short-videos') != null) {
-        // console.log('SSVNew');
-
-        // Global declarations
-
-        // let productsAll = [];
-        // let addedtoCart = [];
-        // let globalMute = true;
-
-        // let SSVallURL = [];
-
-        // let SSVCurrentURL = '';
-
-        // let isVerified = false;
-        // let SWIRLuser = null;
-        // if (localStorage.getItem('SWIRLVerifiedUser')) {
-        //     isVerified = true;
-        //     SWIRLuser = JSON.parse(localStorage.getItem('SWIRLVerifiedUser'));
-        // }
-
-        // let live_stream_phone = '0';
-        // let live_stream_phone_otp = '0';
-
-        // let store = 'satyamgandhidev.com';
-
-        // var headTag = document.getElementsByTagName("head")[0];
 
         let SET1, SET2 = false;
 
@@ -1252,9 +1169,7 @@ const params = Object.fromEntries(urlSearchParams.entries());
 
         var jqTag = document.createElement('link');
         jqTag.rel = 'stylesheet';
-        jqTag.href = 'https://goswirl.shop/swirl-embed/short-videos-carousel/v3/short-videos.css';
-        // jqTag.href = 'short-videos.css';
-        // headTag.insertBefore(jqTag, headTag.firstChild);
+        jqTag.href = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/short_video/v3/swirl-short-videos-v5.min.css';
         document.body.appendChild(jqTag);
 
         var jqTag = document.createElement('link');
@@ -1267,18 +1182,8 @@ const params = Object.fromEntries(urlSearchParams.entries());
             jqTag.rel = 'text/javascript';
             jqTag.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js';
             headTag.insertBefore(jqTag, headTag.lastChild);
-            // jqTag.onload = function () {
-            //     if (typeof Swiper != 'undefined') {
-            //         executeNow();
-            //     }
-            // }
             jqTag.onload = function () { SET2 = true; };
         } else {
-            // jQuery(document).ready(function () {
-            //     if (typeof Swiper != 'undefined') {
-            //         executeNow();
-            //     }
-            // });
             SET2 = true;
         }
 
@@ -3171,10 +3076,6 @@ function handleTouchMove(evt) {
 function SSVsetPopupHight() {
     let currentHeight = window.innerHeight;
     jQuery('.SSV-play-modal').height(currentHeight);
-    // let currentHeight = document.documentElement.clientHeight;
-
-    // let currentWidth = document.documentElement.clientWidth;
-    // jQuery('.SSV-play-modal').width(currentWidth);
 }
 
 addEventListener('resize', (event) => {
@@ -3219,17 +3120,6 @@ function gumletVideoCount() {
         var player = document.getElementById('gumlet-video-count');
         var gumletInsights = gumlet.insights(gumletConfig);
         gumletInsights.register(player);
-
-        // vid = jQuery(`.swiper-wrapper source[src="${SSVCurrentURL}"]`).parent('video').attr('data-vid');
-        // jQuery.ajax({
-        //     type: "POST",
-        //     dataType: "json",
-        //     url: "https://api.goswirl.live/index.php/BrandController/getShortVideoAnalytics",
-        //     data: "vid=" + encodeURIComponent(vid),
-        //     success: function (response) {
-        //         // console.log(response);
-        //     }
-        // });
     }
 }
 
