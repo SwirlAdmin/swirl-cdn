@@ -1,0 +1,204 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(PlusJakartaSans-Regular.ttf);
+}
+
+body {
+    font-family: myFirstFont;
+}
+
+
+.SLS-main-conatiner {
+    height: 100vh;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.SLS-inner-conatiner {
+    height: 100%;
+    margin: 0 100px;
+    padding: 30px;
+}
+
+.SLS-comments-panel {
+    margin: 0 2px;
+    height: 100%;
+    z-index: 11;
+    overflow: hidden;
+    display: block;
+    transform: translateX(0%);
+    background: #fff;
+}
+
+.SLS-panels-title {
+    font-size: 18px;
+    margin: 0;
+    border-bottom: 2px solid #c7c7c7;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+}
+
+.SLS-comments-all p span,
+.messages-pin span {
+    font-weight: bold;
+}
+
+.messages-pin p {
+    background: #323232;
+    color: #fff;
+    padding: 2px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.SLS-panel-scroll-mcustom {
+    height: calc(100% - 50px);
+    /* padding-right: 5px; */
+}
+
+.SLS-comments-all {
+    margin: 0;
+}
+
+.SLS-comments-all p {
+    padding: 2px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+}
+
+.SLS-comments-all p span,
+.messages-pin span {
+    font-weight: bold;
+}
+
+.SLS-comments-all label span {
+    font-weight: bold;
+}
+
+.SLS-comments-all .fillcolor {
+    background: #6251c4;
+    color: #fff;
+    padding: 2px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0;
+    margin-bottom: 7px;
+}
+
+.SLS-comment-post button {
+    background: #000000;
+}
+
+.SLS-comment-post {
+    width: 100%;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 10px;
+}
+
+.SLS-comment-post input,
+.SLS-cpp-comment input {
+    width: calc(100% - 90px);
+    height: 40px;
+    border: 1px solid #c7c7c7;
+    border-radius: 5px;
+    padding: 5px 10px;
+    vertical-align: top;
+    outline: none;
+    margin-right: 10px;
+}
+
+.SLS-comment-post button,
+.SLS-cpp-comment button {
+    height: 40px;
+    width: 70px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background: #6251c4;
+    padding: 5px;
+    vertical-align: top;
+    outline: none;
+    font-size: 14px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.SLS-comment-post button {
+    background: #000000;
+}
+.SLS-comments-all .actions {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.actions img {
+    width: 15px;
+    cursor: pointer;
+    vertical-align: text-bottom;
+}
+.pin-color {
+    color: #9e9e9e;
+}
+.icon-pushpin {
+    padding: 0px 10px 0px 3px;
+}
+.messages-pin p, .SLS-comments-all .fillcolor {
+    background: #DCDCDC;
+    color: #000;
+    width: 100%;
+    padding: 2px 55px 2px 8px;
+    word-break: break-all;
+    position: relative;
+}
+.SLS-comments-all p {
+    background: #F8F8F5;
+    width: 100%;
+    padding: 2px 55px 2px 8px;
+}
+.icon-pushpin:before {
+    transform: rotate(45deg);
+}
+
+@media (max-width: 768px) {
+    .SLS-inner-conatiner {
+        margin: 0;
+        padding: 0 15px;
+    }
+
+    .SLS-comments-panel {
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        border-radius: unset !important;
+    }
+
+    /* .SLS-panel-scroll-mcustom {
+        height: calc(100vh - 80px);
+    } */
+
+
+    .SLS-comments-all p {
+        color: #323232;
+    }
+
+    .SLS-comments-all p {
+        background: #cacacab8;
+    }
+}
