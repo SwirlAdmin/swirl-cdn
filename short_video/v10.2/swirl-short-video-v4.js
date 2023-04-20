@@ -9,7 +9,7 @@ let ssv_store = '';
 let ssv_storeType = '0';
 let ssv_storeCode = '';
 let ssv_storePlaylist = '';
-let ssv_baseURL = ssv_mode === 'Live' ? 'https://goswirl.shop/swirl-embed/short-videos-carousel/v10.2/' : '';
+let ssv_baseURL = ssv_mode === 'Live' ? 'https://apigoswirl.com/short_video/v10/multiple_page/swirl-style-v4.min.css' : '';
 let ssv_responseData = [];
 let ssv_productIds = [];
 let ssv_apiURL = 'https://api.goswirl.live/index.php/shopify/videolistingV4'; // bigleap.live  ,  api.goswirl.live
@@ -32,7 +32,7 @@ document.body.insertBefore(jqTag, document.body.lastChild);
 
 jqTag = document.createElement('link');
 jqTag.rel = 'stylesheet';
-jqTag.href = ssv_baseURL + 'style.css';
+jqTag.href = ssv_baseURL;
 document.body.insertBefore(jqTag, document.body.lastChild);
 
 let JSLOAD1 = false;
