@@ -1212,7 +1212,6 @@ function reloadOnceLive() {
       $('.live-status').hide();
     }
     $('.product-img-list').hide();
-    //$('.SLS-control-panel').hide();
 
     var mix_live_stream_id = streamId;
     if (doc.exists) {
