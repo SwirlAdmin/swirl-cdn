@@ -1,447 +1,733 @@
-/* filter css */
-#swirl-short-videos .filter_main_div .second_row .left_section_second_row .sortby_text,
-#swirl-short-videos .filter_main_div .second_row .center_section_second_row .sortby_text,
-#swirl-short-videos .filter_main_div .second_row .right_section_second_row .sortby_text {
-    font-weight: 900;
-    font-size: 16px !important;
+#swirl_section_main_div {
     margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-#swirl-short-videos .filter_main_div {
-    padding: 20px;
-    font-family: Muli, sans-serif !important;
+#swirl_section_main_div .slick-slider {
+    height: 100%;
 }
 
-#swirl-short-videos .filter_main_div .first_row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
+.slick-slider .slick-track,
+.slick-slider .slick-list,
+.slick-slider .slick-slide {
+    height: 100% !important;
 }
 
-#swirl-short-videos .filter_main_div .first_row .left_section_first_row {
-    text-align: left;
-    display: flex;
-    align-items: center;
+
+
+#swirl_section_main_div .swirl_ssv_prodct_img_ssv {
+    height: 60px;
+    width: 60px;
+    border-radius: 5px;
+    z-index: 1000;
+    margin-top: -30px;
+    box-shadow: rgb(35 35 35 / 30%) 1px 1px 5px 1px;
+    background-color: #fff;
 }
 
-#swirl-short-videos .filter_main_div .first_row .right_section_first_row {
-    text-align: right;
-    display: flex;
-    align-items: center;
+#swirl_section_main_div .swirl_ssv_produt_section_ssv {
+    display: grid;
+    place-items: center;
 }
 
-#swirl-short-videos .filter_main_div .second_row .left_section_second_row {
-    text-align: left;
-    display: flex;
-    align-items: center;
-}
-
-#swirl-short-videos .filter_main_div .second_row .center_section_second_row {
+.swirl_ssv_product_info p {
+    font-size: 17px;
+    font-weight: 500;
     text-align: center;
+}
+
+.swirl_ssv_product_info h3 {
+    text-align: center;
+    font-weight: 100;
+}
+
+.slick-prev {
+    left: 20px !important;
+    z-index: 10000;
+}
+
+.slick-next {
+    right: 40px !important;
+    z-index: 10000
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-size: 50px !important;
+}
+
+
+
+.swirl_ssv_elements_over_short_play_btn {
+    height: 400px;
+    display: grid;
+    place-items: center;
+
+}
+
+.swirl_ssv_elements_over_short_play_btn img {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 50%;
+    padding: 5px;
+
+}
+
+.swirl_ssv_ssv_duration {
+    background-color: rgba(0, 0, 0, .3);
+    color: #fff;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin-right: 0px;
+    margin-left: auto;
+
+}
+
+.swirl_ssv_elements_over_short p {
     display: flex;
+    background-color: #ab12209c;
+    border-radius: 3px;
+    padding: 3px 5px;
     align-items: center;
-}
-
-#swirl-short-videos .filter_main_div .second_row .right_section_second_row {
-    text-align: right;
-    display: flex;
-    align-items: center;
-}
-
-#swirl-short-videos .filter_main_div .video_count h2 {
-    margin-left: 15px;
-    font-weight: bolder;
-    font-size: 24px;
-}
-
-#swirl-short-videos .sort_by_filter {
-    padding: 10px;
-    border-radius: 10px;
-    margin-left: 15px;
-}
-
-#swirl-short-videos .filter_main_div .location_sm {
-    padding: 10px;
-    border-radius: 10px;
-}
-
-#swirl-short-videos .filter_main_div .second_row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-flow: row wrap;
-}
-
-#swirl-short-videos .multi-select-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-#swirl-short-videos .multi-select-container2 {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-#swirl-short-videos .checkbox-button {
-    display: inline-block;
-    font-weight: normal;
-    margin: 5px;
-    padding: 10px;
-    color: #000;
-    border: 2px solid #aaa;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
-}
-
-#swirl-short-videos .checkbox-button input {
-    display: none;
-}
-
-#swirl-short-videos .checkbox-button input:checked+label {
-    background-color: #3498db;
-    border-color: #000;
     color: #fff;
 }
 
-#swirl-short-videos .checkbox_with_btn {
-    display: none;
+.swirl_ssv_ssv_views {
+    background-color: rgba(0, 0, 0, .3);
+    color: #fff;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin-right: 10px;
+    margin-top: 20px;
 }
 
+.ssv_views img {
+    height: 10px;
+}
 
-#swirl-short-videos .location_small_screen {
-    display: flex;
+.swirl_ssv_discount_percent_badge {
+    background-color: #56b280;
+    padding: 3px 10px;
+    color: #ffff;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* test */
+
+.swirl_ssv_main_div_card {
+    height: 600px;
+    padding: 10px;
+
+}
+
+.swirl_ssv_card_for_ssv img {
+    height: 100%;
     width: 100%;
 }
 
-#swirl-short-videos .small_sc_location {
+.swirl_ssv_card_for_ssv video {
+    height: 100%;
     width: 100%;
 }
 
-#swirl-short-videos .search-container {
+/* .card_for_ssv {
     position: relative;
-    width: 100%;
-}
+} */
 
-#swirl-short-videos .search-icon {
-    position: absolute;
-    left: 10px;
-    margin-left: 7px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #555;
+
+.swirl_ssv_card {
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    box-shadow: rgb(35 35 35 / 30%) 1px 1px 5px 1px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
-#swirl-short-videos .search-clear-wrapper .custom-search-container {
+.swirl_ssv_media-container {
     position: relative;
-    display: inline-block;
 }
 
-#swirl-short-videos .search-clear-wrapper .custom-search-container .custom-search-icon {
+/* video,
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+} */
+
+#swirl_section_main_div .swirl_ssv_overlay {
     position: absolute;
+    top: 10px;
     left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+    color: white;
+    z-index: 1;
 }
 
-#swirl-short-videos .search-clear-wrapper .custom-search-container .custom-search-input {
-    padding: 10px;
-    padding-left: 40px;
-    border-radius: 10px;
+#swirl_section_main_div .swirl_ssv_overlay-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    z-index: 1;
+    /* margin-top: 22px; */
 }
 
-#swirl-short-videos .search-input {
-    width: 100%;
-    padding: 10px;
-    padding-left: 35px;
-    margin-left: 10px;
-    box-sizing: border-box;
-    border-radius: 10px;
-}
-
-#swirl-short-videos .custom-select {
-    position: relative;
-    width: 200px;
-}
-
-#swirl-short-videos .custom-select select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    padding-left: 40px;
-    margin-left: 15px;
-}
-
-#swirl-short-videos .custom-select i {
+#swirl_section_main_div .swirl_ssv_overlay-center {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    left: 8px;
-    color: #555;
-    margin-left: 18px;
-    margin-top: 3px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    /* Overlay text color */
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 1;
+    /* Place the overlay above the video/image */
 }
 
-#swirl-short-videos .clear-filter-btn {
-    text-decoration: none;
-    color: #000;
+#swirl_section_main_div .swirl_ssv_description {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    /* Overlay background color */
+    color: white;
+    /* Overlay text color */
 }
 
-#swirl-short-videos .search-clear-wrapper {
+#swirl_section_main_div .swirl_ssv_total_views {
     display: flex;
-    justify-content: space-between;
+    background-color: #ab12209c;
+    border-radius: 3px;
+    padding: 1px 5px;
     align-items: center;
+    color: #fff;
+    margin-bottom: 0 !important;
 }
 
-#swirl-short-videos .find-your-fit-wrapper {
+
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+/* For Chrome, Safari, and newer Edge browsers */
+/* Decrease width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+#swirl_section_main_div .swirl_ssv_modal-backdrop {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    top: 0;
+    left: 0;
+}
+
+#swirl_section_main_div .swirl_ssv_modal-wrapper {
+    /* padding: 10px; */
+    box-shadow: 0px 2px 6px #000;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    /* max-width: 500px; */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11111;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#swirl_section_main_div .swirl_ssv_modal-content {
+    background-color: #fff;
+    max-width: 50vw;
+    margin: auto;
+
+}
+
+#swirl_section_main_div .swirl_ssv_modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 10px;
 }
 
-#swirl-short-videos .find-your-fit-wrapper p {
-    font-size: 16px;
-    margin: 0;
-}
-
-#swirl-short-videos .find-your-fit-wrapper label {
-    font-size: 12px;
-}
-
-#swirl-short-videos .shoe-gender-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.find-your-fit-wrapper .shoe-gender-wrapper .shoe-size-input-wrapper .shoe-size-input {
-    border: 1px solid #969696;
-    border-radius: 10px;
-    padding: 10px;
-    min-width: 100%;
-}
-
-/* Hide the up and down arrows for number inputs */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-#swirl-short-videos .gender-wrapper select {
-    padding: 5px;
-    border-radius: 10px;
-}
-
-#swirl-short-videos .show-shoe-size p {
-    font-size: 12px;
-}
-
-#swirl-short-videos .fit-color-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.find-your-fit-wrapper {
-    display: grid;
-    grid-template-rows: auto;
-    gap: 15px;
-    margin-bottom: 15px;
-    font-size: 14px !important;
-    font-weight: 400 !important;
-}
-
-.find-your-fit-wrapper p {
-    margin: 0;
-    font-size: 16px !important;
-    font-weight: 700 !important;
-}
-
-.shoe-gender-wrapper {
-    display: inline-grid;
-    grid-template-columns: auto auto;
-    gap: 15px;
-    align-items: center;
-}
-
-.color-size-wrapper {
-    display: inline-grid;
-    grid-template-columns: 1fr auto;
-    gap: 15px;
-}
-
-.shoe-gender-wrapper select,
-.shoe-gender-wrapper .gender-wrapper select,
-.shoe-gender-wrapper .color-wrapper select {
-    border: 1px solid #969696;
-    border-radius: 10px;
-    padding: 10px;
-    max-width: 100%;
-}
-
-.shoe-gender-wrapper .ssv_find_fit {
-    color: #fff;
+#swirl_section_main_div .swirl_ssv_modal-close {
     text-align: center;
-    padding: 10px 0 !important;
-    width: 100% !important;
-    border-radius: 10px !important;
-    font-size: 14px !important;
-    background-color: #000 !important;
-    transition: background-color 0.3s !important;
-    /* Add a transition for smoother effect */
-}
-
-.shoe-gender-wrapper .ssv_find_fit:hover {
-    opacity: 0.7;
+    font-size: 1.2em;
     cursor: pointer;
-    transition: background-color 0.3s !important;
-    /* Add a transition for smoother effect */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: gray;
+    line-height: 1.7em;
+    color: #fff;
 }
 
-.shoe-size-wrapper p {
+#swirl_section_main_div .swirl_ssv_ssv_modal_row {
+    background-color: rgba(0, 0, 0, .7);
+    height: 100vh;
+    /* margin-top: 15px; */
+}
+
+
+
+#swirl_section_main_div .swirl_ssv_ssv_modal_square {
+    background-color: #fff;
+    margin: auto;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+#swirl_section_main_div .swirl_ssv_column {
+    float: left;
+    width: 50%;
+    height: 90vh;
+}
+
+/* Clear floats after the columns */
+#swirl_section_main_div .swirl_ssv_row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#swirl_section_main_div .swirl_ssv_video_div {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+    position: relative;
+}
+
+#swirl_section_main_div .swirl_ssv_product_img_ssv {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+
+
+#swirl_section_main_div .swirl_ssv_product_tile_ssv {
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eee;
+}
+
+#swirl_section_main_div .swirl_ssv_product_info_tile_ssv {
+    padding: 15px;
+    width: 100%;
+}
+
+#swirl_section_main_div .swirl_ssv_product_price {
+    font-weight: 650;
+    font-size: 17px;
+    text-align: left;
+
+}
+
+#swirl_section_main_div .swirl_ssv_products_slider_btn_next::before {
+    font-size: 30px !important;
+    margin-left: 53px;
+}
+
+#swirl_section_main_div .swirl_ssv_products_slider_btn_pre::before {
+    font-size: 30px !important;
+    margin-left: -43px;
+}
+
+.swirl_ssv_description_product h3 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.swirl_ssv_description_product p {
+    text-transform: none;
+    font-size: 14px;
+    text-align: left;
+}
+
+#swirl_section_main_div .swirl_ssv_add_to_cart_btn_ssv {
+    padding: 5px 5px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#swirl_section_main_div .swirl_ssv_right_column_main {
+    height: 100%;
+    overflow: auto;
+}
+
+#swirl_section_main_div .swirl_ssv_buy_btn_ssv {
+    padding: 7px 9px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    color: #fff;
+    margin-left: 5px;
+    font-weight: bold;
+    background-color: black;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#swirl_section_main_div .swirl_ssv_arrow_right {
+    cursor: pointer;
+    margin-left: auto;
+}
+
+#swirl_section_main_div .swirl_ssv_arrow_left {
+    cursor: pointer
+}
+
+#swirl_section_main_div .swirl_ssv_title_product_desc {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: left;
+}
+
+#swirl_section_main_div .swirl_ssv_column {
+    position: relative;
+}
+
+#swirl_section_main_div .swirl_ssv_text_area {
+    display: block;
+    background-color: #eee;
+    outline: none;
+    width: 100%;
+    margin-top: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+
+#swirl_section_main_div .swirl_ssv_video_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Adjust the background color and opacity as needed */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    color: white;
+    overflow: hidden;
+    /* Set the text color */
+    font-size: 24px;
+    /* Adjust the font size */
+    /* Add any other styling you want for the overlay */
+}
+
+#swirl_section_main_div .swirl_ssv_play_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: rgb(0, 0, 0, .3);
+    margin-top: -39px;
+}
+
+#swirl_section_main_div .swirl_ssv_close_btn {
+    background-color: rgb(0, 0, 0, .6) !important;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#swirl_section_main_div .video_div {
+    width: 100%;
+    /* Ensure the video takes the full width */
+}
+
+
+#swirl_section_main_div .swirl_ssv_name_field {
+    padding: 10px;
+    width: 100%;
+    border: 0;
+    outline: none;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+#swirl_section_main_div .swirl_ssv_modal_form {
+    padding: 10px;
+}
+
+#swirl_section_main_div .swirl_ssv_content {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* Apply transition to opacity and transform */
+    cursor: pointer;
+}
+
+#swirl_section_main_div .swirl_ssv_badge_products {
+    background-color: red;
+    z-index: 1000;
+}
+
+#swirl_section_main_div .swirl_ssv_image-container {
+    position: relative;
     display: inline-block;
-    font-size: 14px;
+    /* Ensures the container only takes as much space as the image */
 }
 
-input::placeholder {
-    font-size: 14px;
-    font-weight: normal;
+
+
+#swirl_section_main_div .swirl_ssv_badge {
+    position: absolute;
+    margin-top: -67px;
+    right: -6px;
+    color: white;
+    border-radius: 50%;
+    /* height: 18px; */
+    /* width: 18px; */
+    align-items: center;
+    font-size: 13px;
+    text-align: center;
+    padding: 3px 6px;
+
 }
 
-@media (max-width: 1023px) {
 
-    #swirl-short-videos .filter_main_div {
-        padding: 10px 0;
+#swirl_section_main_div .swirl_ssv_video-container {
+    position: relative;
+}
+
+#swirl_section_main_div .swirl_ssv_pip-video {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 200px;
+    /* Set the desired width */
+    height: 150px;
+    /* Set the desired height */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+#swirl_section_main_div .content.hidden {
+    opacity: 0;
+    transform: scale(0.5);
+    /* You can adjust the scale or other transformations */
+    display: none;
+    /* Hides the element, adjust as needed */
+}
+
+#swirl_section_main_div .content.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#swirl_section_main_div .swirl_ssv_video_forword_ssv {
+    width: 30px;
+    cursor: pointer;
+}
+
+
+
+/* @media only screen and (max-width: 1500px and ) {
+    .ssv_modal_square {
+        max-width: 100vh;
     }
+} */
 
-    #swirl-short-videos .filter_main_div .first_row {
-        flex-direction: column;
-        align-items: flex-start;
+#swirl_section_main_div .swirl_ssv_playpausse_btn_carousel {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 50%;
+    padding: 1px;
+    cursor: pointer;
+    width: 30px;
+    margin: 35px;
+}
+
+#swirl_section_main_div .swirl_ssv_right_bottom_icons_carousel {
+    height: 30px;
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 50%;
+    padding: 3px;
+    margin: 10px;
+    cursor: pointer;
+    z-index: 1000000;
+}
+
+#swirl_section_main_div .swirl_ssv_share_icon {
+    padding: 8px;
+}
+
+#swirl_section_main_div .swirl_ssv_mute_icons {
+    padding: 5px;
+}
+
+#swirl_section_main_div .swirl_ssv_right_botttom_icn {
+    padding: 7%;
+}
+
+#swirl_section_main_div .swirl_ssv_prduct_on_right {
+    border-radius: 10px;
+}
+
+#swirl_section_main_div .swirl_ssv_contact-group {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    width: 100%;
+}
+
+#swirl_section_main_div .swirl_ssv_country-select {
+    margin-right: 10px;
+    border: none;
+    outline: none;
+
+
+}
+
+
+
+#swirl_section_main_div .swirl_ssv_country-select select {
+    background-color: #eee;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+#swirl_section_main_div .swirl_ssv_phone-input input {
+    border: none;
+    background-color: #eee;
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    display: block;
+    border-radius: 5px;
+
+}
+
+#swirl_section_main_div .swirl_ssv_phone-input {
+    width: 100%;
+
+}
+
+#swirl_section_main_div .swirl_ssv_register_btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #8663D3;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.swirl_ssv_box_register {
+    background-color: #ffff;
+    border-radius: 10px;
+}
+
+#swirl_section_main_div input[type="range"]::-webkit-slider-thumb {
+    width: 0 !important;
+    /* Set thumb width to 0 to hide it */
+}
+
+#swirl_section_main_div input[type="range"]::-moz-range-thumb {
+    width: 0;
+    /* Set thumb width to 0 to hide it */
+}
+
+#swirl_section_main_div input[type="range"]::-ms-thumb {
+    width: 0;
+    /* Set thumb width to 0 to hide it */
+}
+
+#swirl_section_main_div .swirl_ssv_share_icons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+
+}
+
+#swirl_section_main_div .swirl_ssv_discount_percent_badge {
+    margin-left: 8px;
+}
+
+#swirl_section_main_div .swirl_ssv_video-modal-share-modal-social-ssv {
+    height: 40px;
+}
+
+
+/* @media screen and (min-width: 1200px) and (max-width: 1500px) {
+    #swirl_section_main_div .swirl_ssv_ssv_modal_square {
+        max-width: 80vh;
     }
+} */
 
-    #swirl-short-videos .filter_main_div .video_count h2 {
-        margin-left: 10px;
-        font-size: 16px;
-    }
 
-    #swirl-short-videos .filter_main_div .second_row {
-        flex-direction: column;
-        align-items: normal;
-        justify-content: space-between;
-    }
-
-    #swirl-short-videos .filter_main_div .first_row>div,
-    #swirl-short-videos .filter_main_div .second_row>div {
-        padding: 10px 0;
-    }
-
-    #swirl-short-videos .filter_main_div .second_row .left_section_second_row {
-        width: 100%;
-        margin-top: 6px;
-    }
-
-    #swirl-short-videos .location_input_field {
-        width: 100%;
-        margin-left: 0px;
-    }
-
-    #swirl-short-videos .location_text {
+@media only screen and (max-width: 833px) {
+    #swirl_section_main_div .swirl_ssv_right_section_display_none {
         display: none;
     }
 
-    #swirl-short-videos .filter_main_div .second_row .center_section_second_row {
-        text-align: left;
-        flex-direction: column;
-        align-items: flex-start;
+    .slick-slider .slick-track,
+    .slick-slider .slick-list,
+    .slick-slider .slick-slide {
+        height: 100vh !important;
     }
 
-    #swirl-short-videos .filter_main_div .second_row .right_section_second_row {
-        text-align: left;
-        flex-direction: column;
-        align-items: flex-start;
+
+    #swirl_section_main_div .swirl_ssv_column {
+        width: 100% !important;
+        height: 100vh;
     }
 
-    #swirl-short-videos .multi-select-container {
-        margin-left: 0px !important;
-        width: 100%;
-        flex-wrap: nowrap;
+    #swirl_section_main_div .swirl_ssv_ssv_modal_square {
+        width: 100vw !important;
+        min-height: 85vh !important;
     }
 
-    #swirl-short-videos .multi-select-container2 {
-        margin-left: 0px !important;
-        width: 100%;
-        flex-wrap: nowrap !important;
-        /* margin-top: -18px !important; */
-    }
-
-    #swirl-short-videos .checkbox-button {
-        width: 33.33%;
-        font-size: 12px;
-    }
-
-    #swirl-short-videos .search-input {
-        margin-left: 0px;
-    }
-
-    #swirl-short-videos .filter_main_div .right_section_first_row {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    #swirl-short-videos .filter_main_div .second_row .left_section_second_row .sortby_text,
-    #swirl-short-videos .filter_main_div .second_row .center_section_second_row .sortby_text,
-    #swirl-short-videos .filter_main_div .second_row .right_section_second_row .sortby_text {
-        font-size: 14px !important;
-    }
-
-    .find-your-fit-wrapper {
-        position: relative;
-        display: grid;
-        grid-template-rows: auto;
-        gap: 15px;
-        margin-bottom: 15px;
-    }
-
-    .find-your-fit-wrapper p {
-        margin: 0;
-    }
-
-    .shoe-gender-wrapper {
-        display: grid;
-        grid-template-columns: auto auto;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .shoe-gender-wrapper .ssv_find_fit {
-        padding: 10px 0;
-        width: 100%;
-        border-radius: 10px;
-    }
-
-    .shoe-size-wrapper p {
-        display: inline-block;
-    }
-
-    .shoe-gender-wrapper .ssv_find_fit:hover {
-        opacity: 0.8;
-        transition: background-color 0.3s !important;
-    }
-
-    .shoe-gender-wrapper select,
-    .shoe-gender-wrapper .gender-wrapper select,
-    .shoe-gender-wrapper .color-wrapper select {
-        border: 1px solid #969696;
-        border-radius: 10px;
-        padding: 8px;
-        max-width: 100%;
+    #swirl_section_main_div .swirl_ssv_test_new_btn {
+        display: none !important;
     }
 }
 
-/* filter css */
+/* @media only screen and (max-width: 1200px) {
+    #swirl_section_main_div .swirl_ssv_ssv_modal_square {
+        max-width: 100% !important;
+    }
+} */
