@@ -9,7 +9,7 @@ let ssv_store = '';
 let ssv_storeType = '0';
 let ssv_storeCode = '';
 let ssv_storePlaylist = '';
-let ssv_baseURL = ssv_mode === 'Live' ? 'https://goswirl.shop/swirl-embed/short-videos-carousel/v12/' : '';
+let ssv_baseURL = ssv_mode === 'Live' ? 'https://apigoswirl.com/short_video/v12/swirl-style.min.css' : '';
 let ssv_responseData = [];
 let ssv_productIds = [];
 let ssv_apiURL = 'https://api.goswirl.live/index.php/ShortVideo/videolistingV4'; // bigleap.live  ,  api.goswirl.live
@@ -21,8 +21,6 @@ let ssv_swiper_modal = [];
 let ssv_videoPlayCounter = 0;
 let ssv_userData = null;
 let ssv_fsdb = [];
-let ssv_gptPrompt = [];
-let ssv_gumletRegistered = [];
 let ssv_gumletConfig = {
     property_id: 'jYfkUIVL', // required:  please replace with correct property id.
 };
@@ -37,7 +35,7 @@ document.body.insertBefore(jqTag, document.body.lastChild);
 
 jqTag = document.createElement('link');
 jqTag.rel = 'stylesheet';
-jqTag.href = ssv_baseURL + 'style.css';
+jqTag.href = ssv_baseURL;
 document.body.insertBefore(jqTag, document.body.lastChild);
 
 let JSLOAD1 = false;
@@ -45,16 +43,7 @@ jqTag = document.createElement('script');
 jqTag.rel = 'text/javascript';
 jqTag.src = 'https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js';
 jqTag.onload = function () { JSLOAD1 = true; };
-if (window.location.origin.includes("gynoveda")) {
-    let gynowait = setInterval(() => {
-        if (document.querySelector('script[src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"]') != null) {
-            document.head.appendChild(jqTag);
-            clearInterval(gynowait);
-        }
-    }, 500);
-} else {
-    document.body.insertBefore(jqTag, document.body.lastChild);
-}
+document.body.insertBefore(jqTag, document.body.lastChild);
 
 let JSLOAD2 = false;
 if (typeof jQuery == 'undefined') {
@@ -83,40 +72,34 @@ function executessv() {
         // Jquery depended JS        
         let JSL1, JSL2, JSL3, JSL4, JSL5, JSL6 = false;
 
-        JSL1 = true;
+        jQuery.getScript("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput-jquery.min.js", function () {
+            JSL1 = true;
+        });
 
-        JSL2 = true;
-        // jQuery.getScript("https://cdn.gumlytics.com/insights/1.1/gumlet-insights.min.js", function () {
-        // });
+        jQuery.getScript("https://cdn.gumlytics.com/insights/1.1/gumlet-insights.min.js", function () {
+            JSL2 = true;
+        });
 
-        // jQuery.getScript("https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js", function () {
-        //     JSL3 = true;
-        // });
+        jQuery.getScript("https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js", function () {
+            JSL3 = true;
+        });
 
-        // jQuery.getScript("https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js", function () {
-        //     JSL4 = true;
-        // });
+        jQuery.getScript("https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js", function () {
+            JSL4 = true;
+        });
 
-        // jQuery.getScript("https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js", function () {
-        //     JSL5 = true;
-        // });
+        jQuery.getScript("https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js", function () {
+            JSL5 = true;
+        });
 
-        JSL3 = JSL4 = JSL5 = true;
-
-        JSL6 = true;
-        // jQuery.getScript("https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js", function () {
-        // });
-        jqTag = document.createElement('script');
-        jqTag.rel = 'text/javascript';
-        jqTag.src = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js';
-        document.body.insertBefore(jqTag, document.body.lastChild);
+        jQuery.getScript("https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js", function () {
+            JSL6 = true;
+        });
 
         // Inits
         ssv_store = window.location.href.split('?')[0];
         ssv_store = ssv_store.split('#')[0];
         let currentURL = window.location.href.split('?')[0];
-        currentURL = ['itsherway', 'file:'].some(el => window.location.origin.includes(el)) ? window.location.href : currentURL;
-        currentURL = currentURL == 'https://scarters.com/products/terminal' ? 'https://scarters.com/products/terminalXXXXX' : currentURL;
         if (document.querySelector('#swirl-short-videos') != null) {
             ssv_storeCode = jQuery('#swirl-short-videos').data('code');
             ssv_storeType = jQuery('#swirl-short-videos').data('wt');
@@ -126,13 +109,10 @@ function executessv() {
             localStorage.setItem('_ssv_storetype', ssv_storeType);
             localStorage.setItem('_ssv_storeplaylist', ssv_storePlaylist);
 
-            // PDP or Normal        
-            if (jQuery('#swirl-short-videos').data('pdp')) {
-                jQuery('#swirl-short-videos').data('pdp').split(',').forEach(uVal => {
-                    if (currentURL.includes(uVal) || uVal == '/home') ssv_pdppip = true;
-                });
-                if (jQuery('#swirl-short-videos').data('pdp').includes('/home')) currentURL = currentURL.charAt(currentURL.length - 1) == '/' ? currentURL + 'home' : currentURL + '/home';
-            }
+            // PDP or Normal            
+            jQuery('#swirl-short-videos').data('pdp').split(',').forEach(uVal => {
+                if (currentURL.includes(uVal)) ssv_pdppip = true;
+            });
         } else {
             ssv_pip = true;
             ssv_storeCode = localStorage.getItem('_ssv_storecode');
@@ -172,21 +152,20 @@ function executessv() {
                         ssv_pdppipHideOnscreen = ssv_pdppip ? ssv_brandCustomizations.pdppip_hidecarousel : ssv_pdppipHideOnscreen;
 
                         // generate SSV
-                        // let SSVSL = setInterval(() => {
-                        //     if (JSL1 && JSL2 && JSL3 && JSL4 && JSL5 && JSL6) {
-                        //         // firebase.initializeApp({
-                        //         //     apiKey: window.atob('QUl6YVN5QXVCWEJUb2NzaFU1a2V4T28tTzNqNW40SkZsblZReU9v'),
-                        //         //     authDomain: 'swirl-short-vido.firebaseapp.com',
-                        //         //     projectId: 'swirl-short-vido',
-                        //         //     storageBucket: 'swirl-short-vido.appspot.com'
-                        //         // });
-                        //         // ssv_fsdb = firebase.firestore();
+                        let SSVSL = setInterval(() => {
+                            if (JSL1 && JSL2 && JSL3 && JSL4 && JSL5 && JSL6) {
+                                firebase.initializeApp({
+                                    apiKey: window.atob('QUl6YVN5QXVCWEJUb2NzaFU1a2V4T28tTzNqNW40SkZsblZReU9v'),
+                                    authDomain: 'swirl-short-vido.firebaseapp.com',
+                                    projectId: 'swirl-short-vido',
+                                    storageBucket: 'swirl-short-vido.appspot.com'
+                                });
+                                ssv_fsdb = firebase.firestore();
 
-                        //         clearInterval(SSVSL);
-                        //     }
-                        // }, 300);
-
-                        generatessv(ssv_responseData.swilrs.video);
+                                generatessv(ssv_responseData.swilrs.video);
+                                clearInterval(SSVSL);
+                            }
+                        }, 300);
 
                         // check user cookie
                         if (getCookie('ssv_user')) {
@@ -199,23 +178,20 @@ function executessv() {
                         ssv_responseData = JSON.parse(localStorage.getItem('_ssv_storeResponseData'));
                         ssv_brandCustomizations = ssv_responseData.swilrs.data;
                         ssv_globalMute = ssv_brandCustomizations.auto_play_mute_un === "1" ? true : false;
-
                         // generate SSV
-                        // let SSVSL = setInterval(() => {
-                        //     if (JSL1 && JSL2 && JSL3 && JSL4 && JSL5 && JSL6) {
-                        //         // firebase.initializeApp({
-                        //         //     apiKey: window.atob('QUl6YVN5QXVCWEJUb2NzaFU1a2V4T28tTzNqNW40SkZsblZReU9v'),
-                        //         //     authDomain: 'swirl-short-vido.firebaseapp.com',
-                        //         //     projectId: 'swirl-short-vido',
-                        //         //     storageBucket: 'swirl-short-vido.appspot.com'
-                        //         // });
-                        //         // ssv_fsdb = firebase.firestore();
-
-                        //         clearInterval(SSVSL);
-                        //     }
-                        // }, 300);
-
-                        generatessv(ssv_responseData.swilrs.video);
+                        let SSVSL = setInterval(() => {
+                            if (JSL1 && JSL2 && JSL3 && JSL4 && JSL5 && JSL6) {
+                                firebase.initializeApp({
+                                    apiKey: window.atob('QUl6YVN5QXVCWEJUb2NzaFU1a2V4T28tTzNqNW40SkZsblZReU9v'),
+                                    authDomain: 'swirl-short-vido.firebaseapp.com',
+                                    projectId: 'swirl-short-vido',
+                                    storageBucket: 'swirl-short-vido.appspot.com'
+                                });
+                                ssv_fsdb = firebase.firestore();
+                                generatessv(ssv_responseData.swilrs.video);
+                                clearInterval(SSVSL);
+                            }
+                        }, 300);
 
                         // check user cookie
                         if (getCookie('ssv_user')) {
@@ -244,11 +220,6 @@ function getHandle(url) {
     return handle;
 }
 
-function imagekitDynamicssv(img, w) {
-    let imgParts = img.split('coverimages');
-    return imgParts[0] + `coverimages/tr:w-${w}` + imgParts[1];
-}
-
 function generatessv(videos) {
     let onpageSlides = '';
     let modalSlides = '';
@@ -256,30 +227,20 @@ function generatessv(videos) {
     swipeupTooltip = '';
     let i = 0;
 
-    let hold_front_color_add_to_cart_btn = ssv_brandCustomizations.front_color_add_to_cart_btn;
-    let hold_front_color_buy_btn = ssv_brandCustomizations.front_color_buy_btn;
-    let hold_bk_color_buy_btn = ssv_brandCustomizations.bk_color_buy_btn;
-
     videos.forEach(video => {
-        // video CTA customization        
-        ssv_brandCustomizations.front_color_add_to_cart_btn = video.video_cta_bk ? video.video_cta_bk : hold_front_color_add_to_cart_btn;
-        ssv_brandCustomizations.front_color_buy_btn = video.video_cta_fk ? video.video_cta_fk : hold_front_color_buy_btn;
-        ssv_brandCustomizations.bk_color_buy_btn = video.video_cta_bk ? video.video_cta_bk : hold_bk_color_buy_btn;
         // ${ssv_brandCustomizations.time_sec === '1' ? 'onloadeddata="updateDurationssv(this);" ontimeupdate="updateProgressDurationssv(this);"' : ''}
         if (!ssv_pip && !ssv_pdppipHideOnscreen) {
-            let outerProductCheck = typeof video.product[0] != 'undefined' || typeof video.product_d[0] != 'undefined' ? true : false;
-            let outerProductFinal = typeof video.product[0] != 'undefined' ? video.product[0] : video.product_d[0];
-            let outerProduct = outerProductCheck ? `
+            let outerProduct = typeof video.product[0] != 'undefined' ? `
                 <div class="product-on-carousel-ssv" ${ssv_brandCustomizations.product_blog_img == '0' ? 'style="display: none !important;"' : ''}>                                    
-                    <img src="${outerProductFinal.image.includes('imagekit') ? imagekitDynamicssv(outerProductFinal.image, 80) : outerProductFinal.image}" alt="Product Image">                                        
+                    <img src="${video.product[0].image}" alt="Product Image">                                        
                     
                     <h6 style="${video.product.length > 1 ? '' : 'display: none !important;'} background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important;">${video.product.length}</h6>
-                    <p>${outerProductFinal.title}</p>
-                    <label style="${ssv_brandCustomizations.product_price_status == '0' ? 'display: none !important;' : ''} color:${ssv_brandCustomizations.dis_fk_color} !important;">${outerProductFinal.currencysymbols}${outerProductFinal.discount_price} <strike style="${parseFloat(outerProductFinal.price) > parseFloat(outerProductFinal.discount_price) ? '' : 'display: none;'} color:${ssv_brandCustomizations.mrp_fk_color} !important;">${outerProductFinal.currencysymbols}${outerProductFinal.price}</strike>
-                        <br><span style="${parseFloat(outerProductFinal.price) > parseFloat(outerProductFinal.discount_price) ? '' : 'display: none;'} color:${ssv_brandCustomizations.off_fk_color} !important; background:${ssv_brandCustomizations.off_bk_color} !important;">${parseFloat(outerProductFinal.price) > parseFloat(outerProductFinal.discount_price) ? Math.round(((outerProductFinal.price - outerProductFinal.discount_price) * 100) / outerProductFinal.price) : ''}% OFF</span></label>
+                    <p>${video.product[0].title}</p>
+                    <label ${ssv_brandCustomizations.product_price_status == '0' ? 'style="display: none !important;"' : ''}>${video.product[0].currencysymbols}${video.product[0].discount_price} <strike ${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? '' : 'style="display: none;"'}>${video.product[0].currencysymbols}${video.product[0].price}</strike>
+                        <br><span ${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? '' : 'style="display: none;"'}>${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? Math.round(((video.product[0].price - video.product[0].discount_price) * 100) / video.product[0].price) : ''}% OFF</span></label>
                 </div>
             ` : `
-                <div class="product-on-carousel-ssv" ${ssv_brandCustomizations.product_blog_img == '0' || !outerProductCheck ? 'style="display: none !important;"' : ''}></div>
+                <div class="product-on-carousel-ssv" ${ssv_brandCustomizations.product_blog_img == '0' || typeof video.product[0] == 'undefined' ? 'style="display: none !important;"' : ''}></div>
             `;
 
             let autoplayVideo = video.cover_video ? video.cover_video : video.video_url;
@@ -287,13 +248,13 @@ function generatessv(videos) {
 
             onpageSlides += `
                 <div class="swiper-slide ms-${video.video_id}" onclick="playssv(${i})">
-                    <video id="onpageVideossv-${video.video_id}" ${ssv_brandCustomizations.product_blog_img == '0' || !outerProductCheck ? 'style="margin-bottom: 0 !important;"' : ''} class="carousel-video-ssv" poster="${video.cover_image}" ${ssv_brandCustomizations['auto_play'] === '1' && i < 5 ? 'autoplay' : ''} loop onplay="jQuery(this).next().hide();" onpause="jQuery(this).next().show();" playsinline="" preload="metadata" data-setup="{}" muted>
+                    <video id="onpageVideossv-${video.video_id}" ${ssv_brandCustomizations.product_blog_img == '0' || typeof video.product[0] == 'undefined' ? 'style="margin-bottom: 0 !important;"' : ''} class="carousel-video-ssv" poster="${video.cover_image}" ${ssv_brandCustomizations['auto_play'] === '1' && i < 5 ? 'autoplay' : ''} loop onplay="jQuery(this).next().hide();" onpause="jQuery(this).next().show();" playsinline="" preload="metadata" data-setup="{}" muted>
                         <source src="${autoplayVideo}" type="video/mp4">
                     </video>
-                    <img ${ssv_brandCustomizations.product_blog_img == '0' || !outerProductCheck ? 'style="top: calc(50% - 20px) !important;"' : ''} class="carousel-video-play-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/play.webp"
+                    <img ${ssv_brandCustomizations.product_blog_img == '0' || typeof video.product[0] == 'undefined' ? 'style="top: calc(50% - 20px) !important;"' : ''} class="carousel-video-play-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/play.svg"
                         alt="Play icon" />  
                     <div class="video-views-count-top-ssv" ${ssv_brandCustomizations.views === '0' ? 'style="display: none !important;"' : ''}>
-                        <p><img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/views-icon.webp" alt="Views icon" height="" width="">
+                        <p><img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/views-icon.svg" alt="Views icon" height="" width="">
                             ${video.total_views}
                         </p>                            
                     </div>   
@@ -328,15 +289,10 @@ function generatessv(videos) {
                     }
 
                     let desc = ssv_brandCustomizations.cta_on_tile == '0' ? `<section>${product.desription}</section>` : '';
-                    let moredetails = ssv_storeType == '6' ? `
-                        <a class="ontile-addtocart-ssv" onclick="jQuery(this).parents('.frommoredetail').click();" style="background: none !important; border: 2px solid ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; color: ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; ${ssv_brandCustomizations.add_to_cart == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.buy_now == '0' ? 'width: 100% !important; margin-right: 0 !important;' : ''} font-size: 13px!important; font-weight: 800!important;">Select Size</a>
-                    ` : `
-                        <a class="ontile-addtocart-ssv" onclick="addtocartssv(${video.video_id}, ${product.product_id}, '${product.sku_code}', this, 1); CTAClicksssv(${product.product_id}, '${product.sku_code}', '${product.title}', '${product.image}', '${product.url}', ${video.designer_id}, ${video.video_id}, '2');" style="background: none !important; border: 2px solid ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; color: ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; ${ssv_brandCustomizations.add_to_cart == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.buy_now == '0' ? 'width: 100% !important; margin-right: 0 !important;' : ''}">${ssv_brandCustomizations.add_to_cart_btn}</a>
-                    `;
                     let cta = ssv_brandCustomizations.cta_on_tile == '1' ? `
                         <div class="ontile-cta-ssv">
-                            ${moredetails}
-                            <a class="ontile-buynow-ssv" href="${product.url}" onclick="CTAClicksssv(${product.product_id}, '${product.sku_code}', '${product.title}', '${product.image}', '${product.url}', ${video.designer_id}, ${video.video_id}, '1');" style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important; ${ssv_brandCustomizations.buy_now == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.add_to_cart == '0' ? 'width: 100% !important;' : ''}">
+                            <a class="ontile-addtocart-ssv" onclick="addtocartssv(${video.video_id}, ${product.product_id}, '${product.sku_code}', this, 1); CTAClicksssv(${product.product_id}, '${product.title}', '${product.image}', '${product.url}', ${video.designer_id}, ${video.video_id}, '2');" style="background: none !important; border: 2px solid ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; color: ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; ${ssv_brandCustomizations.add_to_cart == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.buy_now == '0' ? 'width: 100% !important; margin-right: 0 !important;' : ''}">${ssv_brandCustomizations.add_to_cart_btn}</a>
+                            <a class="ontile-buynow-ssv" href="${product.url}" onclick="CTAClicksssv(${product.product_id}, '${product.title}', '${product.image}', '${product.url}', ${video.designer_id}, ${video.video_id}, '1');" style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important; ${ssv_brandCustomizations.buy_now == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.add_to_cart == '0' ? 'width: 100% !important;' : ''}">
                                 ${video.cta_customization ? video.cta_customization : ssv_brandCustomizations.buy_btn}
                             </a>
                         </div>
@@ -344,24 +300,24 @@ function generatessv(videos) {
 
                     productTile += `
                         <div class="swiper-slide-pt">                        
-                            <div class="video-modal-product-tile-ssv frommoredetail" onclick="openListProductssv(event, this, ${pi});">
+                            <div class="video-modal-product-tile-ssv" onclick="openListProductssv(event, this, ${pi});">
                                 <div class="product-info-pt-ssv" style="${ssv_brandCustomizations.product_tile_cta_btn == '0' || ssv_brandCustomizations.cta_on_tile == '1' ? 'width: 100% !important;' : ''}">
                                     <div class="product-image-pt-ssv" style="${ssv_brandCustomizations.mobile_product_tile_img == '1' ? 'display: block !important;' : ''}">
                                         <img alt="Product Image"
-                                            src="${product.image.includes('imagekit') ? imagekitDynamicssv(product.image, 80) : product.image}" />
+                                            src="${product.image}" />
                                     </div>
                                     <div class="product-detail-pt-ssv" style="${ssv_brandCustomizations.mobile_product_tile_img == '1' ? 'width: calc(100% - 75px) !important;' : ''}">
                                         <p>${product.title}</p>
                                         ${desc}
-                                        <label style="${ssv_brandCustomizations.product_price_status == '0' ? 'display: none !important;' : ''} color:${ssv_brandCustomizations.dis_fk_color} !important;">${product.currencysymbols}${product.discount_price} <strike style="${parseFloat(product.price) > parseFloat(product.discount_price) ? '' : 'display: none;'} color:${ssv_brandCustomizations.mrp_fk_color} !important;">${product.currencysymbols}${product.price}</strike>
-                                            <span style="${parseFloat(product.price) > parseFloat(product.discount_price) ? '' : 'display: none;'} color:${ssv_brandCustomizations.off_fk_color} !important; background:${ssv_brandCustomizations.off_bk_color} !important;">${parseFloat(product.price) > parseFloat(product.discount_price) ? Math.round(((product.price - product.discount_price) * 100) / product.price) : ''}% OFF</span></label>
+                                        <label ${ssv_brandCustomizations.product_price_status == '0' ? 'style="display: none !important;"' : ''}>${product.currencysymbols}${product.discount_price} <strike ${parseFloat(product.price) > parseFloat(product.discount_price) ? '' : 'style="display: none;"'}>${product.currencysymbols}${product.price}</strike>
+                                            <span ${parseFloat(product.price) > parseFloat(product.discount_price) ? '' : 'style="display: none;"'}>${parseFloat(product.price) > parseFloat(product.discount_price) ? Math.round(((product.price - product.discount_price) * 100) / product.price) : ''}% OFF</span></label>
                                         ${cta}
                                     </div>
                                 </div>
                                 <div class="product-buy-btn-pt-ssv" style="${ssv_brandCustomizations.product_tile_cta_btn == '0' || ssv_brandCustomizations.cta_on_tile == '1' ? 'display: none !important;' : ''}">
                                     <button style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important;">
                                         ${video.cta_customization ? video.cta_customization : ssv_brandCustomizations.buy_btn}
-                                        <img style="display: none !important;" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/forward-arrow.webp"
+                                        <img style="display: none !important;" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/forward-arrow.svg"
                                             alt="Forward icon">
                                     </button>
                                 </div>
@@ -370,19 +326,19 @@ function generatessv(videos) {
                     `;
 
                     pl += `
-                        <div class="product-list-block-ssv frommoredetail" onclick="openListProductssv(event, this, ${pi});">
+                        <div class="product-list-block-ssv" onclick="openListProductssv(event, this, ${pi});">
                             <div class="product-list-block-image-ssv">
-                                <img alt="Product Image" src="${product.image.includes('imagekit') ? imagekitDynamicssv(product.image, 80) : product.image}">
+                                <img alt="Product Image" src="${product.image}">
                             </div>
                             <div class="product-list-block-detail-ssv">
                                 <p>${product.title}</p>
                                 ${desc}
-                                <label style="${ssv_brandCustomizations.product_price_status == '0' ? 'display: none !important;' : ''} color:${ssv_brandCustomizations.dis_fk_color} !important;">${product.currencysymbols}${product.discount_price} <strike style="${parseFloat(product.price) > parseFloat(product.discount_price) ? '' : 'display: none;'} color:${ssv_brandCustomizations.mrp_fk_color} !important;">${product.currencysymbols}${product.price}</strike>
-                                    <span style="${parseFloat(product.price) > parseFloat(product.discount_price) ? '' : 'display: none;'} color:${ssv_brandCustomizations.off_fk_color} !important; background:${ssv_brandCustomizations.off_bk_color} !important;">${parseFloat(product.price) > parseFloat(product.discount_price) ? Math.round(((product.price - product.discount_price) * 100) / product.price) : ''}% OFF</span></label>
+                                <label ${ssv_brandCustomizations.product_price_status == '0' ? 'style="display: none !important;"' : ''}>${product.currencysymbols}${product.discount_price} <strike ${parseFloat(product.price) > parseFloat(product.discount_price) ? '' : 'style="display: none;"'}>${product.currencysymbols}${product.price}</strike>
+                                    <span ${parseFloat(product.price) > parseFloat(product.discount_price) ? '' : 'style="display: none;"'}>${parseFloat(product.price) > parseFloat(product.discount_price) ? Math.round(((product.price - product.discount_price) * 100) / product.price) : ''}% OFF</span></label>
                                 ${cta}
                             </div>
                             <div class="product-list-block-open-ssv">
-                                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/previous-arrow.webp" alt="Previous icon">
+                                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/previous-arrow.svg" alt="Previous icon">
                             </div>
                         </div>
                     `;
@@ -390,25 +346,26 @@ function generatessv(videos) {
                     pb += `
                         <div class="video-modal-product-block-product-ssv video-modal-product-block-product-multi-ssv" style="transform: translateX(110%);">
                             <div class="product-top-pb-ssv product-top-pb-multi-ssv" onclick="closeListProductssv(this);">
-                                <img class="video-modal-pb-close-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/previous-arrow.webp"
+                                <img class="video-modal-pb-close-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/previous-arrow.svg"
                                     alt="Previous icon">                                                              
                             </div>
                             <div class="product-middle-pb-ssv">                            
                                 <div class="product-detail-pb-ssv">
                                     <div class="product-image-pb-ssv">
                                         <img alt="Product Image"
-                                            src="${product.image.includes('imagekit') ? imagekitDynamicssv(product.image, 80) : product.image}" />
+                                            src="${product.image}" />
                                     </div>
                                     <div class="product-detail-block-pb-ssv">
                                         <p>${product.title}</p>
                                         <section>${product.desription}</section>
-                                        <label style="${ssv_brandCustomizations.product_price_status == '0' ? 'display: none !important;' : ''} color:${ssv_brandCustomizations.dis_fk_color} !important;">${product.currencysymbols}${product.discount_price} <strike style="${parseFloat(product.price) > parseFloat(product.discount_price) ? '' : 'display: none;'} color:${ssv_brandCustomizations.mrp_fk_color} !important;">${product.currencysymbols}${product.price}</strike>
-                                            <span style="${parseFloat(product.price) > parseFloat(product.discount_price) ? '' : 'display: none;'} color:${ssv_brandCustomizations.off_fk_color} !important; background:${ssv_brandCustomizations.off_bk_color} !important;">${parseFloat(product.price) > parseFloat(product.discount_price) ? Math.round(((product.price - product.discount_price) * 100) / product.price) : ''}% OFF</span></label>
+                                        <label ${ssv_brandCustomizations.product_price_status == '0' ? 'style="display: none !important;"' : ''}>${product.currencysymbols}${product.discount_price} <strike ${parseFloat(product.price) > parseFloat(product.discount_price) ? '' : 'style="display: none;"'}>${product.currencysymbols}${product.price}</strike>
+                                            <span ${parseFloat(product.price) > parseFloat(product.discount_price) ? '' : 'style="display: none;"'}>${parseFloat(product.price) > parseFloat(product.discount_price) ? Math.round(((product.price - product.discount_price) * 100) / product.price) : ''}% OFF</span></label>
                                     </div>
                                 </div>                            
                                 <div class="product-desc-pb-ssv">
-                                    <p class="product-desc-title-pb-ssv">Product Details</p>
-                                    <section>${product.desription}</section>                                                                       
+                                    <p>Product Details</p>
+                                    <section>${product.desription}</section>
+                                    <li>Points</li>                                    
                                 </div>                                    
                                 <div class="product-quantity-pb-ssv" style="${ssv_storeType == '0' || ssv_brandCustomizations.product_qty == '0' ? 'display: none !important;' : ''}">
                                     <div class="product-quantity-title-pt-ssv">
@@ -420,16 +377,26 @@ function generatessv(videos) {
                                         <button style="background: #eaeaea !important; color: #323232 !important;" onclick="changeQtyssv('plus', this);">+</button>
                                     </div>
                                 </div>
-                                <div class="product-options-pb-ssv possv-${video.video_id}-${product.product_id}">                                    
-                                </div>
                                 <div class="product-rating-ssv prssv-${video.video_id}-${product.product_id}">
+                                    <p class="product-rating-title-ssv">5 <i class="starssv"></i> (2 reviews)</p>
+                                    <div class="product-rating-comments-ssv">                            
+                                        <div>
+                                            <p>Divya S.</p>
+                                            <section>Awesome products. Makes skin look so good. Feels luxurious while using and makes me super happy about my purchase.</section>
+                                        </div>
+                                    
+                                        <div>
+                                            <p>Nimisha</p>
+                                            <section>I have started using them from a month now, they are really amazing and can definitely see difference in skin</section>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="product-rating-all-ssv prassv-${video.video_id}-${product.product_id}">
                                 </div>
                             </div>
                             <div class="product-bottom-pb-ssv">
-                                <button class="product-addtocart-pb-ssv" onclick="addtocartssv(${video.video_id}, ${product.product_id}, '${product.sku_code}', this); CTAClicksssv(${product.product_id}, '${product.sku_code}', '${product.title}', '${product.image}', '${product.url}', ${video.designer_id}, ${video.video_id}, '2');" style="background: none !important; border: 2px solid ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; color: ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; ${ssv_brandCustomizations.add_to_cart == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.view_cart == '0' ? 'width: calc(50% - 5px) !important;' : ''} ${ssv_brandCustomizations.buy_now == '0' ? 'width: calc(100% - 65px) !important;' : ''}">${ssv_brandCustomizations.add_to_cart_btn}</button>
-                                <a href="${product.url}" onclick="CTAClicksssv(${product.product_id}, '${product.sku_code}', '${product.title}', '${product.image}', '${product.url}', ${video.designer_id}, ${video.video_id}, '1');">
+                                <button class="product-addtocart-pb-ssv" onclick="addtocartssv(${video.video_id}, ${product.product_id}, '${product.sku_code}', this); CTAClicksssv(${product.product_id}, '${product.title}', '${product.image}', '${product.url}', ${video.designer_id}, ${video.video_id}, '2');" style="background: none !important; border: 2px solid ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; color: ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; ${ssv_brandCustomizations.add_to_cart == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.view_cart == '0' ? 'width: calc(50% - 5px) !important;' : ''} ${ssv_brandCustomizations.buy_now == '0' ? 'width: calc(100% - 65px) !important;' : ''}">${ssv_brandCustomizations.add_to_cart_btn}</button>
+                                <a href="${product.url}" onclick="CTAClicksssv(${product.product_id}, '${product.title}', '${product.image}', '${product.url}', ${video.designer_id}, ${video.video_id}, '1');">
                                     <button class="product-buynow-pb-ssv" style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important; ${ssv_brandCustomizations.buy_now == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.view_cart == '0' ? 'width: calc(50% - 5px) !important;' : ''} ${ssv_brandCustomizations.add_to_cart == '0' ? 'width: 100% !important; margin: 0 !important' : ''}">${video.cta_customization ? video.cta_customization : ssv_brandCustomizations.buy_btn}</button>
                                 </a>
                                 <a href="${window.location.origin}/${ssv_brandCustomizations.cust_cart_redirection_link}">
@@ -455,10 +422,10 @@ function generatessv(videos) {
                             ${productTile}
                         </div>
                         <div class="sw-button-next">
-                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/next-btn.webp" height="" width="" alt="Next icon">
+                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/next-btn.svg" height="" width="" alt="Next icon">
                         </div>
                         <div class="sw-button-prev">
-                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/back-btn.webp" height="" width="" alt="Previous icon">
+                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/back-btn.svg" height="" width="" alt="Previous icon">
                         </div>
                     </div>
                 `;
@@ -472,41 +439,58 @@ function generatessv(videos) {
                 } else if (ssv_storeType == '2') {
                     ssv_productIds[video.product[0].product_id] = video.product[0].brand_product_id;
                 }
-
+                var reviewdata = '';
+                if(video.product[0].product_id == '70290')
+                {
+                    var reviewdata = "<div> <p>C.B.</p><section>Love these!!!These are perfect for on the go snacking. The ingredients are great and the taste is not too sweet, which I love. My kids love them too! I will be back to purchase more.</section></div><div> <p>Michael F</p><section>Wife purchased Brookside in the past (I didn't pay attention to the package size), I expected a larger package: 3.2 oz for $7.00 compared to Brookside's 32oz for under    $25.00. Not as richly flavored as Brookside. Seemed worth a try.</section></div><div> <p>C.B.</p><section>Love these!!!These are perfect for on the go snacking. The ingredients are great and the taste is not too sweet, which I love. My kids love them too! I will be back to purchase more.</section></div><div> <p>Michael F</p><section>Wife purchased Brookside in the past (I didn't pay attention to the package size), I expected a larger package: 3.2 oz for $7.00 compared to Brookside's 32oz for under    $25.00. Not as richly flavored as Brookside. Seemed worth a try.</section></div><div> <p>C.B.</p><section>Love these!!!These are perfect for on the go snacking. The ingredients are great and the taste is not too sweet, which I love. My kids love them too! I will be back to purchase more.</section></div><div> <p>Michael F</p><section>Wife purchased Brookside in the past (I didn't pay attention to the package size), I expected a larger package: 3.2 oz for $7.00 compared to Brookside's 32oz for under    $25.00. Not as richly flavored as Brookside. Seemed worth a try.</section></div><div> <p>C.B.</p><section>Love these!!!These are perfect for on the go snacking. The ingredients are great and the taste is not too sweet, which I love. My kids love them too! I will be back to purchase more.</section></div><div> <p>Michael F</p><section>Wife purchased Brookside in the past (I didn't pay attention to the package size), I expected a larger package: 3.2 oz for $7.00 compared to Brookside's 32oz for under    $25.00. Not as richly flavored as Brookside. Seemed worth a try.</section></div><div> <p>C.B.</p><section>Love these!!!These are perfect for on the go snacking. The ingredients are great and the taste is not too sweet, which I love. My kids love them too! I will be back to purchase more.</section></div><div> <p>Michael F</p><section>Wife purchased Brookside in the past (I didn't pay attention to the package size), I expected a larger package: 3.2 oz for $7.00 compared to Brookside's 32oz for under    $25.00. Not as richly flavored as Brookside. Seemed worth a try.</section></div><div> <p>C.B.</p><section>Love these!!!These are perfect for on the go snacking. The ingredients are great and the taste is not too sweet, which I love. My kids love them too! I will be back to purchase more.</section></div><div> <p>Michael F</p><section>Wife purchased Brookside in the past (I didn't pay attention to the package size), I expected a larger package: 3.2 oz for $7.00 compared to Brookside's 32oz for under    $25.00. Not as richly flavored as Brookside. Seemed worth a try.</section></div><div> <p>C.B.</p><section>Love these!!!These are perfect for on the go snacking. The ingredients are great and the taste is not too sweet, which I love. My kids love them too! I will be back to purchase more.</section></div><div> <p>Michael F</p><section>Wife purchased Brookside in the past (I didn't pay attention to the package size), I expected a larger package: 3.2 oz for $7.00 compared to Brookside's 32oz for under    $25.00. Not as richly flavored as Brookside. Seemed worth a try.</section></div><div> <p>C.B.</p><section>Love these!!!These are perfect for on the go snacking. The ingredients are great and the taste is not too sweet, which I love. My kids love them too! I will be back to purchase more.</section></div><div> <p>Michael F</p><section>Wife purchased Brookside in the past (I didn't pay attention to the package size), I expected a larger package: 3.2 oz for $7.00 compared to Brookside's 32oz for under    $25.00. Not as richly flavored as Brookside. Seemed worth a try.</section></div>";
+                }else if(video.product[0].product_id == '70290')
+                {
+                    var reviewdata = "";
+                }
+                else if(video.product[0].product_id == '70290')
+                {
+                    var reviewdata = "";
+                }
+                else if(video.product[0].product_id == '68162')
+                {
+                    var reviewdata = "<div> <p>Artintheworks </p><section>The washer works great.</section></div><div> <p>MK7798</p><section>Our wash tower is easy to use very self-explanatory fits in our space and is Nice and big! I like the feature of Wi-Fi so I know when loads are done and need to be changed saving a lot of time using this feature</section></div>";
+                }
+                else if(video.product[0].product_id == '68157')
+                {
+                    var reviewdata = "<div> <p>Chahs </p><section>We have had our new LG Refrigerator for 2 months and absolutely love it. The design and ease of use is fantastic. We are able to easily store all that we need in both the cooling and freezer sections. The compartments are designed for quick access and easy organization. The water/ice dispenser is very easy to use as well.</section></div><div> <p>Kcp3mom </p><section> We love everything about this new fridge. From the ice makers, to the quick grab door, to the French doors. This is a great fridge.</section></div>";
+                }
+                else{
+                    //var reviewdata = "<div><p>ckronenfeld 1244</p><section>This stuff lasts forever. I use it every day on cheeks, lips and eyes and it's almost been a year with the same one. Its also buildable which is nice</section></div><div><p>clancysmum </p><section>  This review is difficult. The color is beautiful, the application process is extraordinarily easy, but the staying power is nonexistent. I really wish the initial application look        lasted because it’s incredible, but it doesn’t. If you have time to reapply often throughout the day I say buy it. Otherwise l, wait for them to hopefully fix this issue</section> </div>";
+                }
                 let desc = ssv_brandCustomizations.cta_on_tile == '0' ? `<section>${video.product[0].desription}</section>` : '';
-                let moredetails = ssv_storeType == '6' ? `
-                    <a class="ontile-addtocart-ssv" onclick="jQuery(this).parents('.frommoredetail').click();" style="background: none !important; border: 2px solid ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; color: ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; ${ssv_brandCustomizations.add_to_cart == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.buy_now == '0' ? 'width: 100% !important; margin-right: 0 !important;' : ''} font-size: 13px!important; font-weight: 800!important;">Select Size</a>
-                ` : `
-                    <a class="ontile-addtocart-ssv" onclick="addtocartssv(${video.video_id}, ${video.product[0].product_id}, '${video.product[0].sku_code}', this, 1); CTAClicksssv(${video.product[0].product_id}, '${video.product[0].sku_code}', '${video.product[0].title}', '${video.product[0].image}', '${video.product[0].url}', ${video.designer_id}, ${video.video_id}, '2');" style="background: none !important; border: 2px solid ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; color: ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; ${ssv_brandCustomizations.add_to_cart == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.buy_now == '0' ? 'width: 100% !important; margin-right: 0 !important;' : ''}">${ssv_brandCustomizations.add_to_cart_btn}</a>
-                `;
                 let cta = ssv_brandCustomizations.cta_on_tile == '1' ? `
                     <div class="ontile-cta-ssv">
-                        ${moredetails}
-                        <a class="ontile-buynow-ssv" href="${video.product[0].url}" onclick="CTAClicksssv(${video.product[0].product_id}, '${video.product[0].sku_code}', '${video.product[0].title}', '${video.product[0].image}', '${video.product[0].url}', ${video.designer_id}, ${video.video_id}, '1');" style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important; ${ssv_brandCustomizations.buy_now == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.add_to_cart == '0' ? 'width: 100% !important;' : ''}">
+                        <a class="ontile-addtocart-ssv" onclick="addtocartssv(${video.video_id}, ${video.product[0].product_id}, '${video.product[0].sku_code}', this, 1); CTAClicksssv(${video.product[0].product_id}, '${video.product[0].title}', '${video.product[0].image}', '${video.product[0].url}', ${video.designer_id}, ${video.video_id}, '2');" style="background: none !important; border: 2px solid ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; color: ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; ${ssv_brandCustomizations.add_to_cart == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.buy_now == '0' ? 'width: 100% !important; margin-right: 0 !important;' : ''}">${ssv_brandCustomizations.add_to_cart_btn}</a>
+                        <a class="ontile-buynow-ssv" href="${video.product[0].url}" onclick="CTAClicksssv(${video.product[0].product_id}, '${video.product[0].title}', '${video.product[0].image}', '${video.product[0].url}', ${video.designer_id}, ${video.video_id}, '1');" style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important; ${ssv_brandCustomizations.buy_now == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.add_to_cart == '0' ? 'width: 100% !important;' : ''}">
                             ${video.cta_customization ? video.cta_customization : ssv_brandCustomizations.buy_btn}
                         </a>
                     </div>
                 ` : '';
 
                 productTile = `
-                    <div class="video-modal-product-tile-ssv frommoredetail" onclick="openProductssv(event, this);">
+                    <div class="video-modal-product-tile-ssv" onclick="openProductssv(event, this);">
                         <div class="product-info-pt-ssv" style="${ssv_brandCustomizations.product_tile_cta_btn == '0' || ssv_brandCustomizations.cta_on_tile == '1' ? 'width: 100% !important;' : ''}">
                             <div class="product-image-pt-ssv" style="${ssv_brandCustomizations.mobile_product_tile_img == '1' ? 'display: block !important;' : ''}">
                                 <img alt="Product Image"
-                                    src="${video.product[0].image.includes('imagekit') ? imagekitDynamicssv(video.product[0].image, 80) : video.product[0].image}" />
+                                    src="${video.product[0].image}" />
                             </div>
                             <div class="product-detail-pt-ssv" style="${ssv_brandCustomizations.mobile_product_tile_img == '1' ? 'width: calc(100% - 75px) !important;' : ''}">
                                 <p>${video.product[0].title}</p>
                                 ${desc}
-                                <label style="${ssv_brandCustomizations.product_price_status == '0' ? 'display: none !important;' : ''} color:${ssv_brandCustomizations.dis_fk_color} !important;">${video.product[0].currencysymbols}${video.product[0].discount_price} <strike style="${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? '' : 'display: none;'} color:${ssv_brandCustomizations.mrp_fk_color} !important;">${video.product[0].currencysymbols}${video.product[0].price}</strike>
-                                    <span style="${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? '' : 'display: none;'} color:${ssv_brandCustomizations.off_fk_color} !important; background:${ssv_brandCustomizations.off_bk_color} !important;">${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? Math.round(((video.product[0].price - video.product[0].discount_price) * 100) / video.product[0].price) : ''}% OFF</span></label>
+                                <label ${ssv_brandCustomizations.product_price_status == '0' ? 'style="display: none !important;"' : ''}>${video.product[0].currencysymbols}${video.product[0].discount_price} <strike ${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? '' : 'style="display: none;"'}>${video.product[0].currencysymbols}${video.product[0].price}</strike>
+                                    <span ${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? '' : 'style="display: none;"'}>${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? Math.round(((video.product[0].price - video.product[0].discount_price) * 100) / video.product[0].price) : ''}% OFF</span></label>
                                 ${cta}
                             </div>
                         </div>
                         <div class="product-buy-btn-pt-ssv" style="${ssv_brandCustomizations.product_tile_cta_btn == '0' || ssv_brandCustomizations.cta_on_tile == '1' ? 'display: none !important;' : ''}">
                             <button style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important;">
                                 ${video.cta_customization ? video.cta_customization : ssv_brandCustomizations.buy_btn}
-                                <img style="display: none !important;" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/forward-arrow.webp"
+                                <img style="display: none !important;" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/forward-arrow.svg"
                                     alt="Forward icon">
                             </button>
                         </div>
@@ -516,25 +500,26 @@ function generatessv(videos) {
                 productList = `
                     <div class="video-modal-product-block-product-ssv">
                         <div class="product-top-pb-ssv" onclick="closeProductssv(this);">
-                            <img class="video-modal-pb-close-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/previous-arrow.webp"
+                            <img class="video-modal-pb-close-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/previous-arrow.svg"
                                 alt="Previous icon">                                                              
                         </div>
                         <div class="product-middle-pb-ssv">                            
                             <div class="product-detail-pb-ssv">
                                 <div class="product-image-pb-ssv">
                                     <img alt="Product Image"
-                                        src="${video.product[0].image.includes('imagekit') ? imagekitDynamicssv(video.product[0].image, 80) : video.product[0].image}" />
+                                        src="${video.product[0].image}" />
                                 </div>
                                 <div class="product-detail-block-pb-ssv">
                                     <p>${video.product[0].title}</p>
                                     <section>${video.product[0].desription}</section>
-                                    <label style="${ssv_brandCustomizations.product_price_status == '0' ? 'display: none !important;' : ''} color:${ssv_brandCustomizations.dis_fk_color} !important;">${video.product[0].currencysymbols}${video.product[0].discount_price} <strike style="${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? '' : 'display: none;'} color:${ssv_brandCustomizations.mrp_fk_color} !important;">${video.product[0].currencysymbols}${video.product[0].price}</strike>
-                                        <span style="${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? '' : 'display: none;'} color:${ssv_brandCustomizations.off_fk_color} !important; background:${ssv_brandCustomizations.off_bk_color} !important;">${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? Math.round(((video.product[0].price - video.product[0].discount_price) * 100) / video.product[0].price) : ''}% OFF</span></label>
+                                    <label ${ssv_brandCustomizations.product_price_status == '0' ? 'style="display: none !important;"' : ''}>${video.product[0].currencysymbols}${video.product[0].discount_price} <strike ${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? '' : 'style="display: none;"'}>${video.product[0].currencysymbols}${video.product[0].price}</strike>
+                                        <span ${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? '' : 'style="display: none;"'}>${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? Math.round(((video.product[0].price - video.product[0].discount_price) * 100) / video.product[0].price) : ''}% OFF</span></label>
                                 </div>
                             </div>                            
                             <div class="product-desc-pb-ssv">
-                                <p class="product-desc-title-pb-ssv">Product Details</p>
-                                <section>${video.product[0].desription}</section>                                
+                                <p>Product Details</p>
+                                <section>${video.product[0].desription}</section>
+                               
                             </div>                                    
                             <div class="product-quantity-pb-ssv" style="${ssv_storeType == '0' || ssv_brandCustomizations.product_qty == '0' ? 'display: none !important;' : ''}">
                                 <div class="product-quantity-title-pt-ssv">
@@ -546,16 +531,19 @@ function generatessv(videos) {
                                     <button style="background: #eaeaea !important; color: #323232 !important;" onclick="changeQtyssv('plus', this);">+</button>
                                 </div>
                             </div>
-                            <div class="product-options-pb-ssv possv-${video.video_id}-${video.product[0].product_id}">
-                            </div>
-                            <div class="product-rating-ssv prssv-${video.video_id}-${video.product[0].product_id}">                                
+                            <div class="product-rating-ssv prssv-${video.video_id}-${video.product[0].product_id}">
+                                <p class="product-rating-title-ssv">5 <i class="starssv"></i> (2 reviews)</p>
+                                <div class="product-rating-comments-ssv">   
+                                    ${reviewdata}           
+                                    
+                                </div>
                             </div>
                             <div class="product-rating-all-ssv prassv-${video.video_id}-${video.product[0].product_id}">
                             </div>
                         </div>
                         <div class="product-bottom-pb-ssv">
-                            <button class="product-addtocart-pb-ssv" onclick="addtocartssv(${video.video_id}, ${video.product[0].product_id}, '${video.product[0].sku_code}', this); CTAClicksssv(${video.product[0].product_id}, '${video.product[0].sku_code}', '${video.product[0].title}', '${video.product[0].image}', '${video.product[0].url}', ${video.designer_id}, ${video.video_id}, '2');" style="background: none !important; border: 2px solid ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; color: ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; ${ssv_brandCustomizations.add_to_cart == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.view_cart == '0' ? 'width: calc(50% - 5px) !important;' : ''} ${ssv_brandCustomizations.buy_now == '0' ? 'width: calc(100% - 65px) !important;' : ''}">${ssv_brandCustomizations.add_to_cart_btn}</button>
-                            <a href="${video.product[0].url}" onclick="CTAClicksssv(${video.product[0].product_id}, '${video.product[0].sku_code}', '${video.product[0].title}', '${video.product[0].image}', '${video.product[0].url}', ${video.designer_id}, ${video.video_id}, '1');">
+                            <button class="product-addtocart-pb-ssv" onclick="addtocartssv(${video.video_id}, ${video.product[0].product_id}, '${video.product[0].sku_code}', this); CTAClicksssv(${video.product[0].product_id}, '${video.product[0].title}', '${video.product[0].image}', '${video.product[0].url}', ${video.designer_id}, ${video.video_id}, '2');" style="background: none !important; border: 2px solid ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; color: ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; ${ssv_brandCustomizations.add_to_cart == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.view_cart == '0' ? 'width: calc(50% - 5px) !important;' : ''} ${ssv_brandCustomizations.buy_now == '0' ? 'width: calc(100% - 65px) !important;' : ''}">${ssv_brandCustomizations.add_to_cart_btn}</button>
+                            <a href="${video.product[0].url}" onclick="CTAClicksssv(${video.product[0].product_id}, '${video.product[0].title}', '${video.product[0].image}', '${video.product[0].url}', ${video.designer_id}, ${video.video_id}, '1');">
                                 <button class="product-buynow-pb-ssv" style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important; ${ssv_brandCustomizations.buy_now == '0' ? 'display: none !important;' : ''} ${ssv_brandCustomizations.view_cart == '0' ? 'width: calc(50% - 5px) !important;' : ''} ${ssv_brandCustomizations.add_to_cart == '0' ? 'width: 100% !important; margin: 0 !important' : ''}">${video.cta_customization ? video.cta_customization : ssv_brandCustomizations.buy_btn}</button>
                             </a>
                             <a href="${window.location.origin}/${ssv_brandCustomizations.cust_cart_redirection_link}">
@@ -570,7 +558,7 @@ function generatessv(videos) {
             }
         } else {
             buynowBtn = video.product_link && ssv_brandCustomizations.buy_now == '1' ? `
-                <a href="${video.product_link}" onclick="CTAClicksssv(0, '', '', '', '', ${video.designer_id}, ${video.video_id}, '1');">
+                <a href="${video.product_link}">
                     <button class="video-redirect-btn-ssv" style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important; ${ssv_brandCustomizations.buy_now == '0' ? 'display: none !important;' : ''}">${video.cta_customization ? video.cta_customization : ssv_brandCustomizations.buy_btn}</button>
                 </a>
             ` : '';
@@ -596,7 +584,7 @@ function generatessv(videos) {
                                 src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/rewind.svg"
                                 alt="Rewind icon" />
                             <img class="video-playpause-ssv" onclick="videoPlayPausessv(this);"
-                                src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/pause.webp"
+                                src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/pause.svg"
                                 alt="Play/Pause icon" />
                             <img class="video-forward-ssv" onclick="videoForwardRewindssv(this, 'F');"
                                 src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/forward.svg"
@@ -608,37 +596,32 @@ function generatessv(videos) {
                         </div>
                     </div>
                     <button class="video-modal-close-ssv" title="Close" onclick="closessv();" style="background: rgb(0, 0, 0, .6) !important;">
-                        <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/close.webp"
+                        <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/close.svg"
                             alt="Close icon">
                     </button>                    
                     <button class="video-modal-pip-ssv" title="PIP Mode" onclick="playpipssv();" style="${ssv_brandCustomizations.pip_mode == '0' ? 'display: none !important;' : ''} background: rgb(0, 0, 0, .6) !important;">
-                        <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/pip.webp"
+                        <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/pip.svg"
                             alt="PIP icon">
                     </button>                                             
                     <div class="video-modal-actions-ssv">                                           
-                        <div class="SWIRLhearts" style="display: none !important;"></div>                
-                        <button class="video-modal-like-ssv" title="Like" onclick="likeVideossv(this, ${video.video_id}, ${video.designer_id});" style="background: rgb(0, 0, 0, .6) !important; display: none !important;">
-                            <img src="${getCookie(`ssv_vl_${video.video_id}`) ? 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/heart-fill-2.webp' : 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/heart-outline.webp'}"
+                        <div class="SWIRLhearts"></div>                
+                        <button class="video-modal-like-ssv" title="Like" onclick="likeVideossv(this, ${video.video_id}, ${video.designer_id});" style="background: rgb(0, 0, 0, .6) !important;">
+                            <img src="${getCookie(`ssv_vl_${video.video_id}`) ? 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/heart-fill-2.svg' : 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/heart-outline.svg'}"
                                 alt="Heart icon">
                             <p class="videoLikes-${video.video_id}">Like</p>
-                        </button>                          
-                        <button class="video-modal-download-ssv" title="Download Video" onclick="downloadVideossv(this, '${video.video_url}', ${video.video_id}, ${video.designer_id})" style="${ssv_brandCustomizations.download_icon == '0' ? 'display: none !important;' : ''} background: rgb(0, 0, 0, .6) !important;">
-                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/download.webp"
-                                alt="Download icon">
-                            <p>Download</p>
-                        </button>                        
+                        </button>  
                         <button class="video-modal-askque-ssv" title="Ask Question" onclick="openAskquessv(this);" style="${ssv_brandCustomizations.ask_question == '0' ? 'display: none !important;' : ''} background: rgb(0, 0, 0, .6) !important;">
-                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/ask-question.webp"
+                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/ask-question.svg"
                                 alt="Close icon">
                             <p>Question</p>
                         </button>     
                         <button class="video-modal-volume-ssv" title="Mute/Unmute" onclick="volumessv(this)" style="background: rgb(0, 0, 0, .6) !important;">
-                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/volume-up-fill.webp"
+                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/volume-up-fill.svg"
                                 alt="Volume icon">
                             <p>Mute</p>
                         </button>
                         <button class="video-modal-share-ssv" title="Share" onclick="openSharessv(this);" style="background: rgb(0, 0, 0, .6) !important;">
-                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/share-icon.webp"
+                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/share-icon.svg"
                                 alt="Close icon">
                             <p>Share</p>
                         </button> 
@@ -659,21 +642,21 @@ function generatessv(videos) {
                     <div class="video-modal-share-modal-ssv">
                         <div class="video-modal-share-modal-top-ssv">
                             <img class="video-modal-share-modal-close"
-                                src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/previous-arrow.webp"
+                                src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/previous-arrow.svg"
                                 alt="Previous icon" onclick="closeSharessv(this);">
                             <p>Share to</p>     
                         </div>                           
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=${ssv_store}?ssv=${window.btoa(video.video_id)}" target="_blank"><img class="video-modal-share-modal-social-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/facebook.webp" alt="Facebook icon" title="Share on Facebook"></a>
-                        <a href="https://twitter.com/share?url=${ssv_store}?ssv=${window.btoa(video.video_id)}" target="_blank"><img class="video-modal-share-modal-social-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/twitter.webp" alt="Twitter icon" title="Share on Twitter"></a>
-                        <a href="https://api.whatsapp.com/send?text=${ssv_store}?ssv=${window.btoa(video.video_id)}" target="_blank"><img class="video-modal-share-modal-social-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/whatsapp.webp" alt="Whatsapp icon" title="Share on Whatsapp"></a>
-                        <a onclick="copyEmailEmbedssv('${ssv_store}?ssv=${window.btoa(video.video_id)}', '${video.cover_image}');" target="_blank"><img class="video-modal-share-modal-social-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/email.webp" alt="Email icon" title="Share on Email"></a>
-                        <a onclick="jQuery(this).next().click();"><img class="video-modal-share-modal-social-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/copy-link.webp" alt="Copy link icon" title="Copy Link"></a>                                
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=${ssv_store}?ssv=${window.btoa(video.video_id)}" target="_blank"><img class="video-modal-share-modal-social-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/facebook.png" alt="Facebook icon" title="Share on Facebook"></a>
+                        <a href="https://twitter.com/share?url=${ssv_store}?ssv=${window.btoa(video.video_id)}" target="_blank"><img class="video-modal-share-modal-social-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/twitter.png" alt="Twitter icon" title="Share on Twitter"></a>
+                        <a href="https://api.whatsapp.com/send?text=${ssv_store}?ssv=${window.btoa(video.video_id)}" target="_blank"><img class="video-modal-share-modal-social-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/whatsapp.png" alt="Whatsapp icon" title="Share on Whatsapp"></a>
+                        <a onclick="copyEmailEmbedssv('${ssv_store}?ssv=${window.btoa(video.video_id)}', '${video.cover_image}');" target="_blank"><img class="video-modal-share-modal-social-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/email.png" alt="Email icon" title="Share on Email"></a>
+                        <a onclick="jQuery(this).next().click();"><img class="video-modal-share-modal-social-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/copy-link.png" alt="Copy link icon" title="Copy Link"></a>                                
                         <input type="text" value="${ssv_store}?ssv=${window.btoa(video.video_id)}" style="display: none;" onclick="copyLinkssv(this);">
                     </div>      
 
                     <div class="video-modal-askque-modal-ssv">
                         <div class="video-modal-askque-modal-top-ssv">
-                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/previous-arrow.webp"
+                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/previous-arrow.svg"
                                 alt="Previous icon" onclick="closeAskquessv(this, true);">
                             <p>Ask Question</p>     
                         </div>
@@ -691,63 +674,6 @@ function generatessv(videos) {
                                 <button class="askque-modal-btn-ssv askque-modal-btn2-ssv" style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important;">Register</button>                           
                             </form>
                         </div>                        
-                    </div>                       
-                    
-                    <div class="user-registration-popup-ssv">
-                        <div class="user-registration-popup-inner-ssv">
-                            <div class="urp-top-ssv">
-                                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/close.webp"
-                                    alt="Close icon" onclick="closeUrpssv(this);">
-                                <p>Register yourself</p>     
-                            </div>
-                            <div class="urp-form-ssv">
-                                <form onsubmit="return userRegistrationssv(this, ${video.video_id});" autocomplete="off">
-                                    <input name="fullname" type="text" placeholder="Enter your name" style="margin-bottom: 8px !important;" pattern=".{3,25}" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || event.charCode === 32' onpaste='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || event.charCode === 32' title="Minimum 3 Maximum 25 character, No special characters, No Digits." required autocomplete="off" />
-                                    <div class="urp-form-phone-ssv">
-                                        <select class="form-select" id="phone" name="phone" style="margin: 0px !important; margin-right: 5px !important;">                                        
-                                            <option value="91" selected>India +91</option>
-                                            <option value="44">United Kingdom +44</option>
-                                            <option value="1">United States +1</option>
-                                            <option value="92">Pakistan +92</option>
-                                            <option value="971">United Arab Emirates +971</option>
-                                            <option value="974">Qatar +974</option>
-                                            <option value="966">Saudi Arabia +966</option>
-                                            <option value="965">Kuwait +965</option>
-                                            <option value="968">Oman +968</option>
-                                            <option value="967">Yemen +967</option>
-                                        </select>
-                                        <input name="phone" type="text" style="margin: 0px !important;" placeholder="Enter your phone" pattern=".{10,10}" onkeypress='return event.charCode >= 48 && event.charCode <= 57' title="Minimum 10 and maximim 10 digits." required autocomplete="off" />                                
-                                    </div>
-                                    <button class="urp-btn-ssv" style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important;">Register</button>                           
-                                </form>
-                            </div> 
-                        </div>     
-                    </div>                    
-
-                    <div class="chat-input-ssv" style="${ssv_brandCustomizations.chat_bot == '1' ? '' : 'display: none !important'}">
-                        <form onsubmit="return sendChatssv(this);">
-                            <input name="message" placeholder="ask anyting..." required autocomplete="off" />
-                            <button>
-                                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/shopify/send.svg"
-                                    alt="Send icon">  
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="chat-history-ssv chatssv-${video.video_id}">
-                        <div class="chat-messages-block-ssv">
-                            <p><b>${ssv_brandCustomizations.designer_brand_name}</b>, Coustomer executive <span onclick="jQuery(this).closest('.chat-history-ssv').hide();">&#10006;</span></p>
-                            <div class="chat-messages-ssv"></div>
-                            <div class="chat-history-input-ssv">
-                                <form onsubmit="return sendChatMessagessv(this, ${video.video_id});">
-                                    <input name="chatmessage" placeholder="Type here..." required autocomplete="off" />
-                                    <button>
-                                        <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/shopify/ai-send.svg"
-                                            alt="Send icon">                                        
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
                     </div>
 
                     ${swipeupTooltip}
@@ -756,7 +682,7 @@ function generatessv(videos) {
                     <div class="video-modal-cart-popup-ssv">
                         <div class="cart-popup-flex-ssv">
                             <div class="cart-popup-wraper-ssv">
-                                <img onclick="closeCartPopupssv(this);" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/close.webp" alt="Close icon">
+                                <img onclick="closeCartPopupssv(this);" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/close.svg" alt="Close icon">
                                 <p>${ssv_brandCustomizations.cart_success_message}</p>
                                 <div class="video-modal-cart-popup-action-ssv">
                                     <a href="${window.location.origin}/${ssv_brandCustomizations.cust_cart_redirection_link}" class="popup-cart-btn-ssv" style="background: none !important; border: 2px solid ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important; color: ${ssv_brandCustomizations.front_color_add_to_cart_btn} !important;">${ssv_brandCustomizations.view_cart_txt}</a>
@@ -764,8 +690,7 @@ function generatessv(videos) {
                                 </div>
                             </div>
                         </div>
-                    </div>
-
+                    </div>                        
                 </div>
             </div>
         `;
@@ -779,31 +704,16 @@ function generatessv(videos) {
             <div class="swiper-wrapper">
                 ${onpageSlides}
             </div>
-            <div class="swiper-button-next-ssv">
-                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/next-btn.webp" height="" width="" alt="Next icon">
+            <div class="swiper-button-next">
+                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/next-btn.svg" height="" width="" alt="Next icon">
             </div>
-            <div class="swiper-button-prev-ssv">
-                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/back-btn.webp" height="" width="" alt="Previous icon">
+            <div class="swiper-button-prev">
+                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/back-btn.svg" height="" width="" alt="Previous icon">
             </div>
         </div>
     ` : '');
 
     // Swirl Overlay Modal
-    let chatBoatCSS = ssv_brandCustomizations.chat_bot == '1' ? `
-        .video-modal-product-tile-carousel-ssv {
-            bottom: 75px;
-        }
-        
-        .video-modal-actions-ssv, .video-progress-ssv {
-            bottom: 200px
-        }
-
-        @media (min-width: 768px) {
-            .video-modal-actions-ssv, .video-progress-ssv {
-                bottom: 90px;
-            }
-        }
-    ` : '';
     jQuery('body').append(`
         <div class="swirl-short-videos">
             <style>
@@ -818,8 +728,6 @@ function generatessv(videos) {
                 .video-progress-ssv progress::-moz-progress-bar {
                     background-color: ${ssv_brandCustomizations.bk_color_buy_btn};
                 }
-
-                ${chatBoatCSS}
             </style>
             <div class="video-modal-ssv" style="display: none;">
                 <div class="video-modal-container-ssv">
@@ -827,39 +735,39 @@ function generatessv(videos) {
                         <div class="swiper-wrapper">
                             ${modalSlides}
                         </div>
-                        <div class="swiper-button-next-ssv">
-                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/next-btn.webp"
+                        <div class="swiper-button-next">
+                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/next-btn.svg"
                                 alt="Next icon">
                         </div>
-                        <div class="swiper-button-prev-ssv">
-                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/back-btn.webp"
+                        <div class="swiper-button-prev">
+                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/back-btn.svg"
                                 alt="Previous icon">
                         </div>
                     </div>                    
                 </div>                    
             </div>
-            <div class="video-pip-ssv" onclick="fullscreenpipssv(event);">
+            <div class="video-pip-ssv">
                 <video loop playsinline="" preload="none" data-setup="{}" onplay="jQuery(this).next().hide()" onmouseover="showPipControls();"                   
-                    poster="">
+                    poster="https://swirl-assets.s3.ap-south-1.amazonaws.com/video/image/1673331184_Graphic-Oversized-Tees.jpg">
                     <source src="" type="video/mp4">
                 </video>
                 <div class="video-pip-video-loader-ssv">
                     <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/spiner.svg"
                         alt="Spinner">
                 </div>
-                <button class="video-pip-playpause-ssv" title="Play/Pause" onclick="playpausepipssv(this)" style="background: rgb(0, 0, 0, .6) !important; display: none !important;">
-                    <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/pause.webp"
+                <button class="video-pip-playpause-ssv" title="Play/Pause" onclick="playpausepipssv(this)" style="background: rgb(0, 0, 0, .6) !important;">
+                    <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/pause.svg"
                         alt="Play/Pause icon" />
                 </button>                            
-                <button class="video-pip-volume-ssv pfs-ex-ssv" title="Mute/Unmute" onclick="volumepipssv(this)" style="background: rgb(0, 0, 0, .6) !important;">
-                    <img class="pfs-ex-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/volume-up-fill.webp"
+                <button class="video-pip-volume-ssv" title="Mute/Unmute" onclick="volumepipssv(this)" style="background: rgb(0, 0, 0, .6) !important;">
+                    <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/volume-up-fill.svg"
                         alt="Volume icon">                    
                 </button>
-                <button class="video-pip-close-ssv pfs-ex-ssv" title="Close" onclick="closepipssv();" style="background: rgb(0, 0, 0, .6) !important;">
-                    <img class="pfs-ex-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/close.webp"
+                <button class="video-pip-close-ssv" title="Close" onclick="closepipssv();" style="background: rgb(0, 0, 0, .6) !important;">
+                    <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/close.svg"
                         alt="Close icon">
                 </button>
-                <button class="video-pip-fullscreen-ssv" title="Full Screen" style="border: 2.5px solid #fff !important;">
+                <button class="video-pip-fullscreen-ssv" title="Full Screen" onclick="fullscreenpipssv();" style="border: 2.5px solid #fff !important;">
                 </button>
             </div>
             <div class="modal-loader-ssv">
@@ -877,7 +785,19 @@ function generatessv(videos) {
 
     // Post append activities
     videos.forEach(video => {
-        ssv_gptPrompt[video.video_id] = video.gpt_prompt;
+        // Ask question         
+        jQuery(`#phone${video.video_id}`).intlTelInput({
+            initialCountry: "in",
+            separateDialCode: true,
+            // utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.4/js/utils.js"
+        }).on('countrychange', function () {
+            jQuery(`#code${video.video_id}`).val(jQuery(`#phone${video.video_id}`).intlTelInput("getSelectedCountryData").dialCode);
+        });
+
+        // Player registration [Gumlet]    
+        var videoPlayer = document.getElementById(`modalVideossv-${video.video_id}`);
+        var gumletInsights = gumlet.insights(ssv_gumletConfig);
+        gumletInsights.registerHTML5Player(videoPlayer);
 
         // Player Load
         // if (!ssv_pip && !ssv_pdppipHideOnscreen) {
@@ -886,15 +806,15 @@ function generatessv(videos) {
         // document.getElementById(`modalVideossv-${video.video_id}`).load();
 
         // Firebase events for all videos        
-        // ssv_fsdb.collection("swirlshortvideo_likes_" + video.designer_id).doc(video.video_id).onSnapshot((doc) => {
-        //     if (doc.exists) {
-        //         let likes = nFormatterssv(doc.data().unique_likes)
-        //         jQuery(`.videoLikes-${video.video_id}`).html(likes);
-        //         let elm = jQuery(`.videoLikes-${video.video_id}`).closest('.video-modal-video-container-ssv').find('.SWIRLhearts')[0];
-        //         SWIRLHeartFlawsssv(elm);
-        //         SWIRLHeartFlawsssv(elm);
-        //     }
-        // });
+        ssv_fsdb.collection("swirlshortvideo_likes_" + video.designer_id).doc(video.video_id).onSnapshot((doc) => {
+            if (doc.exists) {
+                let likes = nFormatterssv(doc.data().unique_likes)
+                jQuery(`.videoLikes-${video.video_id}`).html(likes);
+                let elm = jQuery(`.videoLikes-${video.video_id}`).closest('.video-modal-video-container-ssv').find('.SWIRLhearts')[0];
+                SWIRLHeartFlawsssv(elm);
+                SWIRLHeartFlawsssv(elm);
+            }
+        });
 
         // Product carousel load
         if (Object.keys(video.product).length > 1) {
@@ -942,7 +862,7 @@ function generatessv(videos) {
                                 let cappend = `
                                     <div class="product-rating-all-title-ssv">
                                         <p>
-                                            <img class="product-rating-all-close-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/previous-arrow.webp" alt="Previous icon" onclick="closeRatingssv(this);">
+                                            <img class="product-rating-all-close-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/previous-arrow.svg" alt="Previous icon" onclick="closeRatingssv(this);">
                                             ${totalRating} 
                                             <label class="bh-stars" data-bh-rating="${totalRating}">
                                                 <svg version="1.1" class="bh-star bh-star--1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><path class="outline" d="M12,4.2L14.5,9l0.2,0.5l0.5,0.1l5.5,0.8L16.8,14l-0.4,0.4l0.1,0.5l1,5.3l-5-2.5L12,17.5l-0.4,0.2l-5,2.5L7.5,15l0.1-0.5 L7.2,14l-4-3.7l5.5-0.8l0.5-0.1L9.5,9L12,4.2 M11.9,2L8.6,8.6L1,9.7l5.5,5.1L5.2,22l6.8-3.4l6.8,3.4l-1.3-7.2L23,9.6l-7.6-1L11.9,2 L11.9,2z"/><polygon class="full" points="18.8,22 12,18.6 5.2,22 6.5,14.8 1,9.7 8.6,8.6 11.9,2 15.4,8.6 23,9.6 17.5,14.7"/><polyline class="left-half" points="12,18.6 5.2,22 6.5,14.8 1,9.7 8.6,8.6 11.9,2"/></svg>
@@ -995,131 +915,12 @@ function generatessv(videos) {
                 }
             });
         }
-
-        // cart Options NNNow                
-        if (typeof video.product[0] != 'undefined' && ssv_storeType == '6') {
-            video.product.forEach(product => {
-                var settings = {
-                    "url": "https://api.omuni.com/d/api/productSearch/albl/" + product.sku_code,
-                    "method": "GET",
-                    "timeout": 0,
-                    "headers": {
-                        "Authorization": "Basic U3dpcmw6MzExamZaRGtLMEFVM2lE"
-                    },
-                };
-
-                $.ajax(settings).done(function (response) {
-                    // console.log(response.data);
-                    if (typeof response.data != 'undefined') {
-                        if (Object.keys(response.data.skus).length) {
-                            let optionsAppend = `
-                                <div class="product-options-col-pb-ssv">
-                                    <p>Color</p>
-                                    <label style="margin: 0 !important; color: #323232 !important; font-weight: bold !important; display: block !important; padding: 5px 0px 0px !important; line-height: normal !important; font-size: 16px !important;">${response.data.primaryColor}</label>
-                                </div>
-                                <div class="product-options-col-pb-ssv">
-                                    <p>Size</p>                                    
-                                    <select name="posssv-1">                                
-                            `;
-                            response.data.skus.forEach(sku => {
-                                optionsAppend += `                                    
-                                    <option value="${sku.skuId}" ${sku.quantity == 0 ? 'disabled' : ''}>${sku.size}</option>                                    
-                                `;
-                            });
-                            optionsAppend += `   
-                                    </select>                             
-                                </div>
-                            `;
-
-                            jQuery(`.possv-${video.video_id}-${product.product_id}`).append(optionsAppend);
-                            jQuery(`.possv-${video.video_id}-${product.product_id}`).css('display', 'flex');
-                        }
-                    }
-                });
-            });
-        }
-
-        // Reviews from SWIRL DB
-        if (typeof video.product[0] != 'undefined') {
-            video.product.forEach(product => {
-                if (typeof product.pReviews != 'undefined') {
-                    if (typeof product.pReviews[0] != 'undefined') {
-                        let totalRating = 0;
-                        product.pReviews.forEach(r => {
-                            totalRating += parseInt(r.c_rating);
-                        });
-                        totalRating = totalRating ? Math.round(totalRating / (Object.keys(product.pReviews).length)) : totalRating;
-
-                        let rappend = Object.keys(product.pReviews).length > 2 ? `
-                            <p class="product-rating-title-ssv">${totalRating} <i class="starssv"></i> (${(Object.keys(product.pReviews).length)} reviews)
-                                <a class="product-rating-all-btn-ssv" onclick="openRatingssv(this);">See all</a>
-                            </p>
-                            <div class="product-rating-comments-ssv">
-                            ` : `
-                            <p class="product-rating-title-ssv">${totalRating} <i class="starssv"></i> (${(Object.keys(product.pReviews).length)} reviews)</p>
-                            <div class="product-rating-comments-ssv">
-                        `;
-
-                        let cappend = `
-                            <div class="product-rating-all-title-ssv">
-                                <p>
-                                    <img class="product-rating-all-close-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/previous-arrow.webp" alt="Previous icon" onclick="closeRatingssv(this);">
-                                    ${totalRating} 
-                                    <label class="bh-stars" data-bh-rating="${totalRating}">
-                                        <svg version="1.1" class="bh-star bh-star--1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><path class="outline" d="M12,4.2L14.5,9l0.2,0.5l0.5,0.1l5.5,0.8L16.8,14l-0.4,0.4l0.1,0.5l1,5.3l-5-2.5L12,17.5l-0.4,0.2l-5,2.5L7.5,15l0.1-0.5 L7.2,14l-4-3.7l5.5-0.8l0.5-0.1L9.5,9L12,4.2 M11.9,2L8.6,8.6L1,9.7l5.5,5.1L5.2,22l6.8-3.4l6.8,3.4l-1.3-7.2L23,9.6l-7.6-1L11.9,2 L11.9,2z"/><polygon class="full" points="18.8,22 12,18.6 5.2,22 6.5,14.8 1,9.7 8.6,8.6 11.9,2 15.4,8.6 23,9.6 17.5,14.7"/><polyline class="left-half" points="12,18.6 5.2,22 6.5,14.8 1,9.7 8.6,8.6 11.9,2"/></svg>
-                                        
-                                        <svg version="1.1" class="bh-star bh-star--2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><path class="outline" d="M12,4.2L14.5,9l0.2,0.5l0.5,0.1l5.5,0.8L16.8,14l-0.4,0.4l0.1,0.5l1,5.3l-5-2.5L12,17.5l-0.4,0.2l-5,2.5L7.5,15l0.1-0.5 L7.2,14l-4-3.7l5.5-0.8l0.5-0.1L9.5,9L12,4.2 M11.9,2L8.6,8.6L1,9.7l5.5,5.1L5.2,22l6.8-3.4l6.8,3.4l-1.3-7.2L23,9.6l-7.6-1L11.9,2 L11.9,2z"/><polygon class="full" points="18.8,22 12,18.6 5.2,22 6.5,14.8 1,9.7 8.6,8.6 11.9,2 15.4,8.6 23,9.6 17.5,14.7"/><polyline class="left-half" points="12,18.6 5.2,22 6.5,14.8 1,9.7 8.6,8.6 11.9,2"/></svg>
-                                        
-                                        <svg version="1.1" class="bh-star bh-star--3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><path class="outline" d="M12,4.2L14.5,9l0.2,0.5l0.5,0.1l5.5,0.8L16.8,14l-0.4,0.4l0.1,0.5l1,5.3l-5-2.5L12,17.5l-0.4,0.2l-5,2.5L7.5,15l0.1-0.5 L7.2,14l-4-3.7l5.5-0.8l0.5-0.1L9.5,9L12,4.2 M11.9,2L8.6,8.6L1,9.7l5.5,5.1L5.2,22l6.8-3.4l6.8,3.4l-1.3-7.2L23,9.6l-7.6-1L11.9,2 L11.9,2z"/><polygon class="full" points="18.8,22 12,18.6 5.2,22 6.5,14.8 1,9.7 8.6,8.6 11.9,2 15.4,8.6 23,9.6 17.5,14.7"/><polyline class="left-half" points="12,18.6 5.2,22 6.5,14.8 1,9.7 8.6,8.6 11.9,2"/></svg>
-                                        
-                                        <svg version="1.1" class="bh-star bh-star--4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><path class="outline" d="M12,4.2L14.5,9l0.2,0.5l0.5,0.1l5.5,0.8L16.8,14l-0.4,0.4l0.1,0.5l1,5.3l-5-2.5L12,17.5l-0.4,0.2l-5,2.5L7.5,15l0.1-0.5 L7.2,14l-4-3.7l5.5-0.8l0.5-0.1L9.5,9L12,4.2 M11.9,2L8.6,8.6L1,9.7l5.5,5.1L5.2,22l6.8-3.4l6.8,3.4l-1.3-7.2L23,9.6l-7.6-1L11.9,2 L11.9,2z"/><polygon class="full" points="18.8,22 12,18.6 5.2,22 6.5,14.8 1,9.7 8.6,8.6 11.9,2 15.4,8.6 23,9.6 17.5,14.7"/><polyline class="left-half" points="12,18.6 5.2,22 6.5,14.8 1,9.7 8.6,8.6 11.9,2"/></svg>
-                                        
-                                        <svg version="1.1" class="bh-star bh-star--5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><path class="outline" d="M12,4.2L14.5,9l0.2,0.5l0.5,0.1l5.5,0.8L16.8,14l-0.4,0.4l0.1,0.5l1,5.3l-5-2.5L12,17.5l-0.4,0.2l-5,2.5L7.5,15l0.1-0.5 L7.2,14l-4-3.7l5.5-0.8l0.5-0.1L9.5,9L12,4.2 M11.9,2L8.6,8.6L1,9.7l5.5,5.1L5.2,22l6.8-3.4l6.8,3.4l-1.3-7.2L23,9.6l-7.6-1L11.9,2 L11.9,2z"/><polygon class="full" points="18.8,22 12,18.6 5.2,22 6.5,14.8 1,9.7 8.6,8.6 11.9,2 15.4,8.6 23,9.6 17.5,14.7"/><polyline class="left-half" points="12,18.6 5.2,22 6.5,14.8 1,9.7 8.6,8.6 11.9,2"/></svg>                                        
-                                    </label>
-                                    (${(Object.keys(product.pReviews).length)} reviews)                                    
-                                </p>
-                            </div>
-                            <div class="product-rating-all-comments-ssv">
-                        `;
-
-                        let cc = 0;
-                        product.pReviews.forEach(r => {
-                            cc++;
-                            if (cc <= 2) {
-                                rappend += `
-                                    <div>
-                                        <p>${r.c_name}</p>
-                                        <section>${r.c_comment}</section>
-                                    </div>
-                                `;
-                            }
-
-                            cappend += `
-                                <div>
-                                    <p>${r.c_name}</p>
-                                    <section>${r.c_comment}</section>
-                                </div>
-                            `;
-                        });
-
-                        rappend += `</div>`;
-
-                        cappend += `</div>`;
-
-                        jQuery(`.prssv-${video.video_id}-${product.product_id}`).append(rappend);
-                        jQuery(`.prassv-${video.video_id}-${product.product_id}`).append(cappend);
-                    }
-                }
-            });
-        }
     });
 
     if (!ssv_pip && !ssv_pdppipHideOnscreen) {
-        let ssvSlidePhone = ['gynoveda'].some(el => window.location.origin.includes(el)) ? 2.2 : 2;
-        let ssvSlideWeb = ['gynoveda'].some(el => window.location.origin.includes(el)) ? 4.2 : 5;
         // Initialize Swiper C    
         ssv_swiper = new Swiper('.swiper-ssv-c', {
-            slidesPerView: ssvSlidePhone,
+            slidesPerView: 5,
             direction: 'horizontal',
             spaceBetween: 15,
             // centeredSlides: true,
@@ -1127,15 +928,15 @@ function generatessv(videos) {
             centerInsufficientSlides: true,
             breakpoints: {
                 320: {
-                    slidesPerView: ssvSlidePhone,
+                    slidesPerView: 2,
                 },
                 640: {
-                    slidesPerView: ssvSlideWeb,
+                    slidesPerView: 5,
                 }
             },
             navigation: {
-                nextEl: '.swiper-button-next-ssv',
-                prevEl: '.swiper-button-prev-ssv',
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
             },
             on: {
                 init: function () {
@@ -1151,8 +952,8 @@ function generatessv(videos) {
         direction: "vertical",
         clickable: true,
         navigation: {
-            nextEl: '.swiper-button-next-ssv',
-            prevEl: '.swiper-button-prev-ssv',
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
         breakpoints: {
             768: {
@@ -1225,17 +1026,17 @@ function generatessv(videos) {
 
 function updateCartCountssv() {
     jQuery('.cart-count-ssv').html('0');
-    if (ssv_storeType == '1') {
-        updateShopifyCartssv();
-    } else if (ssv_brandCustomizations.dot_class && jQuery(`.${ssv_brandCustomizations.dot_class}`).length > 0) {
+    if (ssv_brandCustomizations.dot_class && jQuery(`.${ssv_brandCustomizations.dot_class}`).length > 0) {
         jQuery('.cart-count-ssv').html(parseInt(jQuery(`.${ssv_brandCustomizations.dot_class}`).html()));
+    } else if (ssv_storeType == '1') {
+        updateShopifyCartssv();
     }
 }
 
 function updatePreviewThumbsssv(swpr) {
     jQuery(swpr + ' .swiper-slide').each(function () {
-        jQuery(this).prepend(jQuery(this).prev().length ? '<img src="' + jQuery(this).prev().find('video').attr('poster') + '" class="video-modal-np-img-ssv p-img-ssv" onclick="jQuery(`.video-modal-ssv:visible`).find(`.swiper-button-prev-ssv`).click();">' : '');
-        jQuery(this).prepend(jQuery(this).next().length ? '<img src="' + jQuery(this).next().find('video').attr('poster') + '" class="video-modal-np-img-ssv n-img-ssv" onclick="jQuery(`.video-modal-ssv:visible`).find(`.swiper-button-next-ssv`).click();">' : '');
+        jQuery(this).prepend(jQuery(this).prev().length ? '<img src="' + jQuery(this).prev().find('video').attr('poster') + '" class="video-modal-np-img-ssv p-img-ssv" onclick="jQuery(`.video-modal-ssv:visible`).find(`.swiper-button-prev`).click();">' : '');
+        jQuery(this).prepend(jQuery(this).next().length ? '<img src="' + jQuery(this).next().find('video').attr('poster') + '" class="video-modal-np-img-ssv n-img-ssv" onclick="jQuery(`.video-modal-ssv:visible`).find(`.swiper-button-next`).click();">' : '');
     })
 }
 
@@ -1283,18 +1084,8 @@ function playWithPromisessv(player) {
         jQuery(player)[0].load();
     }
 
-    // Player registration [Gumlet]
-    // if (typeof gumlet != 'undefined' && !ssv_gumletRegistered.includes(jQuery(player).find('source').attr('data-src'))) {
-    //     var gumletInsights = gumlet.insights(ssv_gumletConfig);
-    //     gumletInsights.registerHTML5Player(player);
-    //     ssv_gumletRegistered.push(jQuery(player).find('source').attr('data-src'));
-    // }
-
     // Pause all other videos
     pauseAllssv();
-
-    // reset all popups
-    closeAllpopupsssv();
 
     // remove swipe up gif
     if (ssv_videoPlayCounter > 2 && parseInt(getCookie('ssv_user')) <= 1) {
@@ -1309,7 +1100,7 @@ function playWithPromisessv(player) {
 
     // Mute/Unmute
     jQuery(player).prop('muted', ssv_globalMute);
-    let src = ssv_globalMute ? 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/volume-mute-fill.webp' : 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/volume-up-fill.webp';
+    let src = ssv_globalMute ? 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/volume-mute-fill.svg' : 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/volume-up-fill.svg';
     jQuery(player).parent('.video-modal-video-container-ssv').find('.video-modal-volume-ssv img').attr('src', src);
     jQuery(player).parent('.video-modal-video-container-ssv').find('.video-modal-volume-ssv p').html(ssv_globalMute ? 'Mute' : 'Unmute');
 
@@ -1343,13 +1134,13 @@ function pauseAllssv() {
 
 function volumessv(btn) {
     if (jQuery(btn).closest('.video-modal-video-container-ssv').find('video').prop('muted')) {
-        jQuery(btn).children('img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/volume-up-fill.webp');
+        jQuery(btn).children('img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/volume-up-fill.svg');
         jQuery(btn).children('p').html('Unmute');
         jQuery(btn).closest('.video-modal-video-container-ssv').find('video').prop('muted', false);
 
         ssv_globalMute = false;
     } else {
-        jQuery(btn).children('img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/volume-mute-fill.webp');
+        jQuery(btn).children('img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/volume-mute-fill.svg');
         jQuery(btn).children('p').html('Mute');
         jQuery(btn).closest('.video-modal-video-container-ssv').find('video').prop('muted', true);
 
@@ -1476,16 +1267,6 @@ function closeCartPopupssv(btn) {
     jQuery(btn).closest('.video-modal-video-container-ssv').find('.video-modal-cart-popup-ssv').fadeOut(500);
 }
 
-function openUrpssv(btn) {
-    jQuery(btn).closest('.video-modal-video-container-ssv').find('.user-registration-popup-ssv').css('display', 'flex');
-    // jQuery('.video-modal-fade-ssv').show();
-}
-
-function closeUrpssv(btn) {
-    jQuery(btn).closest('.video-modal-video-container-ssv').find('.user-registration-popup-ssv').css('display', 'none');
-    // jQuery('.video-modal-fade-ssv').hide();
-}
-
 function setPopupHightssv() {
     jQuery('.video-modal-ssv').height(window.innerHeight);
     jQuery('.video-modal-ssv').width(window.innerWidth);
@@ -1493,8 +1274,8 @@ function setPopupHightssv() {
     // Modal navigation adjust
     // setTimeout(() => {
     //     let videoWidth = jQuery('.swiper-ssv-m .swiper-slide-active .video-modal-video-container-ssv').width() + 80;
-    //     jQuery('.swiper-ssv-m .swiper-button-prev-ssv').css('left', `calc(50% - ${(videoWidth + 36)}px)`);
-    //     jQuery('.swiper-ssv-m .swiper-button-next-ssv').css('left', `calc(50% + ${videoWidth}px)`);
+    //     jQuery('.swiper-ssv-m .swiper-button-prev').css('left', `calc(50% - ${(videoWidth + 36)}px)`);
+    //     jQuery('.swiper-ssv-m .swiper-button-next').css('left', `calc(50% + ${videoWidth}px)`);
     // }, 600);
 }
 
@@ -1548,10 +1329,10 @@ function videoPlayPausessv(btn) {
     var player = jQuery(btn).closest('.video-modal-video-container-ssv').find('video')[0];
     if (player.paused) {
         player.play();
-        jQuery(btn).closest('.video-modal-video-container-ssv').find('.video-playpause-ssv').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/pause.webp');
+        jQuery(btn).closest('.video-modal-video-container-ssv').find('.video-playpause-ssv').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/pause.svg');
     } else {
         player.pause();
-        jQuery(btn).closest('.video-modal-video-container-ssv').find('.video-playpause-ssv').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/play.webp');
+        jQuery(btn).closest('.video-modal-video-container-ssv').find('.video-playpause-ssv').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/play.svg');
     }
 }
 
@@ -1615,12 +1396,11 @@ function closeRatingssv(btn) {
     jQuery(btn).closest('.video-modal-product-block-product-ssv').find('.product-rating-all-ssv').css('transform', 'translateY(110%)');
 }
 
-function setCookie(cname, cvalue, exdays, domain = '') {
-    domain = domain ? 'domain=' + domain + ';' : '';
+function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;" + domain;
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 function getCookie(cname) {
@@ -1639,8 +1419,6 @@ function getCookie(cname) {
     return "";
 }
 
-let allOverElements = [];
-let allOverElementsSticky = [];
 function disableScrollssv() {
     var scrollPosition = [
         self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
@@ -1651,35 +1429,6 @@ function disableScrollssv() {
     html.data('previous-overflow', html.css('overflow'));
     html.css('overflow', 'hidden');
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
-
-    // Exclude
-    let clientImpClasses = [];
-    if (ssv_storeType == '1' && ssv_brandCustomizations.dot_class) {
-        ssv_brandCustomizations.dot_class.split(',').forEach(cls => {
-            clientImpClasses.push(cls);
-        });
-    }
-
-    // hide all fixed visible elements
-    allOverElements = [];
-    allOverElementsSticky = [];
-    jQuery('*').each(function () {
-        if (jQuery(this).css('position') == 'fixed' && jQuery(this).is(":visible")) {
-            let classof = jQuery(this).attr('class') ? jQuery(this).attr('class').split(' ')[0] : 'NoClass';
-            if (!jQuery(this).is('.video-modal-ssv') && !jQuery(this).is('.modal-loader-ssv') && !jQuery(this).is('.video-pip-ssv') && !clientImpClasses.includes(classof)) {
-                jQuery(this).hide();
-                allOverElements.push(jQuery(this));
-            }
-        }
-
-        if (jQuery(this).css('position') == 'sticky' && jQuery(this).is(":visible")) {
-            let classof = jQuery(this).attr('class') ? jQuery(this).attr('class').split(' ')[0] : 'NoClass';
-            if (!jQuery(this).is('.video-modal-ssv') && !jQuery(this).is('.modal-loader-ssv') && !jQuery(this).is('.video-pip-ssv') && !clientImpClasses.includes(classof)) {
-                jQuery(this).hide();
-                allOverElements.push(jQuery(this));
-            }
-        }
-    });
 }
 
 function enableScrollssv() {
@@ -1687,16 +1436,6 @@ function enableScrollssv() {
     var scrollPosition = html.data('scroll-position');
     html.css('overflow', html.data('previous-overflow'));
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
-
-    // Show again all hidden fixed elements
-    allOverElements.forEach(element => {
-        jQuery(element).show();
-    });
-
-    // Show again all hidden fixed elements
-    allOverElementsSticky.forEach(element => {
-        jQuery(element).show();
-    });
 }
 
 function updateDurationssv(player) {
@@ -1734,7 +1473,7 @@ function playpipssv(v = '', p = '') {
 
         // Mute/Unmute
         jQuery(videoPlayer).prop('muted', ssv_globalMute);
-        let src = ssv_globalMute ? 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/volume-mute-fill.webp' : 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/volume-up-fill.webp';
+        let src = ssv_globalMute ? 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/volume-mute-fill.svg' : 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/volume-up-fill.svg';
         jQuery(videoPlayer).parent('.video-pip-ssv').find('.video-pip-volume-ssv img').attr('src', src);
 
         // Open loader
@@ -1760,10 +1499,10 @@ function playpipssv(v = '', p = '') {
 }
 
 function showPipControls() {
-    // jQuery('.video-pip-playpause-ssv').fadeIn();
-    // setTimeout(() => {
-    //     jQuery('.video-pip-playpause-ssv').fadeOut();
-    // }, 3000);
+    jQuery('.video-pip-playpause-ssv').fadeIn();
+    setTimeout(() => {
+        jQuery('.video-pip-playpause-ssv').fadeOut();
+    }, 3000);
 }
 
 function closepipssv() {
@@ -1782,43 +1521,39 @@ function playpausepipssv(btn) {
     var player = jQuery('.video-pip-ssv video')[0];
     if (player.paused) {
         player.play();
-        jQuery('.video-pip-playpause-ssv img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/pause.webp');
+        jQuery('.video-pip-playpause-ssv img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/pause.svg');
     } else {
         player.pause();
-        jQuery('.video-pip-playpause-ssv img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/play.webp');
+        jQuery('.video-pip-playpause-ssv img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/play.svg');
     }
 }
 
 function volumepipssv(btn) {
     if (jQuery('.video-pip-ssv video').prop('muted')) {
-        jQuery('.video-pip-volume-ssv img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/volume-up-fill.webp');
+        jQuery('.video-pip-volume-ssv img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/volume-up-fill.svg');
         jQuery('.video-pip-ssv video').prop('muted', false);
 
         ssv_globalMute = false;
     } else {
-        jQuery('.video-pip-volume-ssv img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/volume-mute-fill.webp');
+        jQuery('.video-pip-volume-ssv img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/volume-mute-fill.svg');
         jQuery('.video-pip-ssv video').prop('muted', true);
 
         ssv_globalMute = true;
     }
 }
 
-function fullscreenpipssv(e) {
-    if (e.target.classList == 'pfs-ex-ssv') return;
-
+function fullscreenpipssv(btn) {
     let video = jQuery('.video-pip-ssv video source').attr('src');
-    let slideNo = jQuery('.swiper-ssv-m video source[data-src="' + video + '"]').closest('.swiper-slide').index();
+    let slideNo = jQuery('.swiper-ssv-m video source[src="' + video + '"]').closest('.swiper-slide').index();
 
     // Update cart counts
     updateCartCountssv();
 
     closepipssv();
-
-    ssv_globalMute = ssv_brandCustomizations.auto_play_mute_un === "1" ? true : false;
     playssv(slideNo);
 }
 
-function updateShopifyCartssv(updateWeb = false) {
+function updateShopifyCartssv() {
     jQuery.ajax({
         type: 'GET',
         url: '/cart.js',
@@ -1826,17 +1561,12 @@ function updateShopifyCartssv(updateWeb = false) {
     }
     ).done(function (response) {
         jQuery('.cart-count-ssv').html(response.item_count);
-
-        // website Count
-        if (ssv_brandCustomizations.cart_count_class && updateWeb) {
-            jQuery(`.${ssv_brandCustomizations.cart_count_class}`).html(response.item_count);
-        }
     });
 }
 
 let graphqlCartId = ''; // Glamour book
 function addtocartssv(videoId, productId, skuCode, btn, qty = 0) {
-    if (ssv_storeType == '1' || ssv_storeType == '2') productId = ssv_productIds[productId];
+    productId = ssv_productIds[productId];
     let quantity = qty ? qty : parseInt(jQuery(btn).closest('.video-modal-product-block-product-ssv').find('.quantity-inp-ssv').val());
 
     jQuery(btn).attr('disabled', 'disabled');
@@ -1870,17 +1600,10 @@ function addtocartssv(videoId, productId, skuCode, btn, qty = 0) {
             jQuery('.quantity-inp-ssv').val('1');
 
             // Alert
-            if (ssv_brandCustomizations.show_add_to_cart_popup == '0') {
-                videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
-            } else {
-                openCartPopupssv(btn);
-            }
+            openCartPopupssv(btn);
+            // videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
 
-            updateShopifyCartssv(true);
-
-            if (ssv_brandCustomizations.ajax_cart_class) {
-                jQuery(`.${ssv_brandCustomizations.ajax_cart_class}`).click();
-            }
+            updateShopifyCartssv();
         });
     } if (ssv_storeType == '2') {  // Woo commerse
         if (ssv_brandCustomizations.ajax_cart_class == '') {
@@ -1906,12 +1629,9 @@ function addtocartssv(videoId, productId, skuCode, btn, qty = 0) {
                     // window.location = response.product_url;
                     videoAlertssv("Product out of stock.", 2000);
                 } else {
-                    // window.location = wc_add_to_cart_params.cart_url;    
-                    if (ssv_brandCustomizations.show_add_to_cart_popup == '0') {
-                        videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
-                    } else {
-                        openCartPopupssv(btn);
-                    }
+                    // window.location = wc_add_to_cart_params.cart_url;                    
+                    openCartPopupssv(btn);
+                    // videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
 
                     // This is important so your theme gets a chance to update the cart quantity for example, but can be removed if not needed.
                     jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash]);
@@ -1936,11 +1656,8 @@ function addtocartssv(videoId, productId, skuCode, btn, qty = 0) {
             jQuery('.ajax-add-to-cart-ssv').click();
 
             setTimeout(() => {
-                if (ssv_brandCustomizations.show_add_to_cart_popup == '0') {
-                    videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
-                } else {
-                    openCartPopupssv(btn);
-                }
+                openCartPopupssv(btn);
+                // videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
                 jQuery(btn).html(ssv_brandCustomizations.add_to_cart_btn);
                 jQuery(btn).removeAttr('disabled');
                 jQuery('.quantity-inp-ssv').val('1');
@@ -2012,11 +1729,8 @@ function addtocartssv(videoId, productId, skuCode, btn, qty = 0) {
                         if (Object.keys(response.data.addProductsToCart.user_errors).length) {
                             videoAlertssv(response.data.addProductsToCart.user_errors[0].message, 2000);
                         } else {
-                            if (ssv_brandCustomizations.show_add_to_cart_popup == '0') {
-                                videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
-                            } else {
-                                openCartPopupssv(btn);
-                            }
+                            openCartPopupssv(btn);
+                            // videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
                         }
 
                         jQuery(btn).html(ssv_brandCustomizations.add_to_cart_btn);
@@ -2025,11 +1739,6 @@ function addtocartssv(videoId, productId, skuCode, btn, qty = 0) {
 
                         // Cart count
                         jQuery('.cart-count-ssv').html(response.data.addProductsToCart.cart.total_quantity);
-
-                        // website Count
-                        if (ssv_brandCustomizations.cart_count_class) {
-                            jQuery(`.${ssv_brandCustomizations.cart_count_class}`).html(response.data.addProductsToCart.cart.total_quantity);
-                        }
                     },
                     error: function (request, error) {
                         jQuery(btn).html(ssv_brandCustomizations.add_to_cart_btn);
@@ -2042,93 +1751,6 @@ function addtocartssv(videoId, productId, skuCode, btn, qty = 0) {
                 });
             }
         }, 1000);
-    } if (ssv_storeType == '6') {  // NNNow               
-        skuCode = qty ? jQuery(`.possv-${videoId}-${productId} select[name="posssv-1"] option:not([disabled]):first`).attr('value') : jQuery(`.possv-${videoId}-${productId} select[name="posssv-1"]`).val();
-
-        if (getCookie('accessToken')) { // logged in              
-            let accessT = getCookie('accessToken');
-
-            var settings = {
-                "url": "https://api.nnnow.com/d/api/myBag/v3",
-                "method": "PUT",
-                "timeout": 0,
-                "type": "application/json",
-                "headers": {
-                    "Authorization": `Bearer ${accessT}`,
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                    "Module": "odin"
-                },
-                "data": JSON.stringify({ products: [{ skuId: skuCode, qty: quantity }] })
-            };
-
-            jQuery.ajax(settings).done(function (response) {
-                if (response.status == true) {
-                    if (ssv_brandCustomizations.show_add_to_cart_popup == '0') {
-                        videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
-                    } else {
-                        openCartPopupssv(btn);
-                    }
-
-                    // Cart count
-                    jQuery('.cart-count-ssv').html(response.data.bagTotalItemCount);
-
-                    // website Count
-                    if (ssv_brandCustomizations.cart_count_class) {
-                        jQuery(`.${ssv_brandCustomizations.cart_count_class}`).html(response.data.bagTotalItemCount);
-                    }
-                } else {
-                    videoAlertssv('Failed to add', 2000);
-                }
-            });
-        } else { // logout            
-            let cg = '';
-            let bagC = 0;
-            let newCG = [];
-            let cgMatch = false;
-            if (getCookie('cart-guest')) {
-                cg = JSON.parse(getCookie('cart-guest'));
-                cg.forEach(cgi => {
-                    bagC += cgi.qty;
-                    if (cgi.skuId == skuCode) {
-                        cgi.qty += quantity;
-                        cgMatch = true;
-                    }
-                    newCG.push(cgi);
-                });
-                if (!cgMatch) {
-                    newCG.push({ skuId: skuCode, qty: quantity });
-                }
-                cg = newCG;
-                cg = JSON.stringify(cg);
-                bagC += quantity;
-            } else {
-                cg = JSON.stringify([{ skuId: skuCode, qty: quantity }]);
-                bagC = quantity;
-            }
-
-            setCookie('cart-guest', cg, 365, '.nnnow.com');
-
-            if (ssv_brandCustomizations.show_add_to_cart_popup == '0') {
-                videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
-            } else {
-                openCartPopupssv(btn);
-            }
-
-            // Cart count
-            jQuery('.cart-count-ssv').html(bagC);
-
-            // website Count
-            if (ssv_brandCustomizations.cart_count_class) {
-                jQuery(`.${ssv_brandCustomizations.cart_count_class}`).html(bagC);
-            }
-        }
-
-        setTimeout(() => {
-            jQuery(btn).html(ssv_brandCustomizations.add_to_cart_btn);
-            jQuery(btn).removeAttr('disabled');
-            jQuery('.quantity-inp-ssv').val('1');
-        }, 1500);
     }
 }
 
@@ -2221,9 +1843,7 @@ function askQuestionssv(form, designerId, videoId) {
             }
         });
     } else {
-        // askQuestionStepssv(form, 2);
-        registerationAction = 2;
-        openUrpssv(form);
+        askQuestionStepssv(form, 2);
     }
 
     return false;
@@ -2244,7 +1864,7 @@ function registerUserssv(form) {
     }
 
     let user = {
-        user_id: 0,
+        user_id: 1,
         user_name: formData[0]['value'],
         user_phone_code: formData[1]['value'],
         user_phone: formData[2]['value']
@@ -2256,169 +1876,7 @@ function registerUserssv(form) {
     return false;
 }
 
-let registerationAction = 0;
-function userRegistrationssv(form) {
-    let formData = jQuery(form).serializeArray();
-
-    var regName = /^[a-zA-Z ]+$/;
-    if (!formData[0]['value'].match(regName)) {
-        videoAlertssv('Please Enter valid name.', 3000);
-        return false;
-    }
-    var regPhone = /^\d{10}$/;
-    if (!formData[2]['value'].match(regPhone)) {
-        videoAlertssv('Please Enter valid phone number.', 3000);
-        return false;
-    }
-
-    let user = {
-        user_id: 0,
-        user_name: formData[0]['value'],
-        user_phone_code: formData[1]['value'],
-        user_phone: formData[2]['value']
-    };
-    localStorage.setItem('_ssv_user', JSON.stringify(user));
-    ssv_userData = user;
-
-    if (registerationAction == 1) {
-        jQuery(form).closest('.video-modal-video-container-ssv').find('.video-modal-download-ssv').click();
-    } else if (registerationAction == 2) {
-        jQuery(form).closest('.video-modal-video-container-ssv').find('.askque-modal-btn1-ssv').click();
-    } else if (registerationAction == 3) {
-        jQuery(form).closest('.video-modal-video-container-ssv').find('.chat-input-ssv button').click();
-    }
-
-
-    jQuery(form).closest('.video-modal-video-container-ssv').find('.user-registration-popup-ssv input').val('');
-    jQuery(form).closest('.video-modal-video-container-ssv').find('.user-registration-popup-ssv .urp-top-ssv img').click();
-
-    registerationAction = 0;
-
-    return false;
-}
-
-async function downloadVideossv(btn, videoURL, videoId, designerId) {
-    let allowDownload = false;
-    if (ssv_userData) {
-        allowDownload = true;
-
-        // Track download
-        jQuery.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "https://api.goswirl.live/index.php/ShortVideo/downloadVideo",
-            data: "user_id=" + encodeURIComponent('0') + "&designer_id=" + encodeURIComponent(designerId) + "&swirls_id=" + encodeURIComponent(videoId) + "&username=" + encodeURIComponent(ssv_userData.user_name) + "&userphone=" + encodeURIComponent(ssv_userData.user_phone) + "&userphonecode=" + encodeURIComponent(ssv_userData.user_phone_code),
-            success: function (response) {
-                if (response.success == true) {
-                } else {
-                    console.log('Download track failed.')
-                }
-            },
-            error: function (request, error) {
-                console.log('Download track error.')
-            }
-        });
-    } else {
-        if (ssv_brandCustomizations.download_verfication == '1') {
-            registerationAction = 1;
-            openUrpssv(btn);
-        } else {
-            allowDownload = true;
-        }
-    }
-
-    if (allowDownload) {
-        videoAlertssv('Preparing...', 2000);
-        try {
-            const blob = await fetch(videoURL).then(response => response.blob());
-            const url = URL.createObjectURL(blob);
-
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'video.mp4'; // Change the filename as needed
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-
-            URL.revokeObjectURL(url);
-
-            videoAlertssv('Download started.', 2000);
-        } catch (error) {
-            videoAlertssv('Failed to download.', 2000);
-            console.error('Error downloading the video:', error);
-        }
-    }
-}
-
-function sendChatssv(frm) {
-    let formData = jQuery(frm).serializeArray();
-    if (ssv_userData) { // Send chat and open window
-        jQuery(frm).closest('.video-modal-video-container-ssv').find('.chat-history-input-ssv input').val(formData[0]['value']);
-        jQuery(frm).closest('.video-modal-video-container-ssv').find('.chat-history-input-ssv button').click();
-        jQuery(frm).find('input').val('');
-
-        jQuery(frm).closest('.video-modal-video-container-ssv').find('.chat-history-ssv').fadeIn(1000);
-        setTimeout(() => {
-            jQuery(frm).closest('.video-modal-video-container-ssv').find('.chat-history-input-ssv input').focus();
-        }, 1000);
-    } else { // Register open
-        registerationAction = 3;
-        openUrpssv(frm);
-    }
-
-    return false;
-}
-
-function sendChatMessagessv(frm, videoId) {
-    let formData = jQuery(frm).serializeArray();
-
-    jQuery(frm).find('input').val('');
-
-    // Append users message
-    jQuery(`.chatssv-${videoId} .chat-messages-ssv`).append(`
-    <div class="chat-message-R-ssv">
-    <section>${formData[0]['value']}</section>
-    </div>
-    `);
-
-    let chatDiv = jQuery(frm).closest('.video-modal-video-container-ssv').find('.chat-messages-ssv');
-    chatDiv.scrollTop(chatDiv.prop("scrollHeight"));
-
-    jQuery.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "https://bigleap.live/index.php/api/Chatbot/QuestionsNew",
-        data: {
-            question: formData[0]['value'],
-            gpt_prompt: ssv_gptPrompt[videoId]
-        },
-        beforeSend: function () {
-        },
-        success: function (response) {
-            // <div class="chat-message-R-ssv">
-            //     <section>Hi</section>
-            // </div>
-            // <div class="chat-message-L-ssv">
-            //     <section>Hello there how can i assist you today?</section>
-            // </div>
-            jQuery(`.chatssv-${videoId} .chat-messages-ssv`).append(`                
-            <div class="chat-message-L-ssv">
-            <section>${response.reply}</section>
-            </div>
-            `);
-
-            chatDiv.scrollTop(chatDiv.prop("scrollHeight"));
-        },
-        error: function (request, error) {
-        },
-        complete: function () {
-        }
-    });
-
-    return false;
-}
-
-function CTAClicksssv(pId, skuCode, pTitle, pImage, pURL, dId, vId, cType) {
+function CTAClicksssv(pId, pTitle, pImage, pURL, dId, vId, cType) {
     // ssv_fsdb.collection("swirlshortvideo_cta_" + dId).doc(`${vId}`).collection('clicks').add({
     //     user_name: ssv_userData ? ssv_userData.user_name : '',
     //     user_phone_code: ssv_userData ? ssv_userData.user_phone_code : '',
@@ -2451,17 +1909,6 @@ function CTAClicksssv(pId, skuCode, pTitle, pImage, pURL, dId, vId, cType) {
         complete: function () {
         }
     });
-
-    // NNNOW
-    if (ssv_storeType == '6') {
-        window.dataLayer = window.dataLayer || [];
-        // Function to push events to the data layer
-        window.dataLayer.push({
-            event: 'widgetClick',
-            widgetUrl: pURL,
-            widgetSkuId: skuCode
-        });
-    }
 }
 
 function closeAllpopupsssv() {
@@ -2489,12 +1936,6 @@ function closeAllpopupsssv() {
         jQuery('.video-modal-product-block-product-multi-ssv').css('transform', 'translateX(110%)');
         jQuery('.product-rating-all-ssv').css('transform', 'translateY(110%)');
     }
-
-    // User Verification popup
-    jQuery('.user-registration-popup-ssv').hide();
-
-    // Chat popup
-    jQuery('.chat-history-ssv').hide();
 }
 
 function closeAnyPopupssv() {
@@ -2518,10 +1959,6 @@ function closeAnyPopupssv() {
     if (jQuery('.swiper-slide-active .product-rating-all-ssv').css('transform') == 'matrix(1, 0, 0, 1, 0, 0)') {
         jQuery('.swiper-slide-active .product-rating-all-close-ssv').click();
     }
-
-    // if (jQuery('.swiper-slide-active .user-registration-popup-ssv').is(':visible')) {
-    //     jQuery('.swiper-slide-active .user-registration-popup-ssv .urp-top-ssv img').click();
-    // }
 }
 
 function secondsToHms(d) {
@@ -2555,7 +1992,7 @@ function getMobileOperatingSystemssv() {
 
 function likeVideossv(btn, videoId, designerId) {
     let elm = jQuery(btn).closest('.video-modal-video-container-ssv').find('.SWIRLhearts')[0];
-    jQuery(btn).find('img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/heart-fill-2.webp');
+    jQuery(btn).find('img').attr('src', 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/heart-fill-2.svg');
     SWIRLHeartFlawsssv(elm);
     SWIRLHeartFlawsssv(elm);
 
@@ -2620,11 +2057,11 @@ function nFormatterssv(num, digits) {
 
 function updateSwiperNavigationssv(swpr) {
     if (jQuery(window).width() >= 640 && jQuery(`${swpr} .swiper-slide`).length < 6) {
-        jQuery(`${swpr} .swiper-button-next-ssv`).addClass("swiper-button-disabled");
-        jQuery(`${swpr} .swiper-button-prev-ssv`).addClass("swiper-button-disabled");
+        jQuery(`${swpr} .swiper-button-next`).addClass("swiper-button-disabled");
+        jQuery(`${swpr} .swiper-button-prev`).addClass("swiper-button-disabled");
     } else if (jQuery(window).width() < 640 && jQuery(`${swpr} .swiper-slide`).length < 3) {
-        jQuery(`${swpr} .swiper-button-next-ssv`).addClass("swiper-button-disabled");
-        jQuery(`${swpr} .swiper-button-prev-ssv`).addClass("swiper-button-disabled");
+        jQuery(`${swpr} .swiper-button-next`).addClass("swiper-button-disabled");
+        jQuery(`${swpr} .swiper-button-prev`).addClass("swiper-button-disabled");
     }
 }
 
@@ -2644,7 +2081,7 @@ function copyEmailEmbedssv(link, poster) {
                     <table width="100%" align="center" cellpadding="0" cellspacing="0" border="0" style="min-width: 100%">
                         <tbody>
                         <tr>
-                            <td height="640" width="360" background="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/play-icon.webp" style="background-image: url(https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/play-icon.webp); background-repeat: no-repeat; background-position: center; position: relative; display: inline-block; height: 640px; width:360px; min-width: 100%;">
+                            <td height="640" width="360" background="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/play-icon.png" style="background-image: url(https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn@latest/assets/images/play-icon.png); background-repeat: no-repeat; background-position: center; position: relative; display: inline-block; height: 640px; width:360px; min-width: 100%;">
                             <!--[if gte mso 9]><v:image xmlns:v="urn:schemas-microsoft-com:vml" id="videoGifPlayButton" src={@button_url} style="behavior: url(#default#VML); position: absolute; top: {floor((@height/2)-40)}px; left:  {floor((@width/2)-40)}px; height: 80px; width: 80px; "/><![endif]-->
                             </td>
                         </tr>
@@ -2705,9 +2142,9 @@ addEventListener('keydown', function (event) {
     if (event.key === "Escape" && jQuery('.video-modal-ssv').is(":visible")) {
         closessv();
     } else if (event.keyCode == 37 && jQuery('.video-modal-ssv').is(":visible")) {
-        jQuery('.video-modal-ssv .swiper-button-prev-ssv').click(); //on left arrow
+        jQuery('.video-modal-ssv .swiper-button-prev').click(); //on left arrow
     } else if (event.keyCode == 39 && jQuery('.video-modal-ssv').is(":visible")) {
-        jQuery('.video-modal-ssv .swiper-button-next-ssv').click();; //on right arrow
+        jQuery('.video-modal-ssv .swiper-button-next').click();; //on right arrow
     }
 });
 

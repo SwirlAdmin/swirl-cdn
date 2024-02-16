@@ -9,7 +9,7 @@ let ssv_store = '';
 let ssv_storeType = '0';
 let ssv_storeCode = '';
 let ssv_storePlaylist = '';
-let ssv_baseURL = ssv_mode === 'Live' ? 'https://apigoswirl.com/short_video/v12/swirl-style.min.css' : '';
+let ssv_baseURL = ssv_mode === 'Live' ? 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/short_video/v12/swirl-style-v14.min.css' : '';
 let ssv_responseData = [];
 let ssv_productIds = [];
 let ssv_apiURL = 'https://api.goswirl.live/index.php/ShortVideo/videolistingV4'; // bigleap.live  ,  api.goswirl.live

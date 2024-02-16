@@ -9,7 +9,7 @@ let ssv_store = '';
 let ssv_storeType = '0';
 let ssv_storeCode = '';
 let ssv_storePlaylist = '';
-let ssv_baseURL = ssv_mode === 'Live' ? 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/short_video/v12/swirl-style-v27.min.css' : '';
+let ssv_baseURL = ssv_mode === 'Live' ? 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/short_video/v12/swirl-style-v15.min.css' : '';
 let ssv_responseData = [];
 let ssv_productIds = [];
 let ssv_apiURL = 'https://api.goswirl.live/index.php/ShortVideo/videolistingV4'; // bigleap.live  ,  api.goswirl.live
@@ -21,7 +21,6 @@ let ssv_swiper_modal = [];
 let ssv_videoPlayCounter = 0;
 let ssv_userData = null;
 let ssv_fsdb = [];
-let ssv_gptPrompt = [];
 let ssv_gumletRegistered = [];
 let ssv_gumletConfig = {
     property_id: 'jYfkUIVL', // required:  please replace with correct property id.
@@ -37,7 +36,7 @@ document.body.insertBefore(jqTag, document.body.lastChild);
 
 jqTag = document.createElement('link');
 jqTag.rel = 'stylesheet';
-jqTag.href = ssv_baseURL + 'style.css';
+jqTag.href = ssv_baseURL;
 document.body.insertBefore(jqTag, document.body.lastChild);
 
 let JSLOAD1 = false;
@@ -45,16 +44,7 @@ jqTag = document.createElement('script');
 jqTag.rel = 'text/javascript';
 jqTag.src = 'https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js';
 jqTag.onload = function () { JSLOAD1 = true; };
-if (window.location.origin.includes("gynoveda")) {
-    let gynowait = setInterval(() => {
-        if (document.querySelector('script[src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"]') != null) {
-            document.head.appendChild(jqTag);
-            clearInterval(gynowait);
-        }
-    }, 500);
-} else {
-    document.body.insertBefore(jqTag, document.body.lastChild);
-}
+document.body.insertBefore(jqTag, document.body.lastChild);
 
 let JSLOAD2 = false;
 if (typeof jQuery == 'undefined') {
@@ -86,20 +76,22 @@ function executessv() {
         JSL1 = true;
 
         JSL2 = true;
-        // jQuery.getScript("https://cdn.gumlytics.com/insights/1.1/gumlet-insights.min.js", function () {
+        jQuery.getScript("https://cdn.gumlytics.com/insights/1.1/gumlet-insights.min.js", function () {
+        });
+
+        // jQuery.getScript("https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js", function () {
+        //     JSL3 = true;
         // });
 
-        jQuery.getScript("https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js", function () {
-            JSL3 = true;
-        });
+        // jQuery.getScript("https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js", function () {
+        //     JSL4 = true;
+        // });
 
-        jQuery.getScript("https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js", function () {
-            JSL4 = true;
-        });
+        // jQuery.getScript("https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js", function () {
+        //     JSL5 = true;
+        // });
 
-        jQuery.getScript("https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js", function () {
-            JSL5 = true;
-        });
+        JSL3 = JSL4 = JSL5 = true;
 
         JSL6 = true;
         jQuery.getScript("https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js", function () {
@@ -118,13 +110,11 @@ function executessv() {
             localStorage.setItem('_ssv_storetype', ssv_storeType);
             localStorage.setItem('_ssv_storeplaylist', ssv_storePlaylist);
 
-            // PDP or Normal        
-            if (jQuery('#swirl-short-videos').data('pdp')) {
-                jQuery('#swirl-short-videos').data('pdp').split(',').forEach(uVal => {
-                    if (currentURL.includes(uVal) || uVal == '/home') ssv_pdppip = true;
-                });
-                if (jQuery('#swirl-short-videos').data('pdp').includes('/home')) currentURL = currentURL.charAt(currentURL.length - 1) == '/' ? currentURL + 'home' : currentURL + '/home';
-            }
+            // PDP or Normal            
+            jQuery('#swirl-short-videos').data('pdp').split(',').forEach(uVal => {
+                if (currentURL.includes(uVal) || uVal == '/home') ssv_pdppip = true;
+            });
+            if (jQuery('#swirl-short-videos').data('pdp').includes('/home')) currentURL = currentURL.charAt(currentURL.length - 1) == '/' ? currentURL + 'home' : currentURL + '/home';
         } else {
             ssv_pip = true;
             ssv_storeCode = localStorage.getItem('_ssv_storecode');
@@ -164,20 +154,21 @@ function executessv() {
                         ssv_pdppipHideOnscreen = ssv_pdppip ? ssv_brandCustomizations.pdppip_hidecarousel : ssv_pdppipHideOnscreen;
 
                         // generate SSV
-                        let SSVSL = setInterval(() => {
-                            if (JSL1 && JSL2 && JSL3 && JSL4 && JSL5 && JSL6) {
-                                firebase.initializeApp({
-                                    apiKey: window.atob('QUl6YVN5QXVCWEJUb2NzaFU1a2V4T28tTzNqNW40SkZsblZReU9v'),
-                                    authDomain: 'swirl-short-vido.firebaseapp.com',
-                                    projectId: 'swirl-short-vido',
-                                    storageBucket: 'swirl-short-vido.appspot.com'
-                                });
-                                ssv_fsdb = firebase.firestore();
-                                generatessv(ssv_responseData.swilrs.video);
-                                clearInterval(SSVSL);
-                            }
-                        }, 300);
+                        // let SSVSL = setInterval(() => {
+                        //     if (JSL1 && JSL2 && JSL3 && JSL4 && JSL5 && JSL6) {
+                        //         // firebase.initializeApp({
+                        //         //     apiKey: window.atob('QUl6YVN5QXVCWEJUb2NzaFU1a2V4T28tTzNqNW40SkZsblZReU9v'),
+                        //         //     authDomain: 'swirl-short-vido.firebaseapp.com',
+                        //         //     projectId: 'swirl-short-vido',
+                        //         //     storageBucket: 'swirl-short-vido.appspot.com'
+                        //         // });
+                        //         // ssv_fsdb = firebase.firestore();
 
+                        //         clearInterval(SSVSL);
+                        //     }
+                        // }, 300);
+
+                        generatessv(ssv_responseData.swilrs.video);
 
                         // check user cookie
                         if (getCookie('ssv_user')) {
@@ -192,20 +183,21 @@ function executessv() {
                         ssv_globalMute = ssv_brandCustomizations.auto_play_mute_un === "1" ? true : false;
 
                         // generate SSV
-                        let SSVSL = setInterval(() => {
-                            if (JSL1 && JSL2 && JSL3 && JSL4 && JSL5 && JSL6) {
-                                firebase.initializeApp({
-                                    apiKey: window.atob('QUl6YVN5QXVCWEJUb2NzaFU1a2V4T28tTzNqNW40SkZsblZReU9v'),
-                                    authDomain: 'swirl-short-vido.firebaseapp.com',
-                                    projectId: 'swirl-short-vido',
-                                    storageBucket: 'swirl-short-vido.appspot.com'
-                                });
-                                ssv_fsdb = firebase.firestore();
-                                generatessv(ssv_responseData.swilrs.video);
-                                clearInterval(SSVSL);
-                            }
-                        }, 300);
+                        // let SSVSL = setInterval(() => {
+                        //     if (JSL1 && JSL2 && JSL3 && JSL4 && JSL5 && JSL6) {
+                        //         // firebase.initializeApp({
+                        //         //     apiKey: window.atob('QUl6YVN5QXVCWEJUb2NzaFU1a2V4T28tTzNqNW40SkZsblZReU9v'),
+                        //         //     authDomain: 'swirl-short-vido.firebaseapp.com',
+                        //         //     projectId: 'swirl-short-vido',
+                        //         //     storageBucket: 'swirl-short-vido.appspot.com'
+                        //         // });
+                        //         // ssv_fsdb = firebase.firestore();
 
+                        //         clearInterval(SSVSL);
+                        //     }
+                        // }, 300);
+
+                        generatessv(ssv_responseData.swilrs.video);
 
                         // check user cookie
                         if (getCookie('ssv_user')) {
@@ -246,30 +238,20 @@ function generatessv(videos) {
     swipeupTooltip = '';
     let i = 0;
 
-    let hold_front_color_add_to_cart_btn = ssv_brandCustomizations.front_color_add_to_cart_btn;
-    let hold_front_color_buy_btn = ssv_brandCustomizations.front_color_buy_btn;
-    let hold_bk_color_buy_btn = ssv_brandCustomizations.bk_color_buy_btn;
-
     videos.forEach(video => {
-        // video CTA customization        
-        ssv_brandCustomizations.front_color_add_to_cart_btn = video.video_cta_bk ? video.video_cta_bk : hold_front_color_add_to_cart_btn;
-        ssv_brandCustomizations.front_color_buy_btn = video.video_cta_fk ? video.video_cta_fk : hold_front_color_buy_btn;
-        ssv_brandCustomizations.bk_color_buy_btn = video.video_cta_bk ? video.video_cta_bk : hold_bk_color_buy_btn;
         // ${ssv_brandCustomizations.time_sec === '1' ? 'onloadeddata="updateDurationssv(this);" ontimeupdate="updateProgressDurationssv(this);"' : ''}
         if (!ssv_pip && !ssv_pdppipHideOnscreen) {
-            let outerProductCheck = typeof video.product[0] != 'undefined' || typeof video.product_d[0] != 'undefined' ? true : false;
-            let outerProductFinal = typeof video.product[0] != 'undefined' ? video.product[0] : video.product_d[0];
-            let outerProduct = outerProductCheck ? `
+            let outerProduct = typeof video.product[0] != 'undefined' ? `
                 <div class="product-on-carousel-ssv" ${ssv_brandCustomizations.product_blog_img == '0' ? 'style="display: none !important;"' : ''}>                                    
-                    <img src="${outerProductFinal.image.includes('imagekit') ? imagekitDynamicssv(outerProductFinal.image, 80) : outerProductFinal.image}" alt="Product Image">                                        
+                    <img src="${video.product[0].image.includes('imagekit') ? imagekitDynamicssv(video.product[0].image, 80) : video.product[0].image}" alt="Product Image">                                        
                     
                     <h6 style="${video.product.length > 1 ? '' : 'display: none !important;'} background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important;">${video.product.length}</h6>
-                    <p>${outerProductFinal.title}</p>
-                    <label ${ssv_brandCustomizations.product_price_status == '0' ? 'style="display: none !important;"' : ''}>${outerProductFinal.currencysymbols}${outerProductFinal.discount_price} <strike ${parseFloat(outerProductFinal.price) > parseFloat(outerProductFinal.discount_price) ? '' : 'style="display: none;"'}>${outerProductFinal.currencysymbols}${outerProductFinal.price}</strike>
-                        <br><span ${parseFloat(outerProductFinal.price) > parseFloat(outerProductFinal.discount_price) ? '' : 'style="display: none;"'}>${parseFloat(outerProductFinal.price) > parseFloat(outerProductFinal.discount_price) ? Math.round(((outerProductFinal.price - outerProductFinal.discount_price) * 100) / outerProductFinal.price) : ''}% OFF</span></label>
+                    <p>${video.product[0].title}</p>
+                    <label ${ssv_brandCustomizations.product_price_status == '0' ? 'style="display: none !important;"' : ''}>${video.product[0].currencysymbols}${video.product[0].discount_price} <strike ${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? '' : 'style="display: none;"'}>${video.product[0].currencysymbols}${video.product[0].price}</strike>
+                        <br><span ${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? '' : 'style="display: none;"'}>${parseFloat(video.product[0].price) > parseFloat(video.product[0].discount_price) ? Math.round(((video.product[0].price - video.product[0].discount_price) * 100) / video.product[0].price) : ''}% OFF</span></label>
                 </div>
             ` : `
-                <div class="product-on-carousel-ssv" ${ssv_brandCustomizations.product_blog_img == '0' || !outerProductCheck ? 'style="display: none !important;"' : ''}></div>
+                <div class="product-on-carousel-ssv" ${ssv_brandCustomizations.product_blog_img == '0' || typeof video.product[0] == 'undefined' ? 'style="display: none !important;"' : ''}></div>
             `;
 
             let autoplayVideo = video.cover_video ? video.cover_video : video.video_url;
@@ -277,10 +259,10 @@ function generatessv(videos) {
 
             onpageSlides += `
                 <div class="swiper-slide ms-${video.video_id}" onclick="playssv(${i})">
-                    <video id="onpageVideossv-${video.video_id}" ${ssv_brandCustomizations.product_blog_img == '0' || !outerProductCheck ? 'style="margin-bottom: 0 !important;"' : ''} class="carousel-video-ssv" poster="${video.cover_image}" ${ssv_brandCustomizations['auto_play'] === '1' && i < 5 ? 'autoplay' : ''} loop onplay="jQuery(this).next().hide();" onpause="jQuery(this).next().show();" playsinline="" preload="metadata" data-setup="{}" muted>
+                    <video id="onpageVideossv-${video.video_id}" ${ssv_brandCustomizations.product_blog_img == '0' || typeof video.product[0] == 'undefined' ? 'style="margin-bottom: 0 !important;"' : ''} class="carousel-video-ssv" poster="${video.cover_image}" ${ssv_brandCustomizations['auto_play'] === '1' && i < 5 ? 'autoplay' : ''} loop onplay="jQuery(this).next().hide();" onpause="jQuery(this).next().show();" playsinline="" preload="metadata" data-setup="{}" muted>
                         <source src="${autoplayVideo}" type="video/mp4">
                     </video>
-                    <img ${ssv_brandCustomizations.product_blog_img == '0' || !outerProductCheck ? 'style="top: calc(50% - 20px) !important;"' : ''} class="carousel-video-play-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/play.webp"
+                    <img ${ssv_brandCustomizations.product_blog_img == '0' || typeof video.product[0] == 'undefined' ? 'style="top: calc(50% - 20px) !important;"' : ''} class="carousel-video-play-ssv" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/play.webp"
                         alt="Play icon" />  
                     <div class="video-views-count-top-ssv" ${ssv_brandCustomizations.views === '0' ? 'style="display: none !important;"' : ''}>
                         <p><img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/views-icon.webp" alt="Views icon" height="" width="">
@@ -524,7 +506,7 @@ function generatessv(videos) {
                                     <button style="background: #eaeaea !important; color: #323232 !important;" onclick="changeQtyssv('plus', this);">+</button>
                                 </div>
                             </div>
-                            <div class="product-rating-ssv prssv-${video.video_id}-${video.product[0].product_id}">                                
+                            <div class="product-rating-ssv prssv-${video.video_id}-${video.product[0].product_id}">
                             </div>
                             <div class="product-rating-all-ssv prassv-${video.video_id}-${video.product[0].product_id}">
                             </div>
@@ -592,8 +574,8 @@ function generatessv(videos) {
                             alt="PIP icon">
                     </button>                                             
                     <div class="video-modal-actions-ssv">                                           
-                        <div class="SWIRLhearts"></div>                
-                        <button class="video-modal-like-ssv" title="Like" onclick="likeVideossv(this, ${video.video_id}, ${video.designer_id});" style="background: rgb(0, 0, 0, .6) !important;">
+                        <div class="SWIRLhearts" style="display: none !important;"></div>                
+                        <button class="video-modal-like-ssv" title="Like" onclick="likeVideossv(this, ${video.video_id}, ${video.designer_id});" style="background: rgb(0, 0, 0, .6) !important; display: none !important;">
                             <img src="${getCookie(`ssv_vl_${video.video_id}`) ? 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/heart-fill-2.webp' : 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/heart-outline.webp'}"
                                 alt="Heart icon">
                             <p class="videoLikes-${video.video_id}">Like</p>
@@ -667,63 +649,6 @@ function generatessv(videos) {
                                 <button class="askque-modal-btn-ssv askque-modal-btn2-ssv" style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important;">Register</button>                           
                             </form>
                         </div>                        
-                    </div>                       
-                    
-                    <div class="user-registration-popup-ssv">
-                        <div class="user-registration-popup-inner-ssv">
-                            <div class="urp-top-ssv">
-                                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/close.webp"
-                                    alt="Close icon" onclick="closeUrpssv(this);">
-                                <p>Register yourself</p>     
-                            </div>
-                            <div class="urp-form-ssv">
-                                <form onsubmit="return userRegistrationssv(this, ${video.video_id});" autocomplete="off">
-                                    <input name="fullname" type="text" placeholder="Enter your name" style="margin-bottom: 8px !important;" pattern=".{3,25}" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || event.charCode === 32' onpaste='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || event.charCode === 32' title="Minimum 3 Maximum 25 character, No special characters, No Digits." required autocomplete="off" />
-                                    <div class="urp-form-phone-ssv">
-                                        <select class="form-select" id="phone" name="phone" style="margin: 0px !important; margin-right: 5px !important;">                                        
-                                            <option value="91" selected>India +91</option>
-                                            <option value="44">United Kingdom +44</option>
-                                            <option value="1">United States +1</option>
-                                            <option value="92">Pakistan +92</option>
-                                            <option value="971">United Arab Emirates +971</option>
-                                            <option value="974">Qatar +974</option>
-                                            <option value="966">Saudi Arabia +966</option>
-                                            <option value="965">Kuwait +965</option>
-                                            <option value="968">Oman +968</option>
-                                            <option value="967">Yemen +967</option>
-                                        </select>
-                                        <input name="phone" type="text" style="margin: 0px !important;" placeholder="Enter your phone" pattern=".{10,10}" onkeypress='return event.charCode >= 48 && event.charCode <= 57' title="Minimum 10 and maximim 10 digits." required autocomplete="off" />                                
-                                    </div>
-                                    <button class="urp-btn-ssv" style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important;">Register</button>                           
-                                </form>
-                            </div> 
-                        </div>     
-                    </div>                    
-
-                    <div class="chat-input-ssv" style="${ssv_brandCustomizations.chat_bot == '1' ? '' : 'display: none !important'}">
-                        <form onsubmit="return sendChatssv(this);">
-                            <input name="message" placeholder="ask anyting..." required autocomplete="off" />
-                            <button>
-                                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/shopify/send.svg"
-                                    alt="Send icon">  
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="chat-history-ssv chatssv-${video.video_id}">
-                        <div class="chat-messages-block-ssv">
-                            <p><b>${ssv_brandCustomizations.designer_brand_name}</b>, Coustomer executive <span onclick="$(this).closest('.chat-history-ssv').hide();">&#10006;</span></p>
-                            <div class="chat-messages-ssv"></div>
-                            <div class="chat-history-input-ssv">
-                                <form onsubmit="return sendChatMessagessv(this, ${video.video_id});">
-                                    <input name="chatmessage" placeholder="Type here..." required autocomplete="off" />
-                                    <button>
-                                        <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/shopify/ai-send.svg"
-                                            alt="Send icon">                                        
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
                     </div>
 
                     ${swipeupTooltip}
@@ -740,6 +665,278 @@ function generatessv(videos) {
                                 </div>
                             </div>
                         </div>
+                    </div>   
+                    
+                    <div class="user-registration-popup-ssv">
+                        <div class="user-registration-popup-inner-ssv">
+                            <div class="urp-top-ssv">
+                                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/close.webp"
+                                    alt="Close icon" onclick="closeUrpssv(this);">
+                                <p>Register yourself</p>     
+                            </div>
+                            <div class="urp-form-ssv">
+                                <form onsubmit="return userRegistrationssv(this, ${video.video_id});" autocomplete="off">
+                                    <input name="fullname" type="text" placeholder="Enter your name" style="margin-bottom: 8px !important;" pattern=".{3,25}" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || event.charCode === 32' onpaste='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || event.charCode === 32' title="Minimum 3 Maximum 25 character, No special characters, No Digits." required autocomplete="off" />
+                                    <div class="urp-form-phone-ssv">
+                                        <select class="form-select" id="phone" name="phone" style="margin: 0px !important; margin-right: 5px !important;">                                        
+                                            <option value="93">Afghanistan +93</option>
+                                            <option value="358">Aland Islands +358</option>
+                                            <option value="355">Albania +355</option>
+                                            <option value="213">Algeria +213</option>
+                                            <option value="1684">American Samoa +1684</option>
+                                            <option value="376">Andorra +376</option>
+                                            <option value="244">Angola +244</option>
+                                            <option value="1264">Anguilla +1264</option>
+                                            <option value="672">Antarctica +672</option>
+                                            <option value="1268">Antigua and Barbuda +1268</option>
+                                            <option value="54">Argentina +54</option>
+                                            <option value="374">Armenia +374</option>
+                                            <option value="297">Aruba +297</option>
+                                            <option value="61">Australia +61</option>
+                                            <option value="43">Austria +43</option>
+                                            <option value="994">Azerbaijan +994</option>
+                                            <option value="1242">Bahamas +1242</option>
+                                            <option value="973">Bahrain +973</option>
+                                            <option value="880">Bangladesh +880</option>
+                                            <option value="1246">Barbados +1246</option>
+                                            <option value="375">Belarus +375</option>
+                                            <option value="32">Belgium +32</option>
+                                            <option value="501">Belize +501</option>
+                                            <option value="229">Benin +229</option>
+                                            <option value="1441">Bermuda +1441</option>
+                                            <option value="975">Bhutan +975</option>
+                                            <option value="591">Bolivia +591</option>
+                                            <option value="599">Bonaire, Sint Eustatius and Saba +599</option>
+                                            <option value="387">Bosnia and Herzegovina +387</option>
+                                            <option value="267">Botswana +267</option>
+                                            <option value="55">Bouvet Island +55</option>
+                                            <option value="55">Brazil +55</option>
+                                            <option value="246">British Indian Ocean Territory +246</option>
+                                            <option value="673">Brunei Darussalam +673</option>
+                                            <option value="359">Bulgaria +359</option>
+                                            <option value="226">Burkina Faso +226</option>
+                                            <option value="257">Burundi +257</option>
+                                            <option value="855">Cambodia +855</option>
+                                            <option value="237">Cameroon +237</option>
+                                            <option value="1">Canada +1</option>
+                                            <option value="238">Cape Verde +238</option>
+                                            <option value="1345">Cayman Islands +1345</option>
+                                            <option value="236">Central African Republic +236</option>
+                                            <option value="235">Chad +235</option>
+                                            <option value="56">Chile +56</option>
+                                            <option value="86">China +86</option>
+                                            <option value="61">Christmas Island +61</option>
+                                            <option value="672">Cocos (Keeling) Islands +672</option>
+                                            <option value="57">Colombia +57</option>
+                                            <option value="269">Comoros +269</option>
+                                            <option value="242">Congo +242</option>
+                                            <option value="242">Congo, Democratic Republic of the Congo +242</option>
+                                            <option value="682">Cook Islands +682</option>
+                                            <option value="506">Costa Rica +506</option>
+                                            <option value="225">Cote D'Ivoire +225</option>
+                                            <option value="385">Croatia +385</option>
+                                            <option value="53">Cuba +53</option>
+                                            <option value="599">Curacao +599</option>
+                                            <option value="357">Cyprus +357</option>
+                                            <option value="420">Czech Republic +420</option>
+                                            <option value="45">Denmark +45</option>
+                                            <option value="253">Djibouti +253</option>
+                                            <option value="1767">Dominica +1767</option>
+                                            <option value="1809">Dominican Republic +1809</option>
+                                            <option value="593">Ecuador +593</option>
+                                            <option value="20">Egypt +20</option>
+                                            <option value="503">El Salvador +503</option>
+                                            <option value="240">Equatorial Guinea +240</option>
+                                            <option value="291">Eritrea +291</option>
+                                            <option value="372">Estonia +372</option>
+                                            <option value="251">Ethiopia +251</option>
+                                            <option value="500">Falkland Islands (Malvinas) +500</option>
+                                            <option value="298">Faroe Islands +298</option>
+                                            <option value="679">Fiji +679</option>
+                                            <option value="358">Finland +358</option>
+                                            <option value="33">France +33</option>
+                                            <option value="594">French Guiana +594</option>
+                                            <option value="689">French Polynesia +689</option>
+                                            <option value="262">French Southern Territories +262</option>
+                                            <option value="241">Gabon +241</option>
+                                            <option value="220">Gambia +220</option>
+                                            <option value="995">Georgia +995</option>
+                                            <option value="49">Germany +49</option>
+                                            <option value="233">Ghana +233</option>
+                                            <option value="350">Gibraltar +350</option>
+                                            <option value="30">Greece +30</option>
+                                            <option value="299">Greenland +299</option>
+                                            <option value="1473">Grenada +1473</option>
+                                            <option value="590">Guadeloupe +590</option>
+                                            <option value="1671">Guam +1671</option>
+                                            <option value="502">Guatemala +502</option>
+                                            <option value="44">Guernsey +44</option>
+                                            <option value="224">Guinea +224</option>
+                                            <option value="245">Guinea-Bissau +245</option>
+                                            <option value="592">Guyana +592</option>
+                                            <option value="509">Haiti +509</option>
+                                            <option value="39">Holy See (Vatican City State) +39</option>
+                                            <option value="504">Honduras +504</option>
+                                            <option value="852">Hong Kong +852</option>
+                                            <option value="36">Hungary +36</option>
+                                            <option value="354">Iceland +354</option>
+                                            <option value="91" selected>India +91</option>
+                                            <option value="62">Indonesia +62</option>
+                                            <option value="98">Iran, Islamic Republic of +98</option>
+                                            <option value="964">Iraq +964</option>
+                                            <option value="353">Ireland +353</option>
+                                            <option value="44">Isle of Man +44</option>
+                                            <option value="972">Israel +972</option>
+                                            <option value="39">Italy +39</option>
+                                            <option value="1876">Jamaica +1876</option>
+                                            <option value="81">Japan +81</option>
+                                            <option value="44">Jersey +44</option>
+                                            <option value="962">Jordan +962</option>
+                                            <option value="7">Kazakhstan +7</option>
+                                            <option value="254">Kenya +254</option>
+                                            <option value="686">Kiribati +686</option>
+                                            <option value="850">Korea, Democratic People's Republic of +850</option>
+                                            <option value="82">Korea, Republic of +82</option>
+                                            <option value="381">Kosovo +383</option>
+                                            <option value="965">Kuwait +965</option>
+                                            <option value="996">Kyrgyzstan +996</option>
+                                            <option value="856">Lao People's Democratic Republic +856</option>
+                                            <option value="371">Latvia +371</option>
+                                            <option value="961">Lebanon +961</option>
+                                            <option value="266">Lesotho +266</option>
+                                            <option value="231">Liberia +231</option>
+                                            <option value="218">Libyan Arab Jamahiriya +218</option>
+                                            <option value="423">Liechtenstein +423</option>
+                                            <option value="370">Lithuania +370</option>
+                                            <option value="352">Luxembourg +352</option>
+                                            <option value="853">Macao +853</option>
+                                            <option value="389">Macedonia, the Former Yugoslav Republic of +389</option>
+                                            <option value="261">Madagascar +261</option>
+                                            <option value="265">Malawi +265</option>
+                                            <option value="60">Malaysia +60</option>
+                                            <option value="960">Maldives +960</option>
+                                            <option value="223">Mali +223</option>
+                                            <option value="356">Malta +356</option>
+                                            <option value="692">Marshall Islands +692</option>
+                                            <option value="596">Martinique +596</option>
+                                            <option value="222">Mauritania +222</option>
+                                            <option value="230">Mauritius +230</option>
+                                            <option value="262">Mayotte +262</option>
+                                            <option value="52">Mexico +52</option>
+                                            <option value="691">Micronesia, Federated States of +691</option>
+                                            <option value="373">Moldova, Republic of +373</option>
+                                            <option value="377">Monaco +377</option>
+                                            <option value="976">Mongolia +976</option>
+                                            <option value="382">Montenegro +382</option>
+                                            <option value="1664">Montserrat +1664</option>
+                                            <option value="212">Morocco +212</option>
+                                            <option value="258">Mozambique +258</option>
+                                            <option value="95">Myanmar +95</option>
+                                            <option value="264">Namibia +264</option>
+                                            <option value="674">Nauru +674</option>
+                                            <option value="977">Nepal +977</option>
+                                            <option value="31">Netherlands +31</option>
+                                            <option value="599">Netherlands Antilles +599</option>
+                                            <option value="687">New Caledonia +687</option>
+                                            <option value="64">New Zealand +64</option>
+                                            <option value="505">Nicaragua +505</option>
+                                            <option value="227">Niger +227</option>
+                                            <option value="234">Nigeria +234</option>
+                                            <option value="683">Niue +683</option>
+                                            <option value="672">Norfolk Island +672</option>
+                                            <option value="1670">Northern Mariana Islands +1670</option>
+                                            <option value="47">Norway +47</option>
+                                            <option value="968">Oman +968</option>
+                                            <option value="92">Pakistan +92</option>
+                                            <option value="680">Palau +680</option>
+                                            <option value="970">Palestinian Territory, Occupied +970</option>
+                                            <option value="507">Panama +507</option>
+                                            <option value="675">Papua New Guinea +675</option>
+                                            <option value="595">Paraguay +595</option>
+                                            <option value="51">Peru +51</option>
+                                            <option value="63">Philippines +63</option>
+                                            <option value="64">Pitcairn +64</option>
+                                            <option value="48">Poland +48</option>
+                                            <option value="351">Portugal +351</option>
+                                            <option value="1787">Puerto Rico +1787</option>
+                                            <option value="974">Qatar +974</option>
+                                            <option value="262">Reunion +262</option>
+                                            <option value="40">Romania +40</option>
+                                            <option value="7">Russian Federation +7</option>
+                                            <option value="250">Rwanda +250</option>
+                                            <option value="590">Saint Barthelemy +590</option>
+                                            <option value="290">Saint Helena +290</option>
+                                            <option value="1869">Saint Kitts and Nevis +1869</option>
+                                            <option value="1758">Saint Lucia +1758</option>
+                                            <option value="590">Saint Martin +590</option>
+                                            <option value="508">Saint Pierre and Miquelon +508</option>
+                                            <option value="1784">Saint Vincent and the Grenadines +1784</option>
+                                            <option value="684">Samoa +684</option>
+                                            <option value="378">San Marino +378</option>
+                                            <option value="239">Sao Tome and Principe +239</option>
+                                            <option value="966">Saudi Arabia +966</option>
+                                            <option value="221">Senegal +221</option>
+                                            <option value="381">Serbia +381</option>
+                                            <option value="381">Serbia and Montenegro +381</option>
+                                            <option value="248">Seychelles +248</option>
+                                            <option value="232">Sierra Leone +232</option>
+                                            <option value="65">Singapore +65</option>
+                                            <option value="721">Sint Maarten +721</option>
+                                            <option value="421">Slovakia +421</option>
+                                            <option value="386">Slovenia +386</option>
+                                            <option value="677">Solomon Islands +677</option>
+                                            <option value="252">Somalia +252</option>
+                                            <option value="27">South Africa +27</option>
+                                            <option value="500">South Georgia and the South Sandwich Islands +500</option>
+                                            <option value="211">South Sudan +211</option>
+                                            <option value="34">Spain +34</option>
+                                            <option value="94">Sri Lanka +94</option>
+                                            <option value="249">Sudan +249</option>
+                                            <option value="597">Suriname +597</option>
+                                            <option value="47">Svalbard and Jan Mayen +47</option>
+                                            <option value="268">Swaziland +268</option>
+                                            <option value="46">Sweden +46</option>
+                                            <option value="41">Switzerland +41</option>
+                                            <option value="963">Syrian Arab Republic +963</option>
+                                            <option value="886">Taiwan, Province of China +886</option>
+                                            <option value="992">Tajikistan +992</option>
+                                            <option value="255">Tanzania, United Republic of +255</option>
+                                            <option value="66">Thailand +66</option>
+                                            <option value="670">Timor-Leste +670</option>
+                                            <option value="228">Togo +228</option>
+                                            <option value="690">Tokelau +690</option>
+                                            <option value="676">Tonga +676</option>
+                                            <option value="1868">Trinidad and Tobago +1868</option>
+                                            <option value="216">Tunisia +216</option>
+                                            <option value="90">Turkey +90</option>
+                                            <option value="7370">Turkmenistan +7370</option>
+                                            <option value="1649">Turks and Caicos Islands +1649</option>
+                                            <option value="688">Tuvalu +688</option>
+                                            <option value="256">Uganda +256</option>
+                                            <option value="380">Ukraine +380</option>
+                                            <option value="971">United Arab Emirates +971</option>
+                                            <option value="44">United Kingdom +44</option>
+                                            <option value="1">United States +1</option>
+                                            <option value="1">United States Minor Outlying Islands +1</option>
+                                            <option value="598">Uruguay +598</option>
+                                            <option value="998">Uzbekistan +998</option>
+                                            <option value="678">Vanuatu +678</option>
+                                            <option value="58">Venezuela +58</option>
+                                            <option value="84">Viet Nam +84</option>
+                                            <option value="1284">Virgin Islands, British +1284</option>
+                                            <option value="1340">Virgin Islands, U.s. +1340</option>
+                                            <option value="681">Wallis and Futuna +681</option>
+                                            <option value="212">Western Sahara +212</option>
+                                            <option value="967">Yemen +967</option>
+                                            <option value="260">Zambia +260</option>
+                                            <option value="263">Zimbabwe +263</option>
+                                        </select>
+                                        <input name="phone" type="text" style="margin: 0px !important;" placeholder="Enter your phone" pattern=".{10,10}" onkeypress='return event.charCode >= 48 && event.charCode <= 57' title="Minimum 10 and maximim 10 digits." required autocomplete="off" />                                
+                                    </div>
+                                    <button class="urp-btn-ssv" style="background: ${ssv_brandCustomizations.bk_color_buy_btn} !important; color: ${ssv_brandCustomizations.front_color_buy_btn} !important;">Register</button>                           
+                                </form>
+                            </div> 
+                        </div>     
                     </div>
 
                 </div>
@@ -755,31 +952,16 @@ function generatessv(videos) {
             <div class="swiper-wrapper">
                 ${onpageSlides}
             </div>
-            <div class="swiper-button-next-ssv">
+            <div class="swiper-button-next">
                 <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/next-btn.webp" height="" width="" alt="Next icon">
             </div>
-            <div class="swiper-button-prev-ssv">
+            <div class="swiper-button-prev">
                 <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/back-btn.webp" height="" width="" alt="Previous icon">
             </div>
         </div>
     ` : '');
 
     // Swirl Overlay Modal
-    let chatBoatCSS = ssv_brandCustomizations.chat_bot == '1' ? `
-        .video-modal-product-tile-carousel-ssv {
-            bottom: 75px;
-        }
-        
-        .video-modal-actions-ssv, .video-progress-ssv {
-            bottom: 200px
-        }
-
-        @media (min-width: 768px) {
-            .video-modal-actions-ssv, .video-progress-ssv {
-                bottom: 90px;
-            }
-        }
-    ` : '';
     jQuery('body').append(`
         <div class="swirl-short-videos">
             <style>
@@ -794,8 +976,6 @@ function generatessv(videos) {
                 .video-progress-ssv progress::-moz-progress-bar {
                     background-color: ${ssv_brandCustomizations.bk_color_buy_btn};
                 }
-
-                ${chatBoatCSS}
             </style>
             <div class="video-modal-ssv" style="display: none;">
                 <div class="video-modal-container-ssv">
@@ -803,11 +983,11 @@ function generatessv(videos) {
                         <div class="swiper-wrapper">
                             ${modalSlides}
                         </div>
-                        <div class="swiper-button-next-ssv">
+                        <div class="swiper-button-next">
                             <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/next-btn.webp"
                                 alt="Next icon">
                         </div>
-                        <div class="swiper-button-prev-ssv">
+                        <div class="swiper-button-prev">
                             <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/images/goswirl-webp/back-btn.webp"
                                 alt="Previous icon">
                         </div>
@@ -853,8 +1033,6 @@ function generatessv(videos) {
 
     // Post append activities
     videos.forEach(video => {
-        ssv_gptPrompt[video.video_id] = video.gpt_prompt;
-
         // Player Load
         // if (!ssv_pip && !ssv_pdppipHideOnscreen) {
         //     document.getElementById(`onpageVideossv-${video.video_id}`).load();
@@ -862,15 +1040,15 @@ function generatessv(videos) {
         // document.getElementById(`modalVideossv-${video.video_id}`).load();
 
         // Firebase events for all videos        
-        ssv_fsdb.collection("swirlshortvideo_likes_" + video.designer_id).doc(video.video_id).onSnapshot((doc) => {
-            if (doc.exists) {
-                let likes = nFormatterssv(doc.data().unique_likes)
-                jQuery(`.videoLikes-${video.video_id}`).html(likes);
-                let elm = jQuery(`.videoLikes-${video.video_id}`).closest('.video-modal-video-container-ssv').find('.SWIRLhearts')[0];
-                SWIRLHeartFlawsssv(elm);
-                SWIRLHeartFlawsssv(elm);
-            }
-        });
+        // ssv_fsdb.collection("swirlshortvideo_likes_" + video.designer_id).doc(video.video_id).onSnapshot((doc) => {
+        //     if (doc.exists) {
+        //         let likes = nFormatterssv(doc.data().unique_likes)
+        //         jQuery(`.videoLikes-${video.video_id}`).html(likes);
+        //         let elm = jQuery(`.videoLikes-${video.video_id}`).closest('.video-modal-video-container-ssv').find('.SWIRLhearts')[0];
+        //         SWIRLHeartFlawsssv(elm);
+        //         SWIRLHeartFlawsssv(elm);
+        //     }
+        // });
 
         // Product carousel load
         if (Object.keys(video.product).length > 1) {
@@ -974,11 +1152,9 @@ function generatessv(videos) {
     });
 
     if (!ssv_pip && !ssv_pdppipHideOnscreen) {
-        let ssvSlidePhone = ['gynoveda'].some(el => window.location.origin.includes(el)) ? 2.2 : 2;
-        let ssvSlideWeb = ['gynoveda'].some(el => window.location.origin.includes(el)) ? 4.2 : 5;
         // Initialize Swiper C    
         ssv_swiper = new Swiper('.swiper-ssv-c', {
-            slidesPerView: ssvSlidePhone,
+            slidesPerView: 5,
             direction: 'horizontal',
             spaceBetween: 15,
             // centeredSlides: true,
@@ -986,15 +1162,15 @@ function generatessv(videos) {
             centerInsufficientSlides: true,
             breakpoints: {
                 320: {
-                    slidesPerView: ssvSlidePhone,
+                    slidesPerView: 2,
                 },
                 640: {
-                    slidesPerView: ssvSlideWeb,
+                    slidesPerView: 5,
                 }
             },
             navigation: {
-                nextEl: '.swiper-button-next-ssv',
-                prevEl: '.swiper-button-prev-ssv',
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
             },
             on: {
                 init: function () {
@@ -1010,8 +1186,8 @@ function generatessv(videos) {
         direction: "vertical",
         clickable: true,
         navigation: {
-            nextEl: '.swiper-button-next-ssv',
-            prevEl: '.swiper-button-prev-ssv',
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
         breakpoints: {
             768: {
@@ -1084,17 +1260,17 @@ function generatessv(videos) {
 
 function updateCartCountssv() {
     jQuery('.cart-count-ssv').html('0');
-    if (ssv_storeType == '1') {
-        updateShopifyCartssv();
-    } else if (ssv_brandCustomizations.dot_class && jQuery(`.${ssv_brandCustomizations.dot_class}`).length > 0) {
+    if (ssv_brandCustomizations.dot_class && jQuery(`.${ssv_brandCustomizations.dot_class}`).length > 0) {
         jQuery('.cart-count-ssv').html(parseInt(jQuery(`.${ssv_brandCustomizations.dot_class}`).html()));
+    } else if (ssv_storeType == '1') {
+        updateShopifyCartssv();
     }
 }
 
 function updatePreviewThumbsssv(swpr) {
     jQuery(swpr + ' .swiper-slide').each(function () {
-        jQuery(this).prepend(jQuery(this).prev().length ? '<img src="' + jQuery(this).prev().find('video').attr('poster') + '" class="video-modal-np-img-ssv p-img-ssv" onclick="jQuery(`.video-modal-ssv:visible`).find(`.swiper-button-prev-ssv`).click();">' : '');
-        jQuery(this).prepend(jQuery(this).next().length ? '<img src="' + jQuery(this).next().find('video').attr('poster') + '" class="video-modal-np-img-ssv n-img-ssv" onclick="jQuery(`.video-modal-ssv:visible`).find(`.swiper-button-next-ssv`).click();">' : '');
+        jQuery(this).prepend(jQuery(this).prev().length ? '<img src="' + jQuery(this).prev().find('video').attr('poster') + '" class="video-modal-np-img-ssv p-img-ssv" onclick="jQuery(`.video-modal-ssv:visible`).find(`.swiper-button-prev`).click();">' : '');
+        jQuery(this).prepend(jQuery(this).next().length ? '<img src="' + jQuery(this).next().find('video').attr('poster') + '" class="video-modal-np-img-ssv n-img-ssv" onclick="jQuery(`.video-modal-ssv:visible`).find(`.swiper-button-next`).click();">' : '');
     })
 }
 
@@ -1143,11 +1319,11 @@ function playWithPromisessv(player) {
     }
 
     // Player registration [Gumlet]
-    // if (typeof gumlet != 'undefined' && !ssv_gumletRegistered.includes(jQuery(player).find('source').attr('data-src'))) {
-    //     var gumletInsights = gumlet.insights(ssv_gumletConfig);
-    //     gumletInsights.registerHTML5Player(player);
-    //     ssv_gumletRegistered.push(jQuery(player).find('source').attr('data-src'));
-    // }
+    if (typeof gumlet != 'undefined' && !ssv_gumletRegistered.includes(jQuery(player).find('source').attr('data-src'))) {
+        var gumletInsights = gumlet.insights(ssv_gumletConfig);
+        gumletInsights.registerHTML5Player(player);
+        ssv_gumletRegistered.push(jQuery(player).find('source').attr('data-src'));
+    }
 
     // Pause all other videos
     pauseAllssv();
@@ -1352,8 +1528,8 @@ function setPopupHightssv() {
     // Modal navigation adjust
     // setTimeout(() => {
     //     let videoWidth = jQuery('.swiper-ssv-m .swiper-slide-active .video-modal-video-container-ssv').width() + 80;
-    //     jQuery('.swiper-ssv-m .swiper-button-prev-ssv').css('left', `calc(50% - ${(videoWidth + 36)}px)`);
-    //     jQuery('.swiper-ssv-m .swiper-button-next-ssv').css('left', `calc(50% + ${videoWidth}px)`);
+    //     jQuery('.swiper-ssv-m .swiper-button-prev').css('left', `calc(50% - ${(videoWidth + 36)}px)`);
+    //     jQuery('.swiper-ssv-m .swiper-button-next').css('left', `calc(50% + ${videoWidth}px)`);
     // }, 600);
 }
 
@@ -1510,29 +1686,19 @@ function disableScrollssv() {
     html.css('overflow', 'hidden');
     window.scrollTo(scrollPosition[0], scrollPosition[1]);
 
-    // Exclude
-    let clientImpClasses = [];
-    if (ssv_storeType == '1' && ssv_brandCustomizations.dot_class) {
-        ssv_brandCustomizations.dot_class.split(',').forEach(cls => {
-            clientImpClasses.push(cls);
-        });
-    }
-
     // hide all fixed visible elements
     allOverElements = [];
     allOverElementsSticky = [];
     jQuery('*').each(function () {
         if (jQuery(this).css('position') == 'fixed' && jQuery(this).is(":visible")) {
-            let classof = jQuery(this).attr('class') ? jQuery(this).attr('class').split(' ')[0] : 'NoClass';
-            if (!jQuery(this).is('.video-modal-ssv') && !jQuery(this).is('.modal-loader-ssv') && !jQuery(this).is('.video-pip-ssv') && !clientImpClasses.includes(classof)) {
+            if (!jQuery(this).is('.video-modal-ssv') && !jQuery(this).is('.modal-loader-ssv') && !jQuery(this).is('.video-pip-ssv')) {
                 jQuery(this).hide();
                 allOverElements.push(jQuery(this));
             }
         }
 
         if (jQuery(this).css('position') == 'sticky' && jQuery(this).is(":visible")) {
-            let classof = jQuery(this).attr('class') ? jQuery(this).attr('class').split(' ')[0] : 'NoClass';
-            if (!jQuery(this).is('.video-modal-ssv') && !jQuery(this).is('.modal-loader-ssv') && !jQuery(this).is('.video-pip-ssv') && !clientImpClasses.includes(classof)) {
+            if (!jQuery(this).is('.video-modal-ssv') && !jQuery(this).is('.modal-loader-ssv') && !jQuery(this).is('.video-pip-ssv')) {
                 jQuery(this).hide();
                 allOverElements.push(jQuery(this));
             }
@@ -1674,7 +1840,7 @@ function fullscreenpipssv(e) {
     playssv(slideNo);
 }
 
-function updateShopifyCartssv(updateWeb = false) {
+function updateShopifyCartssv() {
     jQuery.ajax({
         type: 'GET',
         url: '/cart.js',
@@ -1682,11 +1848,6 @@ function updateShopifyCartssv(updateWeb = false) {
     }
     ).done(function (response) {
         jQuery('.cart-count-ssv').html(response.item_count);
-
-        // website Count
-        if (ssv_brandCustomizations.cart_count_class && updateWeb) {
-            $(`.${ssv_brandCustomizations.cart_count_class}`).html(response.item_count);
-        }
     });
 }
 
@@ -1726,17 +1887,10 @@ function addtocartssv(videoId, productId, skuCode, btn, qty = 0) {
             jQuery('.quantity-inp-ssv').val('1');
 
             // Alert
-            if (ssv_brandCustomizations.show_add_to_cart_popup == '0') {
-                videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
-            } else {
-                openCartPopupssv(btn);
-            }
+            openCartPopupssv(btn);
+            // videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
 
-            updateShopifyCartssv(true);
-
-            if (ssv_brandCustomizations.ajax_cart_class) {
-                $(`.${ssv_brandCustomizations.ajax_cart_class}`).click();
-            }
+            updateShopifyCartssv();
         });
     } if (ssv_storeType == '2') {  // Woo commerse
         if (ssv_brandCustomizations.ajax_cart_class == '') {
@@ -1762,12 +1916,9 @@ function addtocartssv(videoId, productId, skuCode, btn, qty = 0) {
                     // window.location = response.product_url;
                     videoAlertssv("Product out of stock.", 2000);
                 } else {
-                    // window.location = wc_add_to_cart_params.cart_url;    
-                    if (ssv_brandCustomizations.show_add_to_cart_popup == '0') {
-                        videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
-                    } else {
-                        openCartPopupssv(btn);
-                    }
+                    // window.location = wc_add_to_cart_params.cart_url;                    
+                    openCartPopupssv(btn);
+                    // videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
 
                     // This is important so your theme gets a chance to update the cart quantity for example, but can be removed if not needed.
                     jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash]);
@@ -1792,11 +1943,8 @@ function addtocartssv(videoId, productId, skuCode, btn, qty = 0) {
             jQuery('.ajax-add-to-cart-ssv').click();
 
             setTimeout(() => {
-                if (ssv_brandCustomizations.show_add_to_cart_popup == '0') {
-                    videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
-                } else {
-                    openCartPopupssv(btn);
-                }
+                openCartPopupssv(btn);
+                // videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
                 jQuery(btn).html(ssv_brandCustomizations.add_to_cart_btn);
                 jQuery(btn).removeAttr('disabled');
                 jQuery('.quantity-inp-ssv').val('1');
@@ -1868,11 +2016,8 @@ function addtocartssv(videoId, productId, skuCode, btn, qty = 0) {
                         if (Object.keys(response.data.addProductsToCart.user_errors).length) {
                             videoAlertssv(response.data.addProductsToCart.user_errors[0].message, 2000);
                         } else {
-                            if (ssv_brandCustomizations.show_add_to_cart_popup == '0') {
-                                videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
-                            } else {
-                                openCartPopupssv(btn);
-                            }
+                            openCartPopupssv(btn);
+                            // videoAlertssv(ssv_brandCustomizations.cart_success_message, 2000);
                         }
 
                         jQuery(btn).html(ssv_brandCustomizations.add_to_cart_btn);
@@ -1881,11 +2026,6 @@ function addtocartssv(videoId, productId, skuCode, btn, qty = 0) {
 
                         // Cart count
                         jQuery('.cart-count-ssv').html(response.data.addProductsToCart.cart.total_quantity);
-
-                        // website Count
-                        if (ssv_brandCustomizations.cart_count_class) {
-                            $(`.${ssv_brandCustomizations.cart_count_class}`).html(response.data.addProductsToCart.cart.total_quantity);
-                        }
                     },
                     error: function (request, error) {
                         jQuery(btn).html(ssv_brandCustomizations.add_to_cart_btn);
@@ -2053,10 +2193,7 @@ function userRegistrationssv(form) {
         jQuery(form).closest('.video-modal-video-container-ssv').find('.video-modal-download-ssv').click();
     } else if (registerationAction == 2) {
         jQuery(form).closest('.video-modal-video-container-ssv').find('.askque-modal-btn1-ssv').click();
-    } else if (registerationAction == 3) {
-        jQuery(form).closest('.video-modal-video-container-ssv').find('.chat-input-ssv button').click();
     }
-
 
     jQuery(form).closest('.video-modal-video-container-ssv').find('.user-registration-popup-ssv input').val('');
     jQuery(form).closest('.video-modal-video-container-ssv').find('.user-registration-popup-ssv .urp-top-ssv img').click();
@@ -2117,74 +2254,6 @@ async function downloadVideossv(btn, videoURL, videoId, designerId) {
             console.error('Error downloading the video:', error);
         }
     }
-}
-
-function sendChatssv(frm) {
-    let formData = jQuery(frm).serializeArray();
-    if (ssv_userData) { // Send chat and open window
-        jQuery(frm).closest('.video-modal-video-container-ssv').find('.chat-history-input-ssv input').val(formData[0]['value']);
-        jQuery(frm).closest('.video-modal-video-container-ssv').find('.chat-history-input-ssv button').click();
-        jQuery(frm).find('input').val('');
-
-        jQuery(frm).closest('.video-modal-video-container-ssv').find('.chat-history-ssv').fadeIn(1000);
-        setTimeout(() => {
-            jQuery(frm).closest('.video-modal-video-container-ssv').find('.chat-history-input-ssv input').focus();
-        }, 1000);
-    } else { // Register open
-        registerationAction = 3;
-        openUrpssv(frm);
-    }
-
-    return false;
-}
-
-function sendChatMessagessv(frm, videoId) {
-    let formData = jQuery(frm).serializeArray();
-
-    jQuery(frm).find('input').val('');
-
-    // Append users message
-    jQuery(`.chatssv-${videoId} .chat-messages-ssv`).append(`
-    <div class="chat-message-R-ssv">
-    <section>${formData[0]['value']}</section>
-    </div>
-    `);
-
-    let chatDiv = jQuery(frm).closest('.video-modal-video-container-ssv').find('.chat-messages-ssv');
-    chatDiv.scrollTop(chatDiv.prop("scrollHeight"));
-
-    jQuery.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "https://bigleap.live/index.php/api/Chatbot/QuestionsNew",
-        data: {
-            question: formData[0]['value'],
-            gpt_prompt: ssv_gptPrompt[videoId]
-        },
-        beforeSend: function () {
-        },
-        success: function (response) {
-            // <div class="chat-message-R-ssv">
-            //     <section>Hi</section>
-            // </div>
-            // <div class="chat-message-L-ssv">
-            //     <section>Hello there how can i assist you today?</section>
-            // </div>
-            jQuery(`.chatssv-${videoId} .chat-messages-ssv`).append(`                
-            <div class="chat-message-L-ssv">
-            <section>${response.reply}</section>
-            </div>
-            `);
-
-            chatDiv.scrollTop(chatDiv.prop("scrollHeight"));
-        },
-        error: function (request, error) {
-        },
-        complete: function () {
-        }
-    });
-
-    return false;
 }
 
 function CTAClicksssv(pId, pTitle, pImage, pURL, dId, vId, cType) {
@@ -2250,9 +2319,6 @@ function closeAllpopupsssv() {
 
     // User Verification popup
     jQuery('.user-registration-popup-ssv').hide();
-
-    // Chat popup
-    jQuery('.chat-history-ssv').hide();
 }
 
 function closeAnyPopupssv() {
@@ -2378,11 +2444,11 @@ function nFormatterssv(num, digits) {
 
 function updateSwiperNavigationssv(swpr) {
     if (jQuery(window).width() >= 640 && jQuery(`${swpr} .swiper-slide`).length < 6) {
-        jQuery(`${swpr} .swiper-button-next-ssv`).addClass("swiper-button-disabled");
-        jQuery(`${swpr} .swiper-button-prev-ssv`).addClass("swiper-button-disabled");
+        jQuery(`${swpr} .swiper-button-next`).addClass("swiper-button-disabled");
+        jQuery(`${swpr} .swiper-button-prev`).addClass("swiper-button-disabled");
     } else if (jQuery(window).width() < 640 && jQuery(`${swpr} .swiper-slide`).length < 3) {
-        jQuery(`${swpr} .swiper-button-next-ssv`).addClass("swiper-button-disabled");
-        jQuery(`${swpr} .swiper-button-prev-ssv`).addClass("swiper-button-disabled");
+        jQuery(`${swpr} .swiper-button-next`).addClass("swiper-button-disabled");
+        jQuery(`${swpr} .swiper-button-prev`).addClass("swiper-button-disabled");
     }
 }
 
@@ -2463,9 +2529,9 @@ addEventListener('keydown', function (event) {
     if (event.key === "Escape" && jQuery('.video-modal-ssv').is(":visible")) {
         closessv();
     } else if (event.keyCode == 37 && jQuery('.video-modal-ssv').is(":visible")) {
-        jQuery('.video-modal-ssv .swiper-button-prev-ssv').click(); //on left arrow
+        jQuery('.video-modal-ssv .swiper-button-prev').click(); //on left arrow
     } else if (event.keyCode == 39 && jQuery('.video-modal-ssv').is(":visible")) {
-        jQuery('.video-modal-ssv .swiper-button-next-ssv').click();; //on right arrow
+        jQuery('.video-modal-ssv .swiper-button-next').click();; //on right arrow
     }
 });
 
