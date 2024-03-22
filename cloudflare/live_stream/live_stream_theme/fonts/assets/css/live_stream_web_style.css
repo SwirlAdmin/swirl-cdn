@@ -1,0 +1,267 @@
+ <style type="text/css">
+    @font-face {
+      font-family: myFirstFont;
+      src: url(https://www.getnatty.com/assets/fonts/Greycliff/GreycliffCF-DemiBold.ttf);
+    }
+    @font-face {
+      font-family: mySecondFont;
+      src: url(https://www.getnatty.com/assets/fonts/Greycliff/GreycliffCF-Medium.ttf);
+    }
+    .main-bg
+    {
+      background-color: #FFFFFF;
+      background-image: url(https://www.getnatty.live/wp-content/uploads/2021/01/bg_main_new1.png);
+      background-repeat: no-repeat;
+      background-size: auto;
+      margin-bottom: 50px;
+      font-family: mySecondFont;
+    }
+    .container {
+        max-width: 1400px;
+    }
+    .card 
+    {
+      border-radius: 20px;
+      box-shadow: 0px 0px 12px 10px #f0f0f0;
+      border: none;
+    }
+    iframe
+    {
+      height: 600px;
+      width: 450px;
+    }
+    .card .card-header
+    {
+      padding: 25px;
+      font-size: 20px;
+      border-bottom: none;
+      border-top-left-radius: 20px !important;
+      border-top-right-radius: 20px !important;
+      font-family: myFirstFont;
+    }
+    .card-body
+    {
+      display: table;
+    }
+    .card-body .product-img
+    {
+      display: table-cell;
+      border-radius: 10px;
+    }
+    .card-body .product-details
+    {
+      display: table-cell;
+      width: 65%;
+      vertical-align: top;
+      padding-left: 20px;
+    }
+    .product-details .card-text
+    {
+      padding-bottom: 15px;
+      font-size: 20px;
+    }
+    .product-btn .btn
+    {
+      border-radius: 20px;
+      padding: 8px 20px;
+      font-size: 14px;
+    }
+    .product-btn .btn-buy
+    {
+      background-color: #6251C4;
+      border-color: #6251C4;
+      color: #fff;
+    }
+    .product-btn .btn-show
+    {
+      background-color: #fff;
+      border-color: #6251C4;
+      color: #6251C4;
+    }
+    .live-main
+    {
+      display: table;
+    }
+    .live-main .live-video,.live-main .comments-section
+    {
+      width: 50%;
+      display: table-cell;
+      vertical-align: top;
+      position: relative;
+    }
+    .live-video .card-header
+    {
+        border-top-right-radius: unset !important;
+    }
+    .comments-section .card-header
+    {
+        border-top-left-radius: unset !important;
+    }
+    .live-video .designer-img
+    {
+      border-radius: 50%;
+      max-width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+    .cmt-img
+    {
+      margin-right: 10px;
+    }
+    .live-main .card-header,.comments-section .card-header
+    {
+      max-height: 80px;
+    }
+    .comments-list
+    {
+      padding: 20px;
+    }
+    .comments-list p
+    {
+      font-size: 17px;
+    }
+    .comments-list img
+    {
+      border-radius: 50%;
+      max-width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+    .message-section
+    {
+      padding: 30px;
+      border-top: 1px solid #d3d3d3;
+      display: block;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      background: #fff;
+    }
+    .message-section .form-control
+    {
+      border-radius: 48px;
+      padding: 12px;
+      background: #f7f7f7;
+    }
+    .mic-icon
+    {
+      height: auto !important;
+    }
+    .message-section .input-group
+    {
+      display: inline-flex;
+      width: 90%;
+    }
+    .message-section .send-icon
+    {
+      height: auto;
+      border-radius: unset;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    #basic-addon2
+    {
+      background-color: #f7f7f7;
+      border: 1px solid #ced4da;
+      border-radius: 30px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    .main-product-view
+    {
+      width: 450px;
+      height: 600px;
+      object-fit: cover;
+      border-bottom-left-radius: 10px;
+    }
+    .message 
+    {
+      display: block;
+    }
+    .message .avatar
+    {
+        width: 15%;
+        display: inline-block;
+        text-align: right;
+        margin-right: 10px;
+    }
+    .avatar img
+    {
+      width: 60%;
+    }
+    .user-msg
+    {
+      width: 50%;
+      display: inline-block;
+      text-align: left;
+    }
+    .messages
+    {
+      padding: 20px;
+      height: 80vh;
+      max-height: 480px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+    .messages .messages-content
+    {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
+    /*.messages .message.message-personal {
+      text-align: right;
+  }*/
+  .product-listing
+  {
+    max-height: 600px;
+    overflow: auto;
+  }
+  .mesg-blk
+  {
+    display: inline-block;
+  }
+  @media only screen and (max-width: 600px) {
+    .product-btn .btn-show
+    {
+      width: 48%;
+    }
+    .card
+    {
+      margin-bottom: 20px;
+    }
+    .live-main .live-video, .live-main .comments-section
+    {
+      width: 100%;
+      display: block;
+    }
+    .message-section .input-group
+    {
+      width: 85%;
+    }
+  }
+  @media only screen and (max-width: 430px) {
+    .main-row {
+        display: box !important;
+        display: -webkit-box;
+        display: -moz-box;
+        display: box;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        box-orient: vertical;
+    }
+    .left-content {
+        -webkit-box-ordinal-group: 2;
+        -moz-box-ordinal-group: 2;
+        box-ordinal-group: 2;
+    }
+    iframe
+    {
+      height: 600px;
+      width: 400px;
+    }
+  }
+  </style>

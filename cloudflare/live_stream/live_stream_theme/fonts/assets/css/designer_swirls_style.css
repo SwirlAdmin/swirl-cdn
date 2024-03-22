@@ -1,0 +1,211 @@
+<style type="text/css">
+    @font-face {
+      font-family: myFirstFont;
+      src: url(https://www.getnatty.com/assets/fonts/Greycliff/GreycliffCF-DemiBold.ttf);
+    }
+    @font-face {
+      font-family: mySecondFont;
+      src: url(https://www.getnatty.com/assets/fonts/Greycliff/GreycliffCF-Medium.ttf);
+    }
+    .main-bg {
+      background-color: #FFFFFF;
+      background-image: url(https://www.getnatty.live/wp-content/uploads/2021/01/bg_main_new1.png);
+      background-repeat: no-repeat;
+      background-size: auto;
+      margin-bottom: 50px;
+      font-family: mySecondFont;
+    }
+    .main-bg .container-fluid
+    {
+      padding: 0px 4%;
+    }
+    .swirls-block {
+        margin-bottom: 20px;
+    }
+    .swirls-img {
+    color: #000;
+    border-radius: 15px;
+    padding: 0px !important;
+    border: 1px solid #ccc;
+    position: relative;
+    }
+    .swirls-img:before {
+    bottom: 0px;
+    height: 20%;
+    left: 0px;
+    width: 100%;
+    background: linear-gradient(transparent, #000);
+    opacity: 0.5;
+    content: "";
+    position: absolute;
+    border-radius: 15px;
+    }
+    .swirls-img .jw-img {
+    border-radius: 15px;
+    margin: 0 auto;
+    height: 320px;
+    object-fit: cover;
+    width: 100%;
+    }
+    .tag-top {
+    position: absolute;
+    top: 4%;
+    }
+    .tag-top  {
+    background: #ffffffd9;
+    padding: 5px 15px;
+    color: #323232;
+    border-radius: 0px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: #3db36e;
+    }
+    .swirls-img .gal-item-last {
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    color: #fff;
+    }
+    .gal-item-last p {
+    display: inline-block;
+    font-size: 20px;
+    margin-left: 20px;
+    }
+    .designer-sm-img {
+    max-width: 30px;
+    height: 30px !important;
+    border-radius: 50% !important;
+    }
+    .swirls-block-right
+    {
+      width: 100%;
+      display: table;
+    }
+    .swirls-block-right .swirls-video,.swirls-block-right .card
+    {
+      vertical-align: top;
+      width: 50%;
+      display: table-cell;
+    }
+    .swirls-video video
+    {
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      height: 730px;
+      object-fit: cover;
+      outline: none;
+    }
+    .btn-div {
+      margin: 30px 10px;
+      width: 100%;
+      display: table;
+    }
+    .btn-div button {
+      border: 1px solid #6251c4;
+      padding: 8px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      outline: none;
+      text-transform: uppercase;
+      display: table-cell;
+      margin: 0px 5px 0px 0px;
+    }
+    .request-btn {
+    background: #6251c4;
+    color: #fff;
+    }
+    .contact-btn {
+    color: #6251c4;
+    background: transparent;
+    }
+    .swirls-block-right .card
+    {
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+    .card .card-header
+    {
+        border-top-right-radius: 20px;
+        font-size: 18px;
+        padding: 20px;
+    }
+    .left-shadow .card-header
+    {
+      border-top-left-radius: 20px;
+    }
+    .left-shadow,.swirls-block-right
+    {
+      box-shadow: 0px 0px 12px 10px #f0f0f0;
+      border-radius: 20px;
+    }
+    .modal-dialog .modal-content
+    {
+      border-radius: 20px;
+    }
+    .modal-content .modal-header
+    {
+      background: #f6f6f6;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+    .modal-header h4
+    {
+      font-size: 20px;
+      padding: 8px;
+    }
+    .modal-body .form-control
+    {
+      margin-bottom: 20px;
+      background: #f6f6f6;
+      font-size: 16px;
+      border-radius: 30px;
+      padding: 10px 25px;
+    }
+    .step-1
+    {
+      padding-bottom: 0px;
+    }
+    .modal-footer
+    {
+      text-align: center;
+      justify-content: center;
+      display: block;
+    }
+    .btn-pro
+    {
+      display: block;
+      width: 100%;
+      background: #6451c5;
+      border: none;
+      padding: 15px;
+      border-radius: 30px;
+    }
+    .resend-link
+    {
+      color: #6451c5;
+      padding: 20px 0px 0px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .tag-line-otp
+    {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+    .support
+    {
+      float: right;
+      display: block;
+      line-height: 45px;
+    }
+    .designer-img
+    {
+      border-radius: 50%;
+      max-width: 50px;
+      height: 50px;
+      margin: 0 auto;
+      border: 1px solid #ffffff;
+      margin-right: 10px;
+    }
+    
+  </style>

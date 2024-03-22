@@ -1,0 +1,246 @@
+@font-face {
+	font-family: myFirstFont;
+	src: url(https://www.getnatty.com/assets/fonts/Greycliff/GreycliffCF-DemiBold.ttf);
+}
+@font-face {
+	font-family: mySecondFont;
+	src: url(https://www.getnatty.com/assets/fonts/Greycliff/GreycliffCF-Medium.ttf);
+}
+body
+{
+	font-family: mySecondFont;
+}
+.main-row
+{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.left-sidebar-space,.right-sidebar-space
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.brand-logo {
+	margin: auto;
+	width: 100%;
+}
+.brand-name,.brand-logo
+{
+	margin-bottom: 20px;
+}
+.badge {
+	padding: 8px 16px;
+	border-radius: 20px;
+	margin-right: 8px;
+	border: 1px solid #323232;
+	font-size: 15px;
+	color: #323232;
+	font-weight: unset;
+}
+.brand-logo img {
+	border-radius: 50%;
+	max-width: 110px;
+	height: 110px;
+	margin: 0 auto;
+	border: 2px solid #6251c4;
+}
+.left-sidebar
+{
+	position: fixed;
+	/* width: 18%; */
+	flex: 0 0 16.666667%;
+	max-width: 16.666667%;
+	text-align: center;
+	color: #323232;
+	background-image: url(https://www.getnatty.com/assets/live/pattern.jpg);
+	height: calc(100vh - 30px);
+}
+.content
+{
+	padding: 50px 20px 50px 20px;
+	overflow: scroll;
+    height: calc(90vh - 80px);
+}
+.designer_details
+{
+	text-align: left;
+}
+.btn-div button
+{
+	border: 1px solid #6251c4;
+	padding: 8px 25px;
+	border-radius: 30px;
+	cursor: pointer;
+	outline: none;
+	width: 47%;
+	text-transform: uppercase;
+}
+.con-btn
+{
+	background: #6251c4;
+	color: #fff;
+}
+.walk-btn 
+{
+	color: #6251c4;
+}
+.share-div
+{
+	background: #323232;
+	color: #fff;
+	padding: 20px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-transform: uppercase;
+}
+.share-div img
+{
+	margin-right: 10px;
+}
+.live-block img
+{
+	border-radius: 50%;
+	max-width: 100px;
+	height: 100px;
+	margin: 10px 5px;
+	border: 2px solid #ea5a5a;
+}
+.live-shooping
+{
+	background: #f0eef9;
+	padding: 20px;
+	margin-bottom: 30px;
+}
+.swirls-block {
+	margin-bottom: 20px;
+}
+.swirls-img {
+	position: relative;
+}
+.overlay:hover, .swirls-img img {
+	cursor: pointer;
+}
+.swirls-img img {
+	border-radius: 15px;
+}
+.jw-img {
+	width: 100%;
+	height: 450px;
+	object-fit: cover;
+	object-position: center;
+}
+.swirls-img .gal-item-last {
+	position: absolute;
+	bottom: 3%;
+	left: 5%;
+	color: #fff;
+}
+.designer-sm-img {
+	margin-left: 20px;
+	max-width: 50px;
+	height: 50px;
+	border-radius: 50% !important;
+}
+.gal-item-last p {
+	display: inline-block;
+	font-size: 20px;
+	margin-left: 20px;
+}
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+	background: rgba(0, 0, 0, 0);
+	transition: background 0.5s ease;
+}
+.swirls-img img {
+	border-radius: 15px;
+	margin: 0 auto;
+}
+.tag-top
+{
+	position: absolute;
+	top: 4%;
+	left: 5%;
+}
+.tag-top span
+{
+	background: #323232;
+	color: #fff;
+	padding: 5px 15px;
+}
+.main-row .navbar
+{
+	width: 100%;
+}
+.header
+{
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+	top: 0;
+}
+.main-content
+{
+	margin-top: 75px;
+}
+.designer_details label
+{
+	font-size: 12px;
+	font-weight: bold;
+}
+.first_bio
+{
+	padding-bottom: 20px;
+}
+.first_bio a,.second_bio a
+{
+	color: #6251c4 !important;
+	float: right;
+	font-weight: bold;
+}
+.left-sidebar hr
+{
+	border-color: #b7b7b7;
+	margin: 30px 0px;
+}
+.second_bio
+{
+	display: none;
+}
+.swirls-img
+{
+	color: #000;
+	border-radius: 15px;
+	padding: 0px !important;
+	border: 1px solid #ccc;
+}
+.swirls-img:before {
+	bottom: 0px;
+	height: 20%;
+	left: 0px;
+	width: 100%;
+	background: linear-gradient(transparent, #000);
+	opacity: 0.5;
+	content: "";
+	position: absolute;
+	border-radius: 15px;
+}
+.video_block
+{
+	height: calc(100vh - 120px);
+	position: fixed;
+	margin: 30px;
+	border: 1px solid #ccc;
+	border-radius: 15px;
+}
+@media only screen and (max-width: 1650px) {
+  .btn-div button
+  {
+  	font-size: 15px;
+  }
+}

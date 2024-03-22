@@ -1,0 +1,22 @@
+@charset "utf-8";.sidenav{height:100%;width:0;position:fixed;z-index:1;top:0;left:0;background-color:#141414;overflow-x:hidden;padding-top:67px;transition:0.5s;z-index:55;}
+.sidenav a{padding:18px 10px 0;text-decoration:none;font-size:25px;color:#fff;display:block;transition:0.3s;font-family:'GothamRounded-Medium', sans-serif;text-transform:uppercase;font-size:12px;text-align:left;}
+.sidenav a:hover, .offcanvas a:focus{color:#fff;}
+.sidenav .closebtn{position:absolute;top:0;right:25px;font-size:36px;margin-left:50px;}
+#main{transition:margin-left .5s;padding:20px;}
+.sidenav ul{margin:0 auto;padding:0 10px;}
+.sidenav ul.top-header-user-ddl > li > a{line-height:normal !important;padding:10px 0px 0 !important;}
+.sidenav ul.top-header-user-ddl > li > a:hover, .sidenav ul.top-header-user-ddl > li > a:focus{color:#fff;}
+.sidenav ul.top-header-user-ddl > li > a .fa-user{}
+.sidenav ul.top-header-user-ddl > li > .dropdown-menu{margin:10px 0px;width:100%;background-color:#fff;}
+.serach-mob-icon{position:fixed;right:8px;line-height:48px;font-size:18px;}
+.searchbox{//position:relative;min-width:40px;width:0%;height:61px;//float:right;position:fixed;right:0;top:0;overflow:hidden;-webkit-transition:width 0.3s;-moz-transition:width 0.3s;-ms-transition:width 0.3s;-o-transition:width 0.3s;transition:width 0.3s;}
+.searchbox-input{top:0;right:0;border:0;outline:0;background-color:#fff;;width:100%;height:61px;margin:0;padding:0px 55px 0px 20px;font-size:12px;color:#282828;font-family:'GothamRounded-Book', sans-serif;}
+.searchbox-input::-webkit-input-placeholder{color:#282828;}
+.searchbox-input:-moz-placeholder{color:#282828;}
+.searchbox-input::-moz-placeholder{color:#282828;}
+.searchbox-input:-ms-input-placeholder{color:#282828;}
+.searchbox-icon, .searchbox-submit{width:40px;height:61px;display:block;position:absolute;top:0;font-size:13px;right:0;padding:0;margin:0;border:0;outline:0;line-height:61px;text-align:center;cursor:pointer;color:#fff;background-color:#282828;font-family:'GothamRounded-Book', sans-serif;}
+.searchbox-open{width:100%;}
+@media screen and (max-height:450px){.sidenav{padding-top:15px;}
+.sidenav a{font-size:18px;}
+}
