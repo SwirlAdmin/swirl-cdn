@@ -1,0 +1,783 @@
+.be-designer-btn {
+	display: none!important
+}
+
+#mainbg {
+	background-image: url(https://www.getnatty.com/assets/homepage_images/bg_main1.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 763px
+}
+
+#mainbg .mainhome-popupbox {
+	text-align: center;
+	padding-top: 15%;
+	font-family: GreycliffCF-Light;
+	text-transform: uppercase
+}
+
+.home-intro p {
+	color: #fff;
+	font-size: 48px;
+	letter-spacing: 2px
+}
+
+.mainhome-popupbox hr {
+	width: 32%
+}
+
+.button-block {
+	margin-top: 40px
+}
+
+.button-block .discover {
+	padding: 15px 22px;
+	margin-right: 5%
+}
+
+.button-block .shop {
+	margin-right: 0;
+	padding: 15px 22px;
+}
+
+.button-block .discover,
+.button-block .shop {
+	background-color: transparent;
+	border: 2px solid #fff;
+	font-size: 15px;
+	color: #fff;
+	border-radius: 5px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	outline: 0;
+	font-size: 20px
+}
+
+.swiper-container {
+	width: 100%;
+	height: 100%
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	width: 43%!important;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center
+}
+
+#mainbg {
+	margin-bottom: 70px;
+}
+.collection-box .shop-for-him
+{
+	width: 35%;
+	left: 0% !important;
+}
+
+.off-first
+{
+	background-image: url(https://www.getnatty.com/assets/homepage_images/bannner1.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 290px;
+	width: 49%;
+	margin-right: 20px;
+}
+.off-second
+{
+	background-image: url(https://www.getnatty.com/assets/homepage_images/bannner2.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 290px;
+	width: 49%;
+}
+.off-first-inside
+{
+	position: absolute;
+	top: 23%;
+	right: 4%;
+	width: 52%;
+	animation: mymove 3s infinite;
+}
+.off-second-inside
+{
+	position: absolute;
+	top: 35%;
+	right: 12%;
+	width: 26%;
+	animation: mymove1 1s infinite;
+}
+@keyframes mymove1 {
+	from {
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+
+	50% {
+		-webkit-transform: scale3d(1.05, 1.05, 1.05);
+		transform: scale3d(1.05, 1.05, 1.05);
+	}
+
+	to {
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+}
+@keyframes mymove {
+	from {
+		opacity: 0;
+		-webkit-transform: scale3d(0.3, 0.3, 0.3);
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
+
+	50% {
+		opacity: 1;
+	}
+}
+.download-block {
+	color: #323232!important;
+	font-family: GreycliffCF-DemiBold;
+	width: 61%;
+	text-align: center;
+	margin-bottom: 6%
+}
+
+.download-block .instore {
+	display: none
+}
+
+.download-block h2 {
+	font-size: 35px;
+	margin-top: 60px;
+	text-align: center
+}
+
+.download-block hr {
+	width: 15%;
+	border-top: 1px solid #000!important;
+	margin-top: 0;
+	margin-bottom: 60px
+}
+
+.download-block .first-p,
+.app-10off span {
+	font-size: 80px;
+	font-family: OswaldExtraLigh;
+	font-weight: bold
+}
+
+.download-block .second-p {
+	margin-top: 0;
+	font-size: 26px;
+	margin-bottom: 25px
+}
+
+.download-block .app-10off {
+	border: 2px solid;
+	width: 43%;
+	margin: 0 auto;
+	font-size: 30px
+}
+
+.app-10off span {
+	font-size: 80px
+}
+
+.download-block .donwload-btn {
+	margin: 40px 0;
+	color: #d9a130;
+	background-color: #323232;
+	border: unset;
+	padding: 15px 35px;
+	font-size: 20px;
+	border-radius: 8px;
+	position: relative;
+	z-index: 1;
+	outline: 0
+}
+
+.swiper-container {
+	z-index: unset!important
+}
+
+.discover-row {
+	position: relative;
+	margin-bottom: 70px
+}
+
+.discover-row .discover-bg {
+	background-color: #e7e3da;
+	width: 60%;
+	position: absolute;
+	top: -7%;
+	background-image: url(https://www.getnatty.com/assets/homepage_images/bg_swirl.png);
+	background-repeat: no-repeat;
+	background-size: contain
+}
+
+.swiper-pagination {
+	position: unset!important;
+	padding-right: 17%;
+	padding-top: 15px;
+	text-align: right!important
+}
+
+.Last-collection h2,
+.trending-collection h2,
+.celebrity-collection h2,
+.editorial-collection h2,
+.occasion-collection h2,
+.newsletter-main h2 {
+	color: #323232!important;
+	font-family: GreycliffCF-DemiBold;
+	font-size: 35px;
+	margin-top: 100px;
+	text-align: center
+}
+
+.Last-collection hr,
+.trending-collection hr,
+.celebrity-collection hr,
+.editorial-collection hr,
+.occasion-collection hr,
+.newsletter-main hr {
+	width: 10%;
+	border-top: 1px solid #000!important;
+	margin-top: 0;
+	margin-bottom: 30px
+}
+
+.collection-gal-item {
+	padding-right: 8px;
+	padding-left: 8px;
+	padding-bottom: 8px
+}
+
+.collection-box {
+	display: inline-block
+}
+
+.collection-box .gal-item-title {
+	left: 30%;
+	position: absolute;
+	bottom: 7%;
+	text-align: center;
+	width: 100%;
+	color: #fff;
+	font-family: GreycliffCF-DemiBold
+}
+
+.collection-box .shop-for-him {
+	left: -30%!important
+}
+
+.collection-box .gal-item-last {
+	position: absolute;
+	bottom: 8%;
+	text-align: center;
+	width: 100%;
+	color: #fff;
+	font-family: GreycliffCF-Light
+}
+
+.gal-item-last p:first-child {
+	font-size: 32px;
+	margin: 0
+}
+
+.gal-item-last p:nth-child(2) {
+	margin: 0;
+	font-size: 15px
+}
+
+.gal-item-title p:first-child {
+	font-size: 80px;
+	margin: 0
+}
+
+.gal-item-title p:nth-child(2) {
+	margin: 0;
+	font-size: 22px
+}
+
+.collection-box1:before,
+{
+	content: "";
+	position: absolute;
+	bottom: 13px;
+	left: 8px;
+	width: 95%;
+	height: 22%;
+	background: linear-gradient(transparent, black)
+}
+
+.collection-box1:before {
+	content: "";
+	position: absolute;
+	bottom: 15px;
+	left: 8px;
+	width: 94%;
+	height: 95%;
+	background: linear-gradient(transparent, #2b2b2b66)
+}
+
+.trending-designer-block:before {
+	content: "";
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	width: 100%;
+	height: 30%;
+	background: linear-gradient(transparent, #2b2b2beb)
+}
+
+.trending-designer-block {
+	position: relative
+}
+
+.trending-designer-block .gal-item-last {
+	position: absolute;
+	bottom: 5%;
+	text-align: center;
+	width: 100%;
+	color: #fff;
+	font-family: GreycliffCF-Light
+}
+
+.slick-prev:before,
+.slick-next:before {
+	color: #000!important
+}
+
+.trending-slider .slick-dots {
+	display: none!important
+}
+
+.trending-slider .slick-slide {
+	margin: 20px 8px!important
+}
+
+.celebrity-slider .slick-next {
+	display: none!important
+}
+
+.celebrity-slider .slick-dots .slick-active {
+	opacity: 1
+}
+
+.celebrity-slider .slick-dots li button {
+	display: none!important
+}
+
+.celebrity-slider .slick-dots li {
+	padding: 0;
+	position: relative!important;
+	flex: 0 1 auto!important;
+	width: 40px!important;
+	height: 4px!important;
+	margin-left: 3px!important;
+	text-indent: -999px!important;
+	cursor: pointer!important;
+	background-color: #000!important;
+	border-radius: 0!important;
+	border: none!important;
+	opacity: .5;
+	margin: 0!important;
+	margin-right: 20px!important
+}
+
+.celebrity-slider .slick-slide {
+	padding-right: 5px
+}
+
+.editorial-collection .editorial-left {
+	padding-right: 10px
+}
+
+.editorial-left .editorial-left-1,
+.editorial-right .editorial-right-1 {
+	padding-top: 20px
+}
+
+.editorial-collection .editorial-right {
+	padding-left: 10px
+}
+
+.occasion-block .gal-item-last {
+	position: absolute;
+	bottom: 8%;
+	text-align: center;
+	width: 100%;
+	color: #fff;
+	font-family: GreycliffCF-Light
+}
+
+.occasion-mobile-design {
+	display: none
+}
+
+.occasion-collection .occasion-colume {
+	padding-left: 10px;
+	padding-right: 10px
+}
+
+.occasion-collection .occasion-row2 {
+	padding-top: 20px
+}
+
+.occasion-block:before {
+	content: "";
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 95%;
+	height: 45%;
+	background: linear-gradient(transparent, #2b2b2b)
+}
+
+.newsletter-block {
+	display: block;
+	border: 1px solid #d5d5d5;
+	margin-bottom: 50px;
+	width: 100%
+}
+
+.newsletter-img {
+	display: inline-block;
+	width: 65%;
+	vertical-align: bottom;
+	position: relative
+}
+
+.newsletter-content {
+	position: absolute;
+	text-align: center;
+	margin: 0 auto;
+	top: 32%;
+	color: #fff;
+	left: 7%;
+	border: 1px solid #fff;
+	padding: 3% 20%;
+	font-size: 20px;
+	font-family: GreycliffCF-DemiBold;
+	border-radius: 6px
+}
+
+.newsletter-form {
+	display: inline-block;
+	width: 34%;
+	vertical-align: text-bottom
+}
+
+.newsletter {
+	width: 90%;
+	margin: 20px 0;
+	position: unset;
+	margin-left: 20px
+}
+
+.newsletter p {
+	text-align: left
+}
+
+.newsletter input[type="submit"] {
+	border-radius: 6px;
+	float: right;
+	padding: 15px 40px;
+	margin: 20px 0;
+	width: unset;
+	height: 100%;
+	background-color: #323232;
+	position: unset;
+	top: unset;
+	right: unset;
+	border: 0;
+	color: #fff;
+	font-size: 16px;
+	text-transform: uppercase;
+	outline: 0
+}
+
+@media only screen and (max-width:1500px) {
+	.slick-dotted.slick-slider {
+		margin-bottom: 0
+	}
+	.newsletter {
+		margin: 70px auto
+	}
+	.Last-collection h2 {
+		margin-top: 20px;
+	}
+	#mainbg {
+		height: 555px
+	}
+	.home-intro p {
+		font-size: 35px
+	}
+	.button-block {
+		margin-top: 30px
+	}
+	.button-block .discover,
+	.button-block .shop,
+	.gal-item-title p:nth-child(2) {
+		font-size: 18px
+	}
+	.download-block h2 {
+		font-size: 30px;
+		margin-top: 48px
+	}
+	.download-block .first-p,
+	.app-10off span,
+	.gal-item-title p:first-child {
+		font-size: 60px
+	}
+	.download-block .donwload-btn {
+		margin: 30px 0;
+		font-size: 18px
+	}
+	.download-block hr {
+		margin-bottom: 15px
+	}
+	.download-block {
+		margin-bottom: 0
+	}
+	.Last-collection h2,
+	.trending-collection h2,
+	.celebrity-collection h2,
+	.editorial-collection h2,
+	.occasion-collection h2,
+	.newsletter-main h2 {
+		font-size: 30px;
+		margin-top: 70px
+	}
+	.download-block .app-10off {
+		width: 52%
+	}
+}
+
+@media only screen and (max-width:1200px) {
+	#mainbg {
+		height: 478px
+	}
+	.home-intro p {
+		font-size: 30px
+	}
+	.button-block .discover,
+	.button-block .shop,
+	.download-block .donwload-btn {
+		font-size: 15px
+	}
+	.download-block h2,
+	.download-block .app-10off {
+		font-size: 28px
+	}
+	.download-block .first-p,
+	.app-10off span {
+		font-size: 50px
+	}
+	.gal-item-last p:first-child {
+		font-size: 22px
+	}
+	.gal-item-last p:nth-child(2) {
+		font-size: 13px
+	}
+}
+
+@media only screen and (max-width:1100px) {
+	#mainbg {
+		height: 425px
+	}
+}
+
+@media only screen and (max-width:430px) {
+	.trending-collection h2 {
+		margin-top: 80px
+	}
+	.slick-dots li button::before {
+		font-size: 40px!important
+	}
+	.trending-slider .slick-dots {
+		display: block!important
+	}
+	#instagram-embed-0,
+	#instagram-embed-1,
+	#instagram-embed-2 {
+		margin: 0 auto!important;
+		margin-bottom: 12px!important
+	}
+	.occasion-collection .occasion-colume {
+		padding-right: 0
+	}
+	.editorial-collection h2 {
+		margin-top: 80px
+	}
+	.slick-dotted.slick-slider {
+		margin-bottom: 0
+	}
+	.collection-gal-item {
+		padding-right: 0;
+		padding-bottom: 8px
+	}
+	.celebrity-slider .slick-dots li {
+		height: 2px!important
+	}
+	.occasion-block::before {
+		bottom: 10px;
+		width: 90%
+	}
+	.occasion-collection .occasion-colume {
+		padding-bottom: 10px
+	}
+	#mainbg .mainhome-popupbox {
+		padding-top: 25%
+	}
+	.home-intro p {
+		font-size: 15px
+	}
+	.button-block {
+		margin-top: 10px
+	}
+	.download-block h2,
+	.Last-collection hr,
+	.trending-collection hr,
+	.celebrity-collection hr,
+	.editorial-collection hr,
+	.occasion-collection hr,
+	.newsletter-main hr {
+		margin-top: 20px
+	}
+	.Last-collection h2,
+	.trending-collection h2,
+	.celebrity-collection h2,
+	.editorial-collection h2,
+	.occasion-collection h2,
+	.newsletter-main h2 {
+		margin-top: 30px
+	}
+	.button-block .discover,
+	.button-block .shop,
+	.download-block .donwload-btn {
+		font-size: 12px
+	}
+	.button-block .discover {
+		padding: 10px 10px;
+		margin-right: 2%
+	}
+	.button-block .shop {
+		padding: 10px 45px
+	}
+	.button-block .discover,
+	.button-block .shop {
+		border: 1px solid #fff
+	}
+	#mainbg {
+		height: 230px;
+		margin-bottom: 20px;
+		background-size: cover;
+		background-position: center
+	}
+	.swiper-container {
+		display: none
+	}
+	.discover-row .discover-bg {
+		width: 100%;
+		position: unset;
+		top: unset
+	}
+	.download-block {
+		width: 100%
+	}
+	.download-block h2 {
+		padding-top: 20px
+	}
+	.download-block h2,
+	.download-block .app-10off {
+		font-size: 22px
+	}
+	.download-block .first-p {
+		margin-top: 60px
+	}
+	.download-block .first-p,
+	.app-10off span {
+		font-size: 35px
+	}
+	.discover-row {
+		margin-bottom: 0
+	}
+	.Last-collection h2,
+	.trending-collection h2,
+	.celebrity-collection h2,
+	.editorial-collection h2,
+	.occasion-collection h2,
+	.newsletter-main h2 {
+		font-size: 25px;
+		margin-top: 50px
+	}
+	#acc-web,
+	#jew-web {
+		display: block
+	}
+	.occasion-mobile-design {
+		display: block
+	}
+	.occasion-web-design {
+		display: none
+	}
+	.collection-box1::before {
+		width: 90%;
+		height: 100%
+	}
+	.collection-box .gal-item-title {
+		left: -30%
+	}
+	.gallery_slider .slick-prev {
+		left: -15px
+	}
+	.gallery_slider .slick-next {
+		right: -15px
+	}
+	.occasion-block .gal-item-last {
+		width: 94%
+	}
+	.designer-block button {
+		width: 40%
+	}
+	.fixbackground {
+		min-height: 200px;
+		background-size: contain
+	}
+	.download-block .instore {
+		display: block
+	}
+	.newsletter-img,
+	.newsletter-form {
+		width: 100%!important
+	}
+	.newsletter input[type="submit"] {
+		float: unset!important;
+		font-size: 12px!important;
+		padding: 10px 30px!important;
+		margin: 10px 0
+	}
+	.newsletter-content {
+		padding: 3%;
+		top: 30%;
+		left: 4%;
+		font-size: 18px
+	}
+	.newsletter {
+		margin: 20px auto 10px
+	}
+}

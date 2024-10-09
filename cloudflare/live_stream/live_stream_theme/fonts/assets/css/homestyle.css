@@ -1,0 +1,384 @@
+.discover-row
+{
+	margin-top: 70px;
+}
+.mobile-slider
+{display: none;}
+.button-block .shop {
+	margin-right: 0;
+	padding: 15px 22px;
+}
+.download-block
+{
+	width: 70%;
+}
+.download-block h2 {
+	font-size: 25px;
+	margin-top: 48px;
+}
+.download-block .app-10off {
+	width: 70%;
+	font-size: 25px;
+	padding: 10px;
+}
+.trending-designer-block:before
+{
+	content: "";
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	height: 50%;
+	opacity: 0.5;
+	background: linear-gradient(transparent, #000);	
+}
+.collection-box1:before
+{
+	content: "";
+	position: absolute;
+	bottom: 13px;
+	left: 8px;
+	width: 94.5%;
+	height: 50%;
+	opacity: 0.5;
+	background: linear-gradient(transparent, #000);
+}
+.slick-dots li button::before {
+	font-size: 20px!important;
+}
+.collection-box .gal-item-title
+{
+	left: 37%;
+	bottom: 5%;
+}
+.download-block .first-p, .app-10off span, .gal-item-title p:first-child {
+	font-size: 55px;
+}
+
+.occ-first-block:before
+{
+	width: 97.5% !important;
+	bottom: 0px;
+	left: 10px !important;
+}
+.occasion-block:before
+{
+	bottom: 0px;
+	left: 10px; 
+	width: 95%;
+	background: linear-gradient(transparent, #000);
+	opacity: 0.5;
+}
+.trending-designer-block:before
+{
+	bottom: 0px;
+}
+.collection-box .shop-for-him
+{
+	width: 40%;
+	left: -5% !important;
+}
+.off-first
+{
+	background-image: url(https://www.getnatty.com/assets/homepage_images/bannner1.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 290px;
+	width: 49%;
+	margin-right: 20px;
+}
+.off-second
+{
+	background-image: url(https://www.getnatty.com/assets/homepage_images/bannner2.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 290px;
+	width: 49%;
+}
+.off-first-inside
+{
+	position: absolute;
+	top: 23%;
+	right: 4%;
+	width: 52%;
+	animation: mymove 3s infinite;
+}
+.off-second-inside
+{
+	position: absolute;
+	top: 35%;
+	right: 12%;
+	width: 26%;
+	animation: mymove1 1s infinite;
+}
+.two-banner
+{
+	margin-bottom: 80px;
+}
+.editorial-collection
+{
+	margin-bottom: 150px;
+}
+.editorial-collection h2
+{
+	margin-top: 10px;
+}
+.swiper-slide
+{
+	background: unset;
+	width: 17%!important;
+}
+.video-play {
+	position: absolute;
+	right: 8%;
+	bottom: 2%;
+}
+.discover-row .discover-bg
+{
+	background-color: #e7e3da;
+	width: 40%;
+	position: absolute;
+	top: -7%;
+	background-image: url(https://www.getnatty.com/assets/homepage_images/bg_swirl.png) !important;
+	background-repeat: no-repeat;
+	background-size: 50%;
+	background-position: bottom left;
+}
+.discover-row .swiper-wrapper
+{
+	left: 27%;
+}
+.discover-row .swiper-pagination-bullet
+{
+	width: 12px;
+	height: 12px;
+	background: #fff;
+	border: 1px solid #323232;
+}
+.discover-row .swiper-pagination-bullet-active {
+	background-color: #323232 !important;
+}
+.discover-row .swiper-pagination
+{
+	padding-right: 0%;
+	text-align: center !important;
+}
+.swirls-img video
+{
+	box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	object-fit: cover;
+	width: 300px;
+	height: 480px;
+}
+.video-play p{
+	color: #fff;
+	text-decoration: underline;
+	font-size: 15px;
+	letter-spacing: 1px;
+	font-family: GreycliffCF-Light;
+}
+#top-video
+{
+	position: relative;
+}
+#top-video .mainhome-popupbox
+{
+	position: absolute;
+	bottom: 30%;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+
+#top-video:before {
+	content: "";
+	position: absolute;
+	bottom: 4px;
+	left: 0px;
+	width: 100%;
+	height: 65%;
+	opacity: 0.5;
+	background: linear-gradient(transparent, #000);
+}
+#top-video .mainhome-popupbox {
+	text-align: center;
+	padding-top: 15%;
+	font-family: GreycliffCF-Light;
+	text-transform: uppercase;
+}
+@media only screen and (max-width:1500px) 
+{
+	.swiper-slide
+	{
+		width: 16% !important;
+	}
+	.swirls-img video
+	{
+		width: 250px;
+		height: 400px;
+	}
+	.video-play
+	{
+		right: 14%;
+		bottom: 2%;
+	}
+}
+@media only screen and (max-width:1440px) 
+{
+	#menu-width11 {
+		width: 80%;
+	}
+	.searchbox-width {
+		width: 20%;
+	}
+	.navbar-inverse .navbar-nav>li>a
+	{
+		font-size: 13px;
+	}
+}
+@media only screen and (max-width:1400px) 
+{
+	.swirls-img video {
+		width: 230px;
+		height: 400px;
+	}
+}
+@media only screen and (max-width:1200px) {
+	.off-first
+	{
+		margin-right: 10px;
+	}
+	.off-second-inside
+	{
+		top: 27%;
+	}
+	.swiper-slide 
+	{
+		background: unset;
+		width: 22% !important;
+	}
+}
+@media only screen and (max-width:1100px) {
+	#menu-width11 {
+		width: 100%;
+	}
+	.navbar-inverse .navbar-nav > li > a {
+		font-size: 12px;
+	}
+}
+@media only screen and (max-width:1040px) {
+	#menu-width11 {
+		width: 100%;
+	}
+	.navbar-inverse .navbar-nav > li > a {
+		font-size: 10px;
+	}
+}
+@media only screen and (max-width:950px) {
+	#menu-width11 {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width:460px) {
+	.off-first,.off-second
+	{
+		width: 100%;
+		height: 190px;
+	}
+	.two-banner
+	{
+		margin-bottom: 10px;
+	}
+	.off-second-inside
+	{
+		top: 35%;
+	}
+}
+@media only screen and (max-width:430px) {
+	.discover-row .swiper-wrapper
+	{
+		left: 0%;
+	}
+	.swiper-slide
+	{
+		width: 100% !important;
+	}
+	.discover-row .discover-bg
+	{
+		width: 100% !important;
+		position: relative !important;
+	}
+	.download-block
+	{
+		width: 100% !important;
+	}
+	.button-block .shop
+	{
+		padding: 10px !important;
+	}
+	.home-intro p
+	{
+		font-size: 14px;
+	}
+	.editorial-collection
+	{
+		margin-bottom: 0px;
+	}
+	.download-block h2 
+	{
+		font-size: 20px;
+	}
+	.download-block .first-p
+	{
+		font-size: 40px;
+		margin-top: 0px; 
+	}
+	.download-block .second-p
+	{
+		font-size: 20px;
+	}
+	.download-block .app-10off
+	{
+		font-size: 15px;
+	}
+	.occasion-block:before 
+	{
+		bottom: 9px;
+		left: 10px;
+		width: 96%;
+		background: linear-gradient(transparent, #000);
+		opacity: 0.5;
+	}
+	.payment img
+	{
+		width: 80%;
+	}
+	.collection-box .gal-item-title 
+	{
+		width: 40% !important;
+		left: 0% !important;
+	}
+	.swiper-container
+	{
+		display: none !important;
+	}
+	.mobile-slider
+	{
+		display: block;
+		margin-top: -50%;
+		text-align: center;
+	}
+	.download-block {
+		padding-bottom: 50%;
+	}
+	.swirls-img video
+	{
+		width: 300px;
+	}
+	.video-play {
+		right: 20%;
+		bottom: 2%;
+	}
+}
