@@ -59,12 +59,13 @@ function executeSLiveNow() {
     $('body').append(`
         <div class="SL-iframe-live" style="display:none;">
             <iframe id="SL-iframe-tag" style="width: 100%;height: 100%;border: none;display: block;" src="" allow="clipboard-read; clipboard-write; fullscreen; autoplay; encrypted-media; picture-in-picture"></iframe>
-            <img class="SL-popup-n-pip-btn" onclick="turnToPIPSL();" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/arrow-down-s-line-black.webp">
-            <img class="SL-popup-n-close-btn JS-pip-controls-SL" style="display: none;" onclick="unloadStreamSL();" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/close-black.webp">
-            <img class="SL-popup-n-fs-btn JS-pip-controls-SL" style="display: none;" onclick="turnToFullSL();" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/arrow-up-s-line-black.webp">
-            <img class="SL-popup-n-playpause-btn JS-pip-controls-SLL" style="display: none;" onclick="playPausePIPSL(this);" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/pause-black.webp">
-            <img class="SL-popup-n-muteunmute-btn JS-pip-controls-SLL" style="display: none;" onclick="muteUnmutePIPSL(this);" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/mute-black.webp">
-            <div class="SL-popup-n-overlay JS-pip-controls-SLL" style="display: none;" onclick="turnToFullSL();"></div>
+            <img class="SL-popup-n-pip-btn" onclick="turnToPIPSL();" src="https://apigoswirl.com/assets/vivo/arrow-down-s-line-black.webp">
+            <img class="SL-popup-n-close-btn JS-pip-controls-SL" style="display: none;" onclick="unloadStreamSL();" src="https://apigoswirl.com/assets/vivo/close-black.webp">
+            <img class="SL-popup-n-fs-btn JS-pip-controls-SL" style="display: none;" onclick="turnToFullSL();" src="https://apigoswirl.com/assets/vivo/arrow-up-s-line-black.webp">
+            <img class="SL-popup-n-playpause-btn JS-pip-controls-SLL" style="display: none;" onclick="playPausePIPSL(this);" src="https://apigoswirl.com/assets/vivo/pause-black.webp">
+            <img class="SL-popup-n-muteunmute-btn JS-pip-controls-SLL" style="display: none;" onclick="muteUnmutePIPSL(this);" src="https://apigoswirl.com/assets/vivo/mute-black.webp">
+            <div class="SL-popup-n-overlay JS-SL-pip-drag JS-pip-controls-SL" style="display: none;"></div>
+            <div class="SL-popup-n-overlay2 JS-SL-pip-drag JS-pip-controls-SL" style="display: none;"></div>
         </div>        
 
         <input type="text" class="SL-copylink-input" value="" style="display: none !important;" onclick="SLcopyLink(this);">
@@ -99,7 +100,6 @@ function executeSLiveNow() {
             $('.SLS-loader').remove();
             if (Object.keys(data).length && (data['scheduled'].length || data['completed'].length)) {
                 customization = data['data'];
-                // console.log(customization);
                 let append = '';
                 let pastShows = '';
                 let playThis = '';
@@ -121,7 +121,7 @@ function executeSLiveNow() {
                                         <div class="col-12 col-md-3 col-lg-3 col-md-offset-1 col-lg-offset-3 p-0 px-5 px-sm-0 position-relative" onclick="watchStream('${scheduled.streamURL}');" style="cursor: pointer;">
                                             <img src="${scheduled.cover_img}" class="SL-vdo-thmub-full" alt="Stream Thumbnail" >
                                             <label class="SL-stream-badge" style="display: none!important; ${scheduled.is_live == '1' ? 'color: #ffffff !important; background: #FF0101 !important;' : ''}">${scheduled.is_live == '1' ? 'LIVE' : 'UPCOMING'}</label>
-                                            <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/play.webp" class="SL-play-btn" alt="Play icon">
+                                            <img src="https://apigoswirl.com/assets/vivo/play.webp" class="SL-play-btn" alt="Play icon">
                                         </div>
                                         <div class="col-12 col-md-6 col-lg-4 px-sm-3 pt-4 pt-sm-0 ${customization.scheduled_grid == '0' ? 'order-md-first' : ''}">
                                             <p class="SL-stream-tag-full">${scheduled.is_live == '1' ? 'Currently <span>Live</span>' : 'Starting Soon'}</p>
@@ -169,19 +169,19 @@ function executeSLiveNow() {
                                                     </button>
                                                     <div class="SLdropdown-menu" id="SLShare">
                                                         <a class="SL-facebook" data-sharelink="${urlSL + '?stream=' + window.btoa(scheduled.streamURL)}" title="Share on Facebook">
-                                                            <img class="SL-share-images" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/facebook.webp" alt="Facebook icon">
+                                                            <img class="SL-share-images" src="https://apigoswirl.com/assets/vivo/facebook.webp" alt="Facebook icon">
                                                             Facebook
                                                         </a>
                                                         <a class="SL-twitter" data-sharelink="${urlSL + '?stream=' + window.btoa(scheduled.streamURL)}" title="Share on Twitter">
-                                                            <img class="SL-share-images" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/twitter-x-logo.webp" alt="Twitter icon">
+                                                            <img class="SL-share-images" src="https://apigoswirl.com/assets/vivo/twitter-x-logo.webp" alt="Twitter icon">
                                                             Twitter
                                                         </a>
                                                         <a class="SL-whatsapp" data-sharelink="${urlSL + '?stream=' + window.btoa(scheduled.streamURL)}" title="Share on Whatsapp">
-                                                            <img class="SL-share-images" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/whatsapp.webp" alt="Whatsapp icon">
+                                                            <img class="SL-share-images" src="https://apigoswirl.com/assets/vivo/whatsapp.webp" alt="Whatsapp icon">
                                                             Whatsapp
                                                         </a>
                                                         <a class="SL-copy" data-sharelink="${urlSL + '?stream=' + window.btoa(scheduled.streamURL)}" title="Copy link">
-                                                            <img class="SL-share-images" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/copy-link.webp" alt="Copy link icon">
+                                                            <img class="SL-share-images" src="https://apigoswirl.com/assets/vivo/copy-link.webp" alt="Copy link icon">
                                                             Copy Link
                                                         </a>                                                                                                                                                                                                
                                                     </div>
@@ -272,6 +272,16 @@ function executeSLiveNow() {
                                             <p class="SL-stream-tag-full">Watch Again</p>
                                             <p class="SL-stream-title-full">${completed.title}</p>
                                             <p class="SL-stream-desc-full">${onDT}</p>                                            
+                                            <div class="SL-views-and-like">
+                                                <div>
+                                                    <img src="https://apigoswirl.com/assets/vivo/eye-fill.svg" alt="Views icon">    
+                                                    <label>${completed.total_views ? completed.total_views : '0'}</label>
+                                                </div>
+                                                <div>
+                                                    <img src="https://apigoswirl.com/assets/vivo/heart-fill.svg" alt="Heart icon">
+                                                    <label>${completed.total_like ? completed.total_like : '0'}</label>
+                                                </div>                                            
+                                            </div>
 
                                             <div class="SL-full-card-buttons">
                                                 <button class="SL-watch-live-btn streamClick" onclick="watchStream('${completed.streamURL}');">
@@ -285,19 +295,19 @@ function executeSLiveNow() {
                                                     </button>
                                                     <div class="SLdropdown-menu" id="SLShare">
                                                         <a class="SL-facebook" data-sharelink="${urlSL + '?stream=' + window.btoa(completed.streamURL)}" title="Share on Facebook">
-                                                            <img class="SL-share-images" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/facebook.webp" alt="Facebook icon">
+                                                            <img class="SL-share-images" src="https://apigoswirl.com/assets/vivo/facebook.webp" alt="Facebook icon">
                                                             Facebook
                                                         </a>
                                                         <a class="SL-twitter" data-sharelink="${urlSL + '?stream=' + window.btoa(completed.streamURL)}" title="Share on Twitter">
-                                                            <img class="SL-share-images" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/twitter-x-logo.webp" alt="Twitter icon">
+                                                            <img class="SL-share-images" src="https://apigoswirl.com/assets/vivo/twitter-x-logo.webp" alt="Twitter icon">
                                                             Twitter
                                                         </a>
                                                         <a class="SL-whatsapp" data-sharelink="${urlSL + '?stream=' + window.btoa(completed.streamURL)}" title="Share on Whatsapp">
-                                                            <img class="SL-share-images" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/whatsapp.webp" alt="Whatsapp icon">
+                                                            <img class="SL-share-images" src="https://apigoswirl.com/assets/vivo/whatsapp.webp" alt="Whatsapp icon">
                                                             Whatsapp
                                                         </a>
                                                         <a class="SL-copy" data-sharelink="${urlSL + '?stream=' + window.btoa(completed.streamURL)}" title="Copy link">
-                                                            <img class="SL-share-images" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/copy-link.webp" alt="Copy link icon">
+                                                            <img class="SL-share-images" src="https://apigoswirl.com/assets/vivo/copy-link.webp" alt="Copy link icon">
                                                             Copy Link
                                                         </a>                                                                                                                                                                                                
                                                     </div>
@@ -320,7 +330,7 @@ function executeSLiveNow() {
                                 <div class="swiper-slide" data-stream="${completed.streamURL}" onclick="!event.target.className.includes('SL-share-images') ? watchStream('${completed.streamURL}') : '';">
                                     <div class="SL-active-stream-video-container position-relative">
                                         <img src="${completed.cover_img}" class="SL-vdo-thmub" alt="Stream Thumbnail" >
-                                        <img style="display: none;" src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/play.webp" class="SL-play-btn" alt="Play icon">
+                                        <img style="display: none;" src="https://apigoswirl.com/assets/vivo/play.webp" class="SL-play-btn" alt="Play icon">
                                         <p class="rec-badge-past-shows"><span></span> REC</p>
                                     </div>
                                     <div class="SL-active-stream-info-container">
@@ -328,13 +338,13 @@ function executeSLiveNow() {
                                         <p class="SL-date-top">${onDT}</p>
                                         <div class="SL-views-and-like">
                                             <div>
-                                                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/heart-fill.svg" alt="Heart icon">
-                                                <label>${completed.total_like ? completed.total_like : '0'}</label>
-                                            </div>
-                                            <div>
-                                                <img src="https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/eye-fill.svg" alt="Views icon">    
+                                                <img src="https://apigoswirl.com/assets/vivo/eye-fill.svg" alt="Views icon">    
                                                 <label>${completed.total_views ? completed.total_views : '0'}</label>
                                             </div>
+                                            <div>
+                                                <img src="https://apigoswirl.com/assets/vivo/heart-fill.svg" alt="Heart icon">
+                                                <label>${completed.total_like ? completed.total_like : '0'}</label>
+                                            </div>                                            
                                         </div>                                                                
                                     </div>
                                 </div>
@@ -519,12 +529,12 @@ eventerSL(messageEventSL, function (e) {
 
     if (action == 'updateStreamPlayingStatus') {
         let img = $('.SL-popup-n-playpause-btn')[0];
-        img.src = data ? 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/pause-black.webp' : 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/play-icon-black.webp';
+        img.src = data ? 'https://apigoswirl.com/assets/vivo/pause-black.webp' : 'https://apigoswirl.com/assets/vivo/play-icon-black.webp';
     }
 
     if (action == 'updateStreamVolume') {
         let img = $('.SL-popup-n-muteunmute-btn')[0];
-        img.src = data ? 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/mute-black.webp' : 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/unmute-black.webp';
+        img.src = data ? 'https://apigoswirl.com/assets/vivo/mute-black.webp' : 'https://apigoswirl.com/assets/vivo/unmute-black.webp';
     }
 
     if (action == 'pipToModal') {
@@ -551,7 +561,9 @@ eventerSL(messageEventSL, function (e) {
 
 window.addEventListener("message", (event) => {
     if (event.data.action === "open" && event.data.url) {
-        const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone|Vivo|BlackBerry/i.test(navigator.userAgent);
+        // const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone|Vivo|BlackBerry/i.test(navigator.userAgent);
+        // if (isMobile) window.location.href = event.data.url;
+        // else window.open(event.data.url, "_blank");
         window.location.href = event.data.url;
     }
 });
@@ -620,6 +632,9 @@ function turnToPIPSL() {
     if (document.fullscreenElement) {
         document.exitFullscreen();
     }
+
+    // Movable
+    pipMovableSL();
 }
 
 function turnToFullSL() {
@@ -654,23 +669,23 @@ function unloadStreamSL() {
 
 function playPausePIPSL(img) {
     const iframe = document.getElementById("SL-iframe-tag");
-    if (img.src == 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/pause-black.webp') {
+    if (img.src == 'https://apigoswirl.com/assets/vivo/pause-black.webp') {
         iframe.contentWindow.postMessage({ action: "pausePIPSL" }, '*');
-        img.src = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/play-icon-black.webp';
+        img.src = 'https://apigoswirl.com/assets/vivo/play-icon-black.webp';
     } else {
         iframe.contentWindow.postMessage({ action: "playPIPSL" }, '*');
-        img.src = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/pause-black.webp';
+        img.src = 'https://apigoswirl.com/assets/vivo/pause-black.webp';
     }
 }
 
 function muteUnmutePIPSL(img) {
     const iframe = document.getElementById("SL-iframe-tag");
-    if (img.src == 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/mute-black.webp') {
+    if (img.src == 'https://apigoswirl.com/assets/vivo/mute-black.webp') {
         iframe.contentWindow.postMessage({ action: "unmutePIPSL" }, '*');
-        img.src = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/unmute-black.webp';
+        img.src = 'https://apigoswirl.com/assets/vivo/unmute-black.webp';
     } else {
         iframe.contentWindow.postMessage({ action: "mutePIPSL" }, '*');
-        img.src = 'https://cdn.jsdelivr.net/gh/SwirlAdmin/swirl-cdn/assets/vivo/mute-black.webp';
+        img.src = 'https://apigoswirl.com/assets/vivo/mute-black.webp';
     }
 }
 
@@ -758,6 +773,92 @@ function openPIPSL() {
     slsFrame.contentWindow.location.replace(currentStreamSL + '&close=false' + startFrom);
 
     $('.SL-iframe-live').show();
+
+    // Movable
+    pipMovableSL();
+}
+
+let pipMovable = false;
+function pipMovableSL() {
+    if (pipMovable) return;
+    let movableDiv = $('.SL-iframe-live')[0];
+    let dragHandles = document.querySelectorAll('.JS-SL-pip-drag');
+
+    let isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone|Vivo|BlackBerry/i.test(navigator.userAgent);
+    let offsetX = 0, offsetY = 0, isDragging = false;
+    let activeHandle = null; // Track the button being dragged
+
+    // Start Dragging (Mouse + Touch)
+    function startDrag(e) {
+        isDragging = true;
+        activeHandle = e.target; // Store the button being dragged
+        activeHandle.style.cursor = "grabbing"; // Apply grabbing effect to the handle
+
+        let clientX = e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
+        let clientY = e.type.includes("touch") ? e.touches[0].clientY : e.clientY;
+        offsetX = clientX - movableDiv.offsetLeft;
+        offsetY = clientY - movableDiv.offsetTop;
+
+        // Prevent scrolling
+        if (isMobile) document.body.style.overflow = "hidden";
+    }
+
+    // Move Div (Mouse + Touch)
+    function moveDrag(e) {
+        if (!isDragging) return;
+        let clientX = e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
+        let clientY = e.type.includes("touch") ? e.touches[0].clientY : e.clientY;
+
+        let newX = clientX - offsetX;
+        let newY = clientY - offsetY;
+
+        // Get screen width & height
+        let screenWidth = window.innerWidth;
+        let screenHeight = window.innerHeight;
+
+        // Get div dimensions
+        let divWidth = movableDiv.offsetWidth;
+        let divHeight = movableDiv.offsetHeight;
+
+        // Constrain movement to screen bounds
+        if (newX < 0) newX = 0;
+        if (newX + divWidth > screenWidth) newX = screenWidth - divWidth;
+        if (newY < 0) newY = 0;
+        if (newY + divHeight > screenHeight) newY = screenHeight - divHeight;
+
+        movableDiv.style.left = `${newX}px`;
+        movableDiv.style.top = `${newY}px`;
+
+        // Prevent scrolling while dragging
+        if (isMobile) e.preventDefault();
+    }
+
+    // Stop Dragging
+    function stopDrag() {
+        isDragging = false;
+        if (activeHandle) {
+            activeHandle.style.cursor = "grab"; // Reset cursor
+            activeHandle = null; // Reset active handle
+        }
+
+        if (isMobile) document.body.style.overflow = ""; // Restore scrolling
+    }
+
+    // Add event listeners to both buttons
+    dragHandles.forEach(handle => {
+        handle.addEventListener("mousedown", startDrag);
+        handle.addEventListener("touchstart", startDrag); // Mobile Support
+    });
+
+    // Move events
+    document.addEventListener("mousemove", moveDrag);
+    document.addEventListener("touchmove", moveDrag); // Mobile Support
+
+    // Stop events
+    document.addEventListener("mouseup", stopDrag);
+    document.addEventListener("touchend", stopDrag); // Mobile Support
+
+    pipMovable = true;
 }
 
 function SLcopyLink(inp) {
