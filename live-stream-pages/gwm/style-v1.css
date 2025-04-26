@@ -1,0 +1,172 @@
+/* Custom JS */
+@font-face {
+  font-family: 'f-regular';
+  font-style: normal;
+  src: url('https://apigoswirl.com/assets/fonts/futura-medium-bt.ttf');
+}
+
+#swirl-live-streams * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#swirl-live-streams {
+  display: block;
+  font-family: f-regular;
+}
+
+/* iFrame */
+.SL-iframe-live {
+  width: 100%;
+  height: 100vh;
+  border: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 121100121100;
+  overflow: hidden;
+  box-shadow: -1px 1px 7.2px 0 #00000080;
+  user-select: none;
+  touch-action: none;
+}
+
+.SL-popup-n-pip-btn {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 30px !important;
+  cursor: pointer;
+  display: block;
+  z-index: 3;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.SL-popup-n-fs-btn {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 30px !important;
+  cursor: pointer;
+  display: block;
+  z-index: 3;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.SL-popup-n-close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 30px !important;
+  cursor: pointer;
+  display: block;
+  z-index: 3;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.SL-popup-n-playpause-btn {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: 30px !important;
+  cursor: pointer;
+  display: block;
+  z-index: 3;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.SL-popup-n-muteunmute-btn {
+  position: absolute;
+  left: 10px;
+  bottom: 50px;
+  width: 30px !important;
+  cursor: pointer;
+  display: block;
+  z-index: 3;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.SL-popup-n-overlay {
+  position: absolute;
+  height: calc(100% - 75px);
+  width: 100%;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  display: block;
+  z-index: 2;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: grab;
+}
+
+.SL-popup-n-overlay2 {
+  position: absolute;
+  height: 75px;
+  width: calc(100% - 40px);
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  display: block;
+  z-index: 2;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: grab;
+}
+
+.SL-trigger-floating-icon {
+  position: fixed;
+  z-index: 12;
+  height: 44px;
+  width: 44px;
+  right: 22px;
+  bottom: 105px;
+  background: #BF1616;
+  border-radius: 50%;
+  text-align: center;
+  padding: 11px;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.SL-trigger-floating-icon::after {
+  content: '';
+  height: calc(100% + 8px);
+  width: calc(100% + 8px);
+  display: block;
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  background: transparent;
+  z-index: -1;
+  border: 2px dashed #BF1616;
+  border-radius: 50%;
+  animation: rotate 2s linear infinite;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.SL-trigger-floating-icon svg {
+  width: 100%;
+  height: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+}
